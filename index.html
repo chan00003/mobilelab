@@ -1,0 +1,663 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mobile Lab | AI Systems &amp; Automation</title>
+<meta name="description" content="Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.">
+<meta property="og:title" content="Mobile Lab | AI Systems &amp; Automation">
+<meta property="og:description" content="Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.">
+<!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link class="" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><link class="" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Forms and Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#00373a",
+            "on-primary": "#1c3700",
+            "on-primary-container": "#274900",
+            "tertiary-container": "#28c38a",
+            "on-background": "#dfe2ee",
+            "surface-bright": "#353942",
+            "surface": "#0f131c",
+            "error-container": "#93000a",
+            "on-secondary-fixed-variant": "#004f53",
+            "surface-container-highest": "#31353e",
+            "secondary": "#dcfdff",
+            "on-tertiary-fixed-variant": "#005236",
+            "primary-fixed-dim": "#8bdc34",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-secondary-fixed": "#002022",
+            "secondary-fixed": "#6ff6ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary": "#003824",
+            "primary-container": "#72c012",
+            "tertiary": "#50dfa4",
+            "surface-container-low": "#181c24",
+            "inverse-primary": "#3b6a00",
+            "surface-dim": "#0f131c",
+            "on-primary-fixed-variant": "#2b5000",
+            "on-error": "#690005",
+            "inverse-surface": "#dfe2ee",
+            "inverse-on-surface": "#2c3039",
+            "secondary-fixed-dim": "#00dce6",
+            "secondary-container": "#00f1fd",
+            "surface-container": "#1c2028",
+            "surface-container-high": "#262a33",
+            "surface-variant": "#31353e",
+            "primary-fixed": "#a6f950",
+            "on-primary-fixed": "#0e2000",
+            "outline": "#8b947d",
+            "background": "#0f131c",
+            "on-surface-variant": "#c1cab1",
+            "on-secondary-container": "#006a6f",
+            "on-surface": "#dfe2ee",
+            "surface-tint": "#8bdc34",
+            "on-tertiary-fixed": "#002113",
+            "on-error-container": "#ffdad6",
+            "surface-container-lowest": "#0a0e16",
+            "error": "#ffb4ab",
+            "outline-variant": "#414a37",
+            "on-tertiary-container": "#004a31",
+            "primary": "#8cdd35"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-md": "3rem",
+            "gutter-lg": "2rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-sm": "1rem",
+            "margin-lg": "5rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.5rem",
+            "margin": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display-hero": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Space Grotesk"],
+            "label-tech": ["Space Grotesk"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "display-hero-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "display-hero": ["64px", {"lineHeight": "72px", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-xl-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+            "label-tech": ["11px", {"lineHeight": "14px", "fontWeight": "700"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+            "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+            "headline-xl": ["48px", {"lineHeight": "56px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-panel-elevated {
+      background: rgba(27, 36, 52, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .glow-primary {
+      box-shadow: 0 0 25px -4px rgba(114, 192, 18, 0.4);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -4px rgba(0, 242, 254, 0.35);
+    }
+    .cyber-grid-bg {
+      background-image: radial-gradient(rgba(114, 192, 18, 0.08) 1px, transparent 1px),
+                        radial-gradient(rgba(0, 241, 253, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+    }
+  </style>
+<style class="" id="montserrat-global-font">body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, label, div:not(.material-symbols-outlined), span:not(.material-symbols-outlined) { font-family: 'Montserrat', sans-serif !important; }</style><style class="" id="animated-card-border-styles">@property --card-border-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; } @keyframes rotateCardBorder { 0% { --card-border-angle: 0deg; } 100% { --card-border-angle: 360deg; } } .animated-border-card { position: relative; border-radius: 1rem; padding: 1.5px; overflow: hidden; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, #8cdd35 0deg, #6ff6ff 60deg, transparent 130deg, rgba(65, 74, 55, 0.4) 220deg, transparent 300deg, #8cdd35 360deg); animation: rotateCardBorder 5s linear infinite; filter: drop-shadow(0 0 14px rgba(140, 221, 53, 0.18)); } .animated-border-card::before { content: ''; position: absolute; inset: -2px; z-index: -1; border-radius: inherit; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, rgba(140, 221, 53, 0.4) 0deg, rgba(111, 246, 255, 0.4) 60deg, transparent 140deg, transparent 300deg, rgba(140, 221, 53, 0.4) 360deg); filter: blur(4px); opacity: 0.6; animation: rotateCardBorder 5s linear infinite; }</style></head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary min-h-screen relative overflow-x-hidden w-full max-w-full">
+<!-- Interactive Header Radial Glow Tracker -->
+<div class="fixed pointer-events-none rounded-full blur-[100px] bg-primary/20 w-80 h-80 -translate-x-1/2 -translate-y-1/2 z-40 transition-opacity duration-300 opacity-0" id="header-glow" style="opacity: 0; left: 25px; top: 42px;"></div>
+<!-- Ambient Radial Light Bleeds -->
+<div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="fixed top-1/3 right-10 w-[550px] h-[550px] bg-secondary-container/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-10 left-10 w-[500px] h-[500px] bg-tertiary-container/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+<!-- ==========================================
+     SECTION 1: HERO (Dark Obsidian Background)
+     ========================================== -->
+<header class="docked top-0 sticky z-50 bg-surface/85 backdrop-blur-md shadow-sm border-b border-outline-variant/40 w-full" id="site-header">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between w-full">
+<a class="flex items-center space-x-3 group" href="#">
+<div class="h-9 w-9 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-lg shadow-sm">M</div>
+<span class="font-headline-md text-xl font-bold tracking-tight text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+</a>
+<nav class="hidden md:flex items-center space-x-6 lg:space-x-8"><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="#services">Services</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="#how-we-work">How We Work</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="#who-its-for">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="#contact">Contact</a>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/60 hover:border-primary text-xs font-mono text-on-surface hover:text-primary transition-all duration-200" download="mobilelab-github.zip" href="/download" title="Download ZIP of project for GitHub"><span class="material-symbols-outlined text-base">download</span><span>Download for GitHub</span></a>
+<a class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-on-primary font-headline-sm text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-md" href="#contact"><span class="">Talk to Us</span></a></nav>
+<!-- Mobile Navigation Toggle -->
+<div class="flex items-center md:hidden">
+<button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+<span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Navigation Drawer -->
+<div class="hidden md:hidden border-b border-outline-variant/40 bg-surface/95 backdrop-blur-xl px-6 py-6 transition-all duration-300" id="mobile-nav">
+<div class="flex flex-col space-y-4">
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="#services">Services</a>
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="#how-we-work">How We Work</a>
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="#who-its-for">About</a>
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="#contact">Contact</a>
+<div class="pt-2 flex flex-col space-y-3">
+<a class="mobile-nav-link inline-flex w-full items-center justify-center px-6 py-3.5 rounded-xl bg-primary text-on-primary font-bold text-base glow-primary shadow-md transition-all active:scale-95" href="#contact">
+<span>Talk to Us</span>
+<span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
+</a>
+<a class="mobile-nav-link inline-flex w-full items-center justify-center px-4 py-2.5 rounded-xl border border-primary/50 text-primary font-mono text-xs font-semibold hover:bg-primary/10 transition-colors" download="mobilelab-github.zip" href="/download">
+<span class="material-symbols-outlined mr-1.5 text-base">download</span>
+<span>Download Files for GitHub (.zip)</span>
+</a>
+</div>
+</div>
+</div>
+</header>
+<section class="relative pt-24 pb-32 lg:pt-32 lg:pb-40 cyber-grid-bg w-full overflow-hidden border-b border-outline-variant/30 py-24" onmouseleave="(function(){ const g = document.getElementById('hero-cursor-glow'); if(g) g.style.opacity = '0'; })()" onmousemove="(function(e, sec){ const g = document.getElementById('hero-cursor-glow'); if(!g) return; const rect = sec.getBoundingClientRect(); g.style.opacity = '0.5'; g.style.left = (e.clientX - rect.left) + 'px'; g.style.top = (e.clientY - rect.top) + 'px'; })(event, this)"><div class="pointer-events-none absolute w-[700px] h-[700px] rounded-full transition-opacity duration-300 opacity-0 z-0" data-stitch-orig-opacity="0" id="hero-cursor-glow" style="background: radial-gradient(circle, rgba(140, 221, 53, 0.15) 0%, rgba(114, 192, 18, 0.075) 35%, rgba(114, 192, 18, 0.02) 60%, transparent 75%); filter: blur(36px); mix-blend-mode: screen; transform: translate(-50%, -50%); will-change: left, top, opacity; opacity: 0; left: 1909px; top: 1149.2px;"></div><div class="absolute inset-0 overflow-hidden pointer-events-none -z-10"><style class="">@keyframes collageScrollUp { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } } @keyframes collageScrollDown { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } } .collage-col-up { animation: collageScrollUp 180s linear infinite; } .collage-col-down { animation: collageScrollDown 210s linear infinite; } .collage-col-up-slow { animation: collageScrollUp 240s linear infinite; } .collage-col-down-slow { animation: collageScrollDown 220s linear infinite; } .collage-tilt-canvas { transform: rotate(-10deg) scale(1.08); transform-origin: center center; }</style><div class="absolute -inset-[20%] w-[140%] h-[140%] flex justify-center items-center pointer-events-none collage-tilt-canvas" style="transform: rotate(-12deg) scale(0.79); transform-origin: center center; opacity: 0.58; filter: none;"><div class="grid grid-cols-5 gap-4 w-full h-full diagonal-collage-scroll"><div class="flex flex-col gap-4 collage-col-up"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkTccrH1NzowM4x8LrMhdwqioxtsZ9QKWArdbgwkt81pRinrPlYqDfxtk50NF4zE-u1buPPvt-OTbbXr0eoh1NFlZG8MdqNzqmw_rnQ-trEhIC2UNMuis83K1lDOdZNuGgC7Sl6D8xwLPy77O4VxENBEtLGCfL-rbgEg2unB4hTuOtIgVGF5WErse7nDSfQWOAkWJPhoquPF5D52SjdHKbpXwrPlm8ghWCdV4BqiL6rVPT_Jc-8TCP"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6JCUQSMjEAKK9s8bO9lKa5Xhx1NL_wTXhYmNGWBsmcvqBA3pBrovRFon5QziyXg8u6fCWY3bw9FsoKJbEMWjSxJx-x8v98BlQuSWE98EY-vyrxykysO5HGpDSxXG-urDPRizYacLM5SZxNd5z0V_zRczVOoVZh2BexQjLwS3zHEkw0y3YcawtajwEOxzMh3dOS4IQdDZ_aO5Ahn-XaCGKyVCsvAH3Wf4MK1BQuueHnlSXDqPzv9me"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcRUQEK2t08QZP5CBzvzOiwGcQv-lOKg-w0NPYabsVF-sDu8oAQKgwhSDsapN1vLqtfy2jQUCB42t15ArS9xbi3Z79YanxwQ3UP2f6yasV1WWNId1Ualyu_yMfdfXt-DIuRxFR-QQiXP67vYiSkt2yOhb20ipftpoWhykE7MmVl5lr8WkOWn9dBTLVLDB38TbykIs-DnbgLHvdFunKxXh1whagMM-23hTGhq647wXHm_JA_TumUtbc"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2uHckdDbzWtGF9xFW5fRvmJr8P2CopbzntaQB_wABp2TpBgLDbwltMw8ki10cQkOAtviM-74NOYUisDsA1al_1lqFJ3SspHi1zRrC1ewx5ZAgW5VMeOuPNx96rN9NwTF3zo6ds9ddu6dex3NO3TUVnN2gnUMmIWeNsy-9-gt7nV7kYJsecIRf2hdYGuber36SOhHhclUd2kcFUIPN6Uouu4OZs-tQY48LOXs2vLcdNEPXyCmMyuL7"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaXpnDmBEJ3kEdBwotQsEKH5ELDzU7NH0m-pLE44F2_8H6fMybXbUR-OYWfkHvyI8zDp6XlBdFyDxkbhQjpb41wZZ3D0bb2qG8qIkMibhb64pXYvj-h79NvXgld-BkexZgZn3YpdybL_jMPh_BGeSOTTSbxaiZzXfuNAJB-X8Z6iV07A8AfoH5KK97HUiOQZPLaU95jHzCHiggnOnPoIhrS2U5p1ugvjGgVVQlpQV21qYM8H8Ny32j"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1OCPNfANxPWkPkLZtKyjoYSRErrEbVSz7rEjzoB3Xv4IQjgw04fFCv-ii-7PVRTA2tihNJ-WyNrs-oscFeYRjedtjopatf-4v1BR2s-SOpRpel2XgePzhzEfyKIYjCOgp-U_i092VL1X_OpMEtQfYBu-v6EiN6JkFpy5EKJEx3bPUcL8LLrU3YF-Gtvrd16Zy-pY6Wxsq6Hnkx98VIMpyGe4tVbmMlKc_D6ScBDj9l23UFj6cnPbu"></div></div><div class="flex flex-col gap-4 collage-col-down"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD35JE7YP-c8Sgc6mnU9IAc72MPme9KNCWjtEmvZWNrJ34sQ5P9Zj_vhNVxQCBanPrOl7V1LpUJ_NrBTLbih6ifSFRPkFnF0vGmYC11elTT82L7gLssyeC7j8pt0w1kv36iPclgHa-zES4eEkBSPqnXpQclzWKkdaHMCb_Ge1RK8YezvCyASpTGVpCNxBA8by_y-6WgjWDVc1Cu1OejLY0zuqd_zKCk5cmTNd0Io8Pdofdixrcy61tx"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQwjxp2thFICjFZ9AvmIXqJPp7jed02MQh4LGH4g2BBys4LtJyyuDQ_jzCLegwyDOLhiuP29kTs4XQhBxO12sySagghot1zexglr7aHXqON2ZMk11DiJ84W5uJNVboFttMrf189V0uBXF1Rveh0LGysGBUw2VKTNijnHJbNc1I3OTQns7GEgcH5KQgyq1zQdlQvqmha1b8pmTu3WoPiPDAuJ2M9-lrmanb7rfqR6moIXIE3SW3BsBD"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm6Jvzja3AS8cyAc1IHltv_TpegczSKI0XNS0z2zoK8KO3W3ZnEkHGIC1gS6dRaGAjbPj0DKhIqI-_fotkKmScQfD6j3q04jg7XYscW8Vcryo3Nk7VqQURIzJuJAUHNNjhwajokODg7CzAMzFJE5HZ4FPHvPuFC_Szm2endFOIE7e7CzLxrmL1JosWBS9WaE3iUe43bu4haxssg7VkogQv9nOtjOsq7Ycv50RlUuquIEAlZhrDlIPV"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO5D0tJDZyg0oW8ckRShV-M1xcFpRedkqi2x77vUozLykApq_y3gCdCISzAAQKuyUcAC1ztNttPcujejDoF4cR6YpivTs1g-GlljB2f2DONZ4S8Im6MM7Q86tpPaMeeKpwQ9kZzrfw91nrWQGGDEhNBNt4PjHq2OKE_OigSqPXhMTqnaMfSnLMOLSrL46KsXou_ltct53lKu1ONgXzdoLoNadDinhWu6hoCS6R6B3wyi2p7M046UNB"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB63l55Mxs5T-EtorPn76krMpTyHoJKhVAj9RLy5I4zGC0A9DysPm1u1emb6kvfTMTqKQMXf20KiR_NAzOM79j5h8J7l6AarGz-wF4oOLtr8EGVaFMDE8NY83a7vORRUnvU8cvq9s9VBo4VpaErxPXzyDQFNhpYT_NovcQP7Y1cQn7B4-Uw2wDr0OoDum9-Lr-e2Htw4rDLDeM3ZxzxYR0L1okAvMWgFOCiSVrVxd6QkxsYiN_c0REk"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQgqcAGpUu9dsKS6zefmVMLJwf2-AmF6FubcQ__M7UgIrFAObLTu5jjUIKqp7zOtogR05bO2BbQAISy5rbrbNP-ezkLxbiUhXxaf8O1qp0W9a5LDpvkp5CW9oK9SU-T5hpuv37z1uuEbjLOfUBBxQ2IIiA53AIwc4jf0v647DhfX5UaP-le4Fw-OlvYFJSNHyajoF77RkgiYqAOvVD6EcoVR1_5Lsw8WtQg5j0Ol6W8dxMSy2if2Kt"></div></div><div class="flex flex-col gap-4 collage-col-up-slow"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRH0Hlqm9KcFAUf09onPOwTlyESzVhqqGYxqFVrpiwtxV8WFGD5fueP--BqYPgfKoyBw_Fll1yN3eOFoYGfXSqzqw0BLi1vdfiM_WVBKROgDcY3mGmZ7_LWo4F42XUkcv6nsf4s1Vi1ljQYFuzehyCMfoJRVKA4ypqLnHu76fYNPYy4XRHETF2ATZVJ1QkxAai4CdQPdabWJmHaq35MFhB_iuETY0uxsNkR_ex_7uMxAhA9PDK3asr"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyXdS9Dse0cDD1LGX2rdBB00QtaxEkfXj7BoyzumY-1w_otsxMAwbv7ZJxMEZJIJRjnld3Ri3W2uX3h3CiLQIKPVQ1KwlWf64pXr1SpMQumgs_V0EiRkDuWqlpU4ruDevrndtlgJ1DhO8zdpkZ1uH7UURz5sqKr6vBtI6VvPl2zdICWorJUYqJ7zx24ORQaPyKSAB67nDHf3RWavIUONBqVrZUe-EGOMA538BhaZwBXWF0YxUlQzJo"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz_MS3YxwTZ1xk4ucK8iwRfPuTqPHw4t1rrXwNRLPltEGMOmiDxWZtgLpT7sLPxYdt0IUb-Ux5i1LH-mMFcD3ZAvzePJ5Ay5GFDa99O8c0TZyZypZm3KbDCobrQgb0lZGvULS18Z9kGj2l6ONoTNlEGL7N67vmHDiq3d97UvrL2HTi4pyxZMQ9eVXtEmRHHTBlrvoIsI_f00plpQaGLztwYfwLpuuOv8YfKZvY2kRd9xjUw4QYa1Sa"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRUtwymTDIJdtp3tNFYF-q59bXmzhCKwarYc9wCYWXB5ttzI2x4gcJZYkDmZfxdcVz086xAbftv4Wne_G9ztoFWxMolSiiyUpY-RNEyCs8GW3NK1a_2UCxDm1jRkgssg82Y1T1C0JRDRx0eSSV_M3a1BTELDx9lyTDSvTEVo6kTu8w7jEVU9ZeAqefAteRgo6xpisRN8LX2DkOf2EiPZYE_2Qit4PoJugq57IlTvX8FV_4u9XGIXFc"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3OQxfZG3W0vya5G6IKt0l2GsBz7O-jhOQIqoV3I1hr4EiT7-VC-Ij_Idvm12awaaPjHjT10FEWwC7AF9vqLz_lYbtLgTC2i6LYYmjLAdOddyjasHwDSeI2u6KXn-gM4ioLajY8OTLbHQKIiewa_lDbcykLTJtQRiHP3qd4OjzkPQr6CRPnyRjXtFNRdflpZID5HbJ0iqRcVxP80G8v0WHohPlqPlYqr6loWZWUM7Vsfp4VwKpo8YV"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnQjs4PKfyqlMDBB7b-TJcunmC5nsI1PP8fLfNwhagSbVCadOdIRYMxCdz9FOVPD8jpG6nvIWulhHCCDj7OgXajlWBZ6lA9Ze4Y_rJJy5NBPrcqR0XMDvUk7lFcJChH4Ja5qRx1TokQn5hWtQretbGcsu46ON_wwhzUtWFbG93Go92Rtg8xwUeQWUJ8sxyfKEWxMuU-1hKttI38rmuXK2DRbhTALfW77OuiVmS-FMtmbctGPMvqCyW"></div></div><div class="flex flex-col gap-4 collage-col-down-slow"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2b6TYZTLYLd0HHeW9HXR_g1RKE0Fejm9vZpoPBDLr8DDbKIT70KRJ0p8xLE2FHMqF2ztgp4iyFUWSWADsaj0bxgyhbURgtt3p39HR1_bZ1hkO1e-af7mmYXNjwRs5PtyapHr1wr9I85zn-HZrRHwev1Nh9hObyd6xWWWxUslGw4hTEpYUutZ8LIfnQMeDAaECGq0wr3RumUQsJVIKdmvuHwV3r12BmNF0Chf0bqaJJrvG_nZFgP_d"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm-On4C2C_a-Pm4g3GcsBpjbAPo5OL3fhDjZIbNd6v8PYuIJxPkNWtLuEKdeTqINcE88JWR5BH1f67yYjq8cu3O7aGzrfTZZuq0P3muUsZ_M9vk6Mp2WTmU78vu3hmEJREHs6i4iRlm2g9rz0wNzEG3udtwwUL7ozCteiVB7Or7NXydtsD6nUwrpZZxhUJaur9ujHi_WGrVg-MNpBMu75D83xM5PyGKT2PD32W6wAsy1A_5Hh_g08d"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH_aGNujdO5L4DA-p4I6IWx9NF6Ejn5RcDY1hTNgwrkrJQsX5xuFDoPP7f2YwtDdySJhmvQhsqqZ5zU21jHJxgsqmivMzQCbzMdqSQypmdERzCczDn1eufLYG_rXxSF5Ib36ZE0Ba9rRvlXhYcojb-UeCI3wyY9WFirPL3v-e1mdBITtkivFnKEtse5hj1FYQsyAfYRC3XLxcapJ6aNM3CRUDBM0tG6Z4CGouweDba4I4jkgQRm9dL"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPLs-w0FXwvBuBldnjZvcLf6jgjuvE4hUMWPaysVSpWg1aLhfrNGs9pIDqvCR4bbBIEkNtXv2YdHbVPBe6feqYIIYDyEI0vaNosgdvFC13_rg2YA9mvRkPcoCFX1toRcE8kScm_inZOuwsuWnLZkWvTaIAah6JE1RDfLAHCFZxT9FblKTU0DqzFLxaAnOb-vHjHsb3KPj68PVYvg0TUPwLFDqEqtPtnBPgDUUGBiLKCaonvr28ogHE"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD03xHcNYQUe29SbbaBkU1U-BT0kdOinxzJOdG6XGMQ4thairpf5kCBoCJLujSOr5qoRM8fiDvJ7AQF392vmGZ0JjtSNFUBPBcLljdF-OX4pjiJj-gjutFx4t_zvyRq0wGVtoub44prRbbno-9cofQrYjij2w1mvlwVJsFNvKW6rkzZSNmaEI2oAAuBM0HGNhod7kyE-YUJKZ_jallWDJ7vcVDt6p-32pDqncCkrj4F_N9ew9cKqFdP"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS1tYhlx2jX3Z4IiMLEvFKfzKc2cmG9lNlCtoeRBLk4D54OUc3f6CkvJb7RAerst_pJbjlJ8UuyagdL_etUHMeya0fbbeMe2EojCNQb4pDjoIGKWdrAr8HQf_QiRfDwZvzCaZkczlhxGNOqXZjo18sYpUA9dpKlFptwU6vRUoULHKSL2p94pxNdy1JxhYH6VI6gnUQDS2hmIWkZe5dTCrTdZy5SbA0Zz0BapCAHNjwWH9sxnKA7NTH"></div></div><div class="flex flex-col gap-4 collage-col-up"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQNCdE7y8DTrUAh2iVod1kCsDon2fp_MTtkE59Vjw1-fmsYnmr2gzGsnRt63e2bt34WFR1tpJMbu4L_LxijQ0S7vF3l4NXypalIj6tqv5B6ZLbZVbQ_apr6LUqo5x8yrU0QJX_BwLsPSruQsug0VWwjOLP7Z2YmCaNfEwlslhzUKY3B5YMvwvW9xoF1kf3M9KK-bWAxW0eQVOMgCJsmGq5oRVe9tBoTBjwxuWROakBtkX_Jb0gG_Sl"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq_L7Vbu4SwQHHtF-vP1Y5Os4VYQ56C7IoSetBkCJLIvOhLVV_dmJXowi7Mxwla1wEX92Tz90u3RTYlyZdXeXyQPwDK_HVpZlASvd0yl2SEbYH2PyFl-HTjfbaYSSdwFattyca-jS8nPL5RvU7GaZbL36n6sIxPefbnXuqPqsrWnj32sgWGDXRBfQAgsF6cWEbUsXMs4aF-d_9oGyrvU3zIGD4PMdL-ukTW8y6CN4pTOtL-FQQ3xwd"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9P7Vf4IMy_ttNaF-5bogAt_Tm4Hy4mWotmiVVwaMhK656XkVm5j_mehWrbjdX11OXHheCed9f7GyqgD92wcGLxUaUx7LEFn0F2A35oqWpW5fRMD8QR1fBLKZHC8H6xrfIbr43B4COGzhRfxLqw7DL16NNRyvsM6PlXFOVOqHAbWd4HF1nVKXgBlnIj_C13RHYksn9z8VLV1OwP-r7H0JzFjSLqelC2cZ6KYfHlvTrvLUCHcxXQNV4"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCInhzMCfpkursh-EbbE6mXwvjJtQAiyli54kPqQxahyyX9zZIfcLbZswZ7CFSgyKTALpV_B4ICHrJXpnvVLG1K6xaXPGwV6Tmio_jo5Ub-HQDQUdc5goBF4m1p8Au1O1NB0gGMcSv93RRAFFLAyAzv1RZWmJe5Rwv6Cslse8PmWn8zZrSx0w6fvFZX3Om3-qX_UB_Y-V6zvbsiq8zZlN7NUM8PhFt46ArYbRg9AK-8TcrwIxGUNedB"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Zs2X9k83IAgry-lZJHxgUHMT9dTSUTOs90Agn9ACjXYS5QGHcqLDuY_XejpgI59LtxMzhl0hmtAW3nD19TmLzzYyUDMRqCU2zlySzGIFXIYF7E5MdE-x3yZQGlbYz3UpXTNRJUEIYtl80c4sWS_qNswy8LzEn_MeOVEglXDKZVvyMjDob9xsb5o4D0ZP6NKIjgY_sR8dse5-C6p3O8nJsm7YozTyOMNuzuaaZOaHJ8Jb2cwXORng"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_R4Lw_D7kavotnwO8jvzPZVd_oWhC3V9aQaII2SODjABHaK0im0u1MPJksEXwlFBSgYF3ZDD2yRG6AJXi17whAAEc2WdtSPiXP-qfd0LQACWE4i4N1wXNhJICdiyIUYPpvMzUiDQ5pK--cflQiAgn2tWbk5dVrKmqI4J3JT0EhgCw64n3Mt8U63d6tpySPX9TviIIW9f6CwDIxVA-MYv4-l_38y_hAi_BOxtVhR5Cow3vYiG7ZKQO"></div></div></div></div><div class="absolute inset-0 bg-surface-container-lowest/85" style="background-color: rgba(10, 14, 22, 0.45);"></div><div class="absolute inset-0" style="background: linear-gradient(rgba(15, 19, 28, 0.92) 0%, rgba(15, 19, 28, 0.55) 50%, rgba(10, 14, 22, 0.98) 100%);"></div><div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/85 to-transparent pointer-events-none"></div></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="flex flex-col items-center justify-center text-center mx-auto space-y-6 sm:space-y-8 max-w-7xl">
+<h1 class="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[68px] leading-tight text-on-surface tracking-tight font-bold w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center gap-2 px-2"><style>@keyframes gradientRtl{0%{background-position:200% center}100%{background-position:-200% center}}.running-gradient-ai{background:linear-gradient(270deg,#72c012,#a3e635,#38bdf8,#72c012,#a3e635);background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;animation:gradientRtl 18s linear infinite;}</style><span class="block running-gradient-ai text-center">AI and Automation</span><span class="block text-center sm:whitespace-nowrap">Built to Increase Revenue,</span><span class="block text-center sm:whitespace-nowrap">Cut Wasted Work, and Stick.</span></h1>
+<p class="font-body-lg text-base sm:text-lg md:text-xl lg:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mx-auto px-4" style="color: rgb(255, 255, 255);">We diagnose your exact bottleneck, design the simplest fixing system, and prove it works with zero AI hype or fake proof.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-5 w-full sm:w-auto px-4"><a class="w-full sm:w-auto inline-flex items-center justify-center px-8 sm:px-9 py-3.5 sm:py-4.5 rounded-xl bg-primary text-on-primary font-headline-sm text-base sm:text-lg font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-lg" href="#projects"><span class="">See Latest Projects</span><span class="material-symbols-outlined ml-2 text-2xl">arrow_forward</span></a></div><div class="pt-6 sm:pt-8 mt-2 w-full max-w-3xl mx-auto px-2 sm:px-4">
+<div class="grid grid-cols-2 divide-x divide-outline-variant/30 py-3 sm:py-4 w-full max-w-3xl mx-auto" style="border-color: rgba(65, 74, 55, 0.8);"><div class="flex flex-col items-center justify-center px-2 sm:px-7 text-center"><span class="font-display-hero tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[76px] counter-animate" data-target="13" data-duration="1800" style="font-weight: 300; color: rgb(255, 255, 255); text-shadow: rgba(255, 255, 255, 0.38) 0px 0px 18px; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block;">0</span><span class="font-mono text-xs sm:text-base md:text-lg text-on-surface-variant uppercase tracking-wider mt-1.5 sm:mt-2.5 font-medium" style="color: rgb(255, 255, 255);">Years In Business</span></div><div class="flex flex-col items-center justify-center px-2 sm:px-7 text-center" style="border-color: rgba(65, 74, 55, 0.8);"><span class="font-display-hero tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[76px] counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-weight: 300; color: rgb(255, 255, 255); text-shadow: rgba(255, 255, 255, 0.38) 0px 0px 18px; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block;">0+</span><span class="font-mono text-xs sm:text-base md:text-lg text-on-surface-variant uppercase tracking-wider mt-1.5 sm:mt-2.5 font-medium" style="color: rgb(255, 255, 255);">Clients Served</span></div></div>
+</div><div class="w-full mx-auto mt-12 sm:mt-16 pt-6 border-t border-outline-variant/20 px-4 sm:px-8"><style>@keyframes brandMarquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } } .animate-marquee { display: flex; width: max-content; animation: brandMarquee 28s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style><p class="text-xs uppercase tracking-widest text-slate-400 font-medium mb-6 text-center">Trusted By Brands</p><div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"><div class="animate-marquee flex items-center gap-12"><div class="flex items-center gap-16 shrink-0"><img alt="YourVcam" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq9r6581YZQYQb7WJpu1HcDHNtdpOAsjg_28jiCHxFOQ48_EglMe6PtqRYsxOHQgCqDNlmi4Os41ajkUL5gmJW0hhH5NVgz11ZZA-sgvM5WuImZfcZOz8yNaqer3i0q5KbQ8bwUg18MCkWket_mJxPwXBKdZbofUsS9zKYwHxiSFDVO9jzOnCIOwOG63LYKANEQmb6sh4YDT68g4UKzT3NMmTKgANYbYoSdemyxvxgc9geW2boCA6z"><img alt="We Love LED" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMWcSoIh9Bl9e_kwD_OCWhGS8T8N3-fxhdb17OCClC466x3yg1bzA05AyCowFu2yJgLpJMjqZVLOYzlfTpmWlJkJiCt2JKPnzdxxGDCBSlwDfjLoMSCg-U1hUJjd13BzIutxSJgbx-ItS4TQ-cRSuPO7fZhHk2rdqVTuOLFiR6YJUFYug0rVGzQ3HhXfESZhFIDaRMYh7Pie-GGUATEIP17CE4SeJatmEAi5GDArkZvYvGL_zYTv0F"><img alt="Tampa Strength" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPAeDVgDsZvKu4GnwQm6rau9yKE9ItnvNJ_7SpUN5YjstUhWxyL0BhuQmm0Hc5mHMaTaEwPr4tMSuS7VnKwAVaMGih30820Lpo2COSOKQSwMrA_sb9uzZr5Hmh8KgUqBQIBmyMZK4svhWWpe4so5R9P3tIllAbyio5D9YPrO9cCor64X0_VB-79V_SZtcMwWBfQktkObqiL54RDwqGYFAJ8WALv9kf3XQ3CC5so9Y0-BJJ_6H5vvfo"><img alt="Intercity Perfumes" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM8A84ZAKkm3iPeyZviS3o-etimau42e1O7ZGYDTDf0tKRZElZq-8Pmnq0Q46tUXuPFU6jdzUwxgUKzFSgq_bseLVLLMWuleCSnTKP0PkhqZWWjMDCSjtsGSIzkdX14GGQT2krPlVGl_DBy7c3fybPVH9KutonHMaX7vKWeCPb2jHL9wEW7QV4W6XVOtFh_FfPw9F3JqxbJjifCfKAncLEOP83xoNAFzLcY72dn2tdBIcQyapsJBPt"><img alt="GoRunners" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyM5BkiwVVyNnUTmDC_JVLf-xTIdYeLfi2OWZv7zV3qS6sSMbrlCXwwO9ZfXRFdVLkItTQTxoiOO-wf7ghtO3A2wXiQXILwSzB4uhFuQAJYF6rEi6-uYIxGv0vJsSq5gVWhfCkIyel-73ByW4ZYbgnFOITMLv37EI8ZGvICf6ILSQiX_l7f01d0lA45a17y9u68EFF-AhRobtBR-eyoljJat6vTYU-jQJGf667sGX8dMUmDzlyT1ws"><img alt="Broome Street" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUxAyDooc1J5hYSRyYFLq3PndUYgBt2r8u9LIF4zaCnm7hKJqhsKjoLpgz0PuXWP11X9GgyhWNxfYN0C9tfGhpEsCPTGVBkgsPY0fA8o-H7gjdkcU9GagQTyeUqMweeZNIjsN9zbDreNB3WR7VqkRo6GswK5Mp8YChND9s71VYXmM-NkpKv8kNrFedm_1EZnCHGLIKzJiWmATjHx6wiVEJHmgX3tq5gaX16mu6xryrpx2BkH6dH2Db"><img alt="Avidian" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2R-rdxcsUuRWe_9JeGM44afvLwUg52GgFAqIrNODQSNMy4jrMP9jkR9umL0sfJ-9tLp-hYSjGJEwK1P21a2yd1wAd5DkIpOpXLkVLUsFBxdZSaUxQKbC0xxigqKVAMqKru_D3urAGgkKxbUW7xLvCW8rjKui3QQTQ-bfKxsn_cWtBCdUB48Q0ojmmj7wxUH95LMEPf00sahIcZn-c5I83zgNoqF1nrQcaoTKM9aVw9WiHvQAMe_fv"></div><div aria-hidden="true" class="flex items-center gap-16 shrink-0"><img alt="YourVcam" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ6Gvllx9F9iGY-G2YarrLLSKEBpgSvZX05CRI6HeQUVPWausAULq-a_y-CkiVwp8pa7REMf-uX5bc5d4yMVniTGWze9oVQIkvFx7g3G_2nLi8TMnGKPDYtoDIV8XMcY5Oq8FAebcaiUki9SNzNPhrYwmBcvdQHOpIbPzysUsAm7aIVTrHhqBQyYL5ri3xUY-Hmw56QvLDpUh6A1GXvdDM_19GuPoHFNPfeoEMrpK2ifmdzkagBv7l"><img alt="We Love LED" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3r_8lR3FfiVHFUcCfjow40CJPMgFIfdPEOkXBmWtnQSZ9ngwbUeOmjaiH5QrwWqtzkKc6dJlFtbdCXJnF42KVDYd1wYNkST_J1KP8f4tgsFl_YbhDopvdStX1dga9efUCTxTW-q6Mzfbc-l7GP4vZy3LkNpvFh5uTGr15vk3vNIxHT_NLZ5tIpP8xP796miT01LmtY1cllZA6wei4r7x_feAQXi43CDhbut-vVtPrvLwoFrd_EXW_"><img alt="Tampa Strength" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAedTvJq0XB2uTtBNbXgtDjg9cOcltd7uR5yC3hIBB-qsUtR87UP4M-FE0JSa5JsuKY04PJ9TeU7fvaUlFhatzi13hVoL-lHlHQ2p1o2bfXJ8eauPPRRD-P5h8p5DEjDJsLvf0pfCzeiiAbXt6yMnonKNxAMuGN4fjqlpKaUzplWRGA3xTyz0gktvF79dMxwWQklyfj6EWbQu4Vfkllh7xhi-PdUgPpeYfKjTXEbz0bbF1QEfKXEo9X"><img alt="Intercity Perfumes" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfDbfvQzgYcmXy4471jZ4AMpZ-Kd6z-7sluwj1aBDCOwPnqtwDx5ZZWjz6CUxl9CXmLH3WBmm54WMbjPlXXAIKyEkks7H0ZnmiG33RbsCS_pOJUdcAcCPiuepAwGLLoiLTzgdjnEVd6Hpkd6al5oXo56U4QXFzN19U_U87ENbrxCzW3tJRuFcBsjF-kSOfeo8bx2EPdczYLji6gRN6u17t_4WyCsuj7viZ28MPYlQxqb3AqFpRsU-m"><img alt="GoRunners" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlFrRR4B4NQ-O0hZdZTyaxhE5dDrgqNT1yull8GU-MD-rO12QCeGqy6LYbGi-9puzGLxcQVQpVSCQbHko_4BnMkfqJVMzPqArMtSY5R8ncHiTKKbkY0IeBsEvhv5g8_41-NT_IjhOhJyZotLLZakU4IsDYhrqMFTfAEZUQMqxtmM8jwUAbTdW6ke-6I6atMJ6-C5bUndZvSANSP2fbPpnYyZMS49aF4rP5TQ7dVDoUKI4MC1kE2NfS"><img alt="Broome Street" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTd34ROEpr5uc9pe2OzsFDURxMIhIuLyEB1C9OLl8l8CigRfAyOgdjoeFfmGU-FIvj47BCEcPxjTs2GF9vDLRiX7j1QQihwHN-uuO4XcxrTxdDAyMt41yKrrSvdKa-nP1e2x2DRqMCOr3vB4jfd2XWEXXfOvF5dcSsTDHRIUfWQtrUkHEovO3fuRgS0CwVa8R1R2D5vyV9lIWNFQe96hCmjkMgxsHBnFySwKISK6-XmZ16dFD-kfT8"><img alt="Avidian" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyEGhPk8fqaUpXe7ASdlKCNovMk5w1XHwHMkQb2Ls_Hinp5uTQtRnvFu64_XJrXgqCwPiztMYZ2rQwgXn14_t1qcRp3OIXHl5zxESipeSXgNlEuk1viQ7hM4y0UFRsP9Pzml1RmXk3-AlO-AnNyRsak0k0--vvZ5DW6AwEkXQ7PUiR0gEHCMwjtHvJP_aEerJ_zngjni5nh6UBRt3j8IllkmesE6Xf8yQf1kGKLBJLus9DVFmoalnr"></div></div></div></div>
+</div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 2: SERVICES SNAPSHOT (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 w-full relative overflow-hidden" id="client-carousel" style="background-color: rgb(249, 248, 246);"><style id="carousel-scroll-styles">.carousel-glide-active{scroll-behavior:smooth}.carousel-card-focused{box-shadow:0 12px 30px -4px rgba(114,192,18,0.35),0 6px 14px -2px rgba(0,0,0,0.12)!important}.carousel-btn-pulse{animation:btnPulseBurst 0.4s cubic-bezier(0.16,1,0.3,1)}@keyframes btnPulseBurst{0%{transform:translateY(-50%) scale(0.9)}50%{transform:translateY(-50%) scale(1.12);box-shadow:0 0 25px rgba(140,221,53,0.8)}100%{transform:translateY(-50%) scale(1)}}</style>
+<div class="max-w-7xl mx-auto mb-10 flex flex-col items-center text-center"><h2 class="font-headline-xl font-bold tracking-tight text-[#111827] mb-3 text-center leading-tight px-2" style="font-size: clamp(1.85rem, 4.5vw, 3.5rem); line-height: 1.15;">Trusted by Operators<span class="block sm:inline">&nbsp;&amp; High-Growth Leaders</span></h2><p class="font-body-lg text-base sm:text-lg md:text-xl text-[#4B5563] leading-relaxed mx-auto text-center max-w-3xl px-4" style="font-size: clamp(1rem, 2vw, 1.5rem); line-height: 1.5;">A selection of platforms and operational tools built to capture demand, streamline handoffs, and drive enterprise value.</p></div>
+<div class="relative max-w-7xl mx-auto z-10">
+<button aria-label="Previous testimonial" class="absolute left-1 sm:-left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#8cdd35] text-black items-center justify-center shadow-lg transition-all duration-200 hidden opacity-40 pointer-events-none cursor-not-allowed" disabled="" id="carousel-prev-btn" onclick="document.getElementById('testimonial-track').scrollBy({ left: -320, behavior: 'smooth' })" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;"><span class="material-symbols-outlined text-xl sm:text-2xl font-bold">arrow_back</span></button>
+<button aria-label="Next testimonial" class="absolute right-1 sm:-right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#8cdd35] text-black flex items-center justify-center shadow-lg hover:bg-[#9be645] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer" id="carousel-next-btn" onclick="document.getElementById('testimonial-track').scrollBy({ left: 320, behavior: 'smooth' })" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;">
+<span class="material-symbols-outlined text-xl sm:text-2xl font-bold">arrow_forward</span>
+</button>
+<div class="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-2 select-none px-2 sm:px-0" id="testimonial-track" onscroll="(function(el){ const p = document.getElementById('carousel-prev-btn'); if(!p) return; if(el.scrollLeft &gt; 10){ p.removeAttribute('disabled'); p.classList.remove('opacity-40','pointer-events-none','cursor-not-allowed'); p.classList.add('opacity-100','hover:scale-105','active:scale-95','hover:bg-[#9be645]','cursor-pointer'); } else { p.setAttribute('disabled',''); p.classList.add('opacity-40','pointer-events-none','cursor-not-allowed'); p.classList.remove('opacity-100','hover:scale-105','active:scale-95','hover:bg-[#9be645]','cursor-pointer'); } })(this)" style="scrollbar-width: none;"><!-- Card 1 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Matt Canard - VP of Operations" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7Tyx_FsGir1FE59YbIOGdXYi1PfjseBo3Uf2j0eRZ1d7Y64dO-FsNpbbHkvkdAbKoB9BH21VF5v4VzJgJeRHkRhQVRJZ_lxvScdPFgPwrHXUuMJIOjD93VKQL3bAcj8bQe8jjqMsuzZoI3MrcqCZEA7LKxp9I4Io8S1NwnPuvcvBwnwvxsMcpK39XCepe_xjGECLFMi-JWoq5ervsDi2QGSbQWcZD8fQxILH1m6CeZx_XBQ8L7S6J8VpWPkPiHr84Qg5SJrpI4bHs_g">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">MATT C.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">VP of Operations</span></div>
+</div>
+<!-- Card 2 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Ava Angela - Founder &amp; CEO" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrTr1Rtz8y5zdWoVJVtc-YTHed8wKH63XGC1X5Zs3Z-QC7eWpfHL35AodYNYEMoOA9f6FGisUofbfQHYAUOYE1NCZM1_BhRm7808MsVZG4eEcZkK1mN_yHS0xaFROvFCgr6b7GpDCkBt13yRE8u9Z4q6qttp9s9xpKrKGieSEJf3RQmY8CW3j-oC6uablJlwvShR0Y8bcskKd9-ip7nMT8d1iIHBkvC9aR3QjBHJLiH7qXeXhC4juyFysujjskELbyEbPxiMd-27zqDg">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">AVA A.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Founder &amp; CEO</span></div>
+</div>
+<!-- Card 3 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="John Doe - Head of Revenue" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQBTliUt0eBwIGA6z27qht8r2nUp-4bs7lEtFt1Q3xCLX0jtEqjwDC7OGxcyb5d2zNN_1Ztn97cHE9gOOcozuUWNoxk4lJgQpqCKvtMPjoO-gYM7nNzpcM5-u4v_scg7DqqvXPM0Nzj7XfLK-Gx8VU_onfdHBZp5bVTdgVmNprxwUvXttyxOVLTTun3k2hLc6fvwPkomPVI7cdzpCTDE5Cof2E-kElk7a0zpem2coe6hXLTGlpc2ReHrdWZkzEzIuhNTNmrFDH-4RUTw">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">CHRISTIAN S.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Head of Revenue</span></div>
+</div>
+<!-- Card 4 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Sarah Jenkins - Technical Founder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARiIDGGhY1mbKb-_6khl0lFFbN2WOB7OFPyDrbbnKNrXAlxeLocBNVTBuLtEoU2enIjXEN9W9X8UqEiO0MNjN97DH2fZ_Vk5nYlGbsjipP-w2P7Jb8c9dGubsUHNTZ0UX7uLLYej-i8IfGfBpSsU7P7C8EknSDR8qD_KfeOnTBOxiO3Mq1aszp0RdpCwz6OHUa5CNpyrAq0Uxr46JoAgWMVfZT2XojLNUSxHceYY5dc1gDzoI-NQFMWgJ2gVhsN_iQLq95TfmoJ574Hg">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">DAVE A.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Technical Founder</span></div>
+</div>
+<!-- Card 5 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Marcus Vance - Managing Partner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD5natfYKyAacyvtl_rDvaQxMQR5JfiPwidVCDwOr7nE3-HjIgezcIuy8iW0pKGgCSj8dLrFrK6k9YHVa24LK8xv36KMGAIQNp3ID2SmiBqIUaEhY0DZhnCOj_5WsBw5yWR2KnEnzrrB9YFrX8r5IgScjrdRqa4g3myuKdk-YuRlsWyiaB1VN7W5qRX330tYPmAEmUHpibKiqnJCa9RlogZiz9dlc1Go9oGfCEnd8">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">MARCUS V.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Managing Partner</span></div>
+</div>
+<!-- Card 6 (bleeds off-screen) -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Elena Rostova - Director of Systems" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyoKNCBXeEElQABQbIcoTBXtqOw2jtknT9-YELi5QDDWaJvXxwP8fulI2BGFlrdnczW-GZ1ml-QFfdymhxam-bWRrYnuENxHwsORvT7oDCY8AVFBJQWzeKDAhtfq_7VKx13mtFWlzMYiqdx-4snLR_0t26yBsUp2zgZ1VWueA3-0gM9qEZkl9t5ONsaR0uOdaARZ1c1ZfdoojeAvgdHL4l7clSOVZzUvKQKXYqA3g">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">ELENA R.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Director of Systems</span></div>
+</div><!-- Card 7 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Claire Vance - Chief Operating Officer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmBvXVvJVpJOhF5sVGNaNFK0EuaP0OZxhVvW-a29L8SkhIP0USQMtNh_3ha1UTJjznFeg5i-mVD_EtdOQY1H7fRqGI9OisDV0UINSESeZzznXFvxNJirgCaJskHAUZ2FIvw95yz8G8eV1fF9TfrNxSc1tvyTuPxdvttsKXoaxRdaCYL37WOAmis9tjZ4rxICIKnbtAyCqiVelITmPs18kmsVc67HOIPQLqSsrTZbI">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">CLAIRE V.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Chief Operating Officer</span></div>
+</div>
+<!-- Card 8 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="David Chen - VP of Engineering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9sdx6oQBj8ihWJUiw02ofA20w9j_23e4567LMiiZo8bVOdt3EEsVGjUewWw6_xrXUWqEMrx9-aZ0-x_7XyMvXIWGWytMGsy0iPx1Ciz5kfzOiK0icfACUEZqpqhourvfXVV24DBeFXaQ6RqO95sFn3aDnzsDEIEvXpajlR7g3PDXnWl5Aq5zZkK0OB17X6LrLAkzsuSYxN0jLqrmkAVsd5kf3SjmvniCAdps33as">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">DAVID C.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">VP of Engineering</span></div>
+</div>
+<!-- Card 9 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Maya Lin - Head of Growth &amp; Systems" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3HXvO0CHUUncxLoHq09Bf3UUIkM73fm94aYNYsmgWrQdGz9oMSqQtFuzasX6lF5JYi5eX8RXxdTMEYFMKDoi2BaEC0pSJR7d5uvBgo_2PiOS2aQuO-i8gHdKWJf_yaLAy4ziI6SfU1O35T8trevupsLd8ogY5FKv0bGOovjD5B24GcQpL-d78TNYgse9trEPg05GuVQcu9D-rdzxFVLceP7a_gcIFCtFNekFIKvk">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">MAYA L.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Head of Growth &amp; Systems</span></div>
+</div></div>
+</div>
+</section><section class="py-16 sm:py-20 md:py-24 lg:py-28 relative" id="services" style="background-color: rgb(203, 219, 228);"><div class="w-full px-4 sm:px-6 lg:px-12 relative z-10"><div class="text-center mx-auto mb-10 sm:mb-16 max-w-5xl"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] mb-3 text-center leading-tight px-2" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Services &amp; Core Engagements</h2></div><style>.accordion-card { transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); } @media (min-width: 1024px) { .services-accordion:hover .default-expanded { flex: 1 !important; } .services-accordion:hover .default-expanded .expanded-content { display: none !important; } .services-accordion:hover .default-expanded .collapsed-content { display: flex !important; } .services-accordion .accordion-card:hover { flex: 3.5 !important; } .services-accordion .accordion-card:hover .expanded-content { display: flex !important; } .services-accordion .accordion-card:hover .collapsed-content { display: none !important; } } @media (max-width: 1023px) { .services-accordion .accordion-card { min-height: 240px; } .services-accordion .accordion-card .collapsed-content { display: none !important; } .services-accordion .accordion-card .expanded-content { display: flex !important; } }</style><div class="services-accordion flex flex-col lg:flex-row gap-4 h-auto lg:h-[540px] w-full select-none"><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="AI &amp; Automation Audit preview" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdUdLYwHvhkbAJnTHe4-rHITmkhv58HxgjaMKthj-i1rZQfsn5KkUaFDhOtlrKdj7o_XYONG4uKEHbaKCntrOuRaPs1hBlSu1kjn8A_Ys_qR0nU7yW_rxSLGvEim2Q5naq0-LIouQoptBSAPl2EeYYybQIMkBwtG6RIWPsWuLkfx8SKM5d346X02n7nMWEVPB_SKYb182dxN6ZQ14Be_Rq4vN24cIL_AlGJEjizQwxLg2dIo7TAYjk"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">AI &amp; Automation Audit</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Deep workflow diagnosis to pinpoint high-friction bottlenecks.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">AI &amp; Automation Audit</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Deep workflow audit to isolate high-friction handoffs, manual data leaks, and spreadsheet bottlenecks before writing code.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Audit</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="Business Process Automation preview" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4pjRl7Z7oViFfVoXuPZeYULYrhWaak76n_NMjAQTtRNOeIGAZ__sOcY6HHlDYau2AK02ziIjFzRvsqKMMHdQYFDaz6kh7iYVbJhP2TsZdH_pOZIFQZflH55t0ig6hiQylXJ4IC2DBD-Wg8t_HrM0W4guO0xL99oI7MQ6nVyJYHmnIFCqMgLnlw7paJpfqdh2Nf_LErGBbUlTd4_gThxaeI49sEqhS_15fJLz4PhYC-E7JatnHKHLx"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">Business Process Automation</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Eliminate redundant human re-entry and fragile operational tasks.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">Business Process Automation</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Eliminate redundant human data re-entry and fragile operational tasks with verified, deterministic background pipelines.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Automation</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card default-expanded flex-[2.5] group relative rounded-2xl overflow-hidden cursor-pointer border border-primary/60 hover:border-primary shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#072d1f] to-[#02100b] min-h-[220px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="AI Customer &amp; Revenue Systems preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWAqrYGrBQsHCSMUGt5evzOn9Xiqyt-9EBcSlRY715q3Zugc5d_DkmXGXjR_l07OxOUiUA3VoOeOltjjYo2a6rcwMxqeAxYotqn3AvSDqvQmwAPJFiiu2ahRNzSVxNsmf_Shab6K3z2h0MAaJx0qnDHvM0DhQadq_Nf7-qlkbmjIk4NqiPV7T5t6LM2Yd57SEuA67UsHjScLWn4SHkM9BopFnPtTQg4-Z5oeouRm10PGr5vRwUuvbk" style="opacity: 1;"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.25)_0%,_transparent_65%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content hidden flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">AI Customer And Revenue Systems</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Intelligent inbound pipelines and qualification systems.</p></div><div class="expanded-content flex flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight drop-shadow-md duration-300">AI Customer and Revenue Systems</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-xl">Intelligent pipelines that capture qualified inbound intent, automate prospect qualification, and prevent pipeline leakage across sales operations.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl border-2 border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all shadow-xl" href="#contact"><span class="">Explore Revenue Systems</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="Custom Business Software preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtRs2j7mv-apHSXhN_ipeGlZvXYgndVQpOxiBSznzdqB3dLOGUjkRXjqikL0012Bt4OBZrPGlcNU3dIODUKqYu4POmrxLVJdjEPC4HSXgIrJQT0RTgqVdesFg6pZ3CAYYspKM-pI8Cu2aVQ88fzGqyWoEcKuLMdIwHokaRA96VOZwO-NhMP9p3Vd4UvaPTyIw3Z6iq8ecf8GLgeAEkco4_70lz1o9zyMHKvA9QLPADZF9E42Ig18Gi"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">Custom Business Software</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Purpose-built operational portals and bespoke dashboards.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">Custom Business Software</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Purpose-built operational portals, bespoke internal dashboards, and high-concurrency tooling tailored to eliminate friction.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Custom Software</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="Managed AI &amp; Systems preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnh3nSy1VUgA-9VdXjX_C5h5h0brh3qJ99R4v7P5WEEzIJT77lnIWO52lk_g4yopj5zP-uPyYI3uvmTfiAIRXnaJkUS_FRCIJ43ieACSX_DOjhBoofXaKIVOS584VhYEnrqrbdGZD4IzNPk6ctr7IcI1TfqK9XqomgjAE6UGiZ2z_fb1MYkfBwKzEJ-cVSRGd8JJxOQhKefaXCyaZE716-i-fJ6AxjC1t4duJE4cmfmQOs9AUvWkQe"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">Managed AI &amp; Systems</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Continuous telemetry, monitoring, and model drift defense.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">Managed AI &amp; Systems</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Continuous operational monitoring, real-time telemetry, model drift protection, and ongoing engineering support.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Managed Systems</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div></div></div></section>
+<!-- ==========================================================
+     SECTION 3: FEATURED PROJECTS (Dark Obsidian Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-container-lowest border-b border-outline-variant/30 relative" id="projects" style="background-color: rgb(10, 14, 22);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Real Business Impact</h2></div><div class="grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto gap-8 sm:gap-10"><!-- Card 1: Ava Angela Consulting --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="Ava Angela Consulting Thumbnail" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv6NxgK9Qxi5AF-33x0_Sj6ruCur_5C33gkcu06EuvPVjM1ufV5XVb9BslwNplnzOIGbeoovGjykA5vxoda3_oGEAajzKVEfTMBOjq1ZJ5ep50D0Ob4EjoeJam4s763pEL9-VYRQEYd_9I2JD6b964IKHZHyK1R1JIRoKHZ8FeUayCrUBkevAeDfDbeJZKG5kfQAqah76tT80DoGz_lGI8hULGLBSpubF_OwL3ePuG5T8wgQHZGrW4"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">VitalSpark — AI Fitness SaaS</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">United States</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">Fitness onboarding into personalized AI-generated plans and guided workout sessions.</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div><!-- Card 2: myPOS --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="Ava Angela Consulting Thumbnail" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUW8D-1CmE9gkju7UsbYXHICSaevFRfnkfoXIRbI2Hb0u9dZKtiiNlzjol-whC1TE-dTDEjY0MLPw2inihD00NywMZYciLJ5MOuKgpiwMK6CHqu6VvtQQf-drHYqNNRmWXwcr92V3f8AhEWeOYeaNqMKaMx-DALq8YArojsdlE2gjMso8SRaKrNHh8-0YyLDBBqOt-bqsARbVYKSDArzMdxEle51DhYstE0WbI2R_ApG-W-kO8LnYB"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">Ava Angela Consulting</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">United States</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">Unified CRM, LMS, payments, affiliate tracking, and email automation into one business platform.</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div><!-- Card 3: Ava Angela Consulting (Duplicated) --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="myBoardingHauz System Mockup" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7GohcTslRbJT65fWlNKKxF2YFr8b_Bvj2fS4iucs4or4kTcExcND_mglqrWAGNEbHk9Neb45AQd6dZYgApj9xjWGyHbp0UlPBLIXTcP6LqamGp_PXLOBhcKrn8Tpv4w54-pkHLIsRGj3HwXDR8TmXnZDqjaeMi-yaGOFvT54vhD2xqFECvS1qzINGYGEOZl2zWXW1yYwLPTHbxJUn5yu7D9gSd0FC0d5vD27DIX7lBR4dgWBQnG-U"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">myBoardingHouse</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">Philippines</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">Property management platform for landlords and tenants</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div><!-- Card 4: myPOS (Duplicated) --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="myPOS System Mockup" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_kbIOWRMxKnvHSRuoQd5j0kDPuhrgvhIB0F9VPwi4W1Kp2VtHZ9e6liMSvebWrJRQb09tGkWAypxZ0HkFnR5MmTdRbRZiCpRJZXsfgSfD5JnEMaHe1yF7gVp6Qyd9JBubsUMq0C4tCKVi14KERBrYF-y8T0rJBxpJDsclWcnrkEcz4X4kKR2huntH6H32s51fhZI9Ooc8yx4lYWgZk0FXZQAVjS-jwYJ7MAyqySxqdreUS3VbKuvC"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">myPOS</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">United States</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">All-in-one POS, inventory, payroll, and reporting system for MSMEs.</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div></div></div></section>
+<!-- ==========================================================
+     SECTION 4: OUTCOMES & IMPACT METRICS (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 border-b border-outline-variant/20 relative" id="outcomes" style="background-color: rgb(255, 255, 255);">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-4xl mx-auto mb-12 sm:mb-16 space-y-3 text-center flex flex-col items-center"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] mb-3 text-center" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Why Choose Us</h2><p class="font-body-lg text-base sm:text-lg md:text-xl text-surface-variant text-center mx-auto max-w-3xl leading-relaxed">Precision-engineered systems built to eliminate operational bottlenecks, reduce wasted capacity, and deliver proven reliability without AI hype.</p></div>
+<!-- 6 Outcome Priority Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Card 1 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-lime-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="22" x2="18" y1="12" y2="12"></line><line x1="6" x2="2" y1="12" y2="12"></line><line x1="12" x2="12" y1="6" y2="2"></line><line x1="12" x2="12" y1="22" y2="18"></line></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Diagnosis Before Build</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">We locate the exact bottleneck in your operations before writing a single line of code, ensuring every build solves a high-ROI problem.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-cyan-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Proof, Not Promises</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">We build with explicit acceptance criteria agreed upon up front, avoiding unverified metrics, fake timeline promises, or hype.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-emerald-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5-10-5z"></path><path d="m2 17 10 5 10-5"></path><path d="m2 12 10 5 10-5"></path></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Designed to Stick</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">We prioritize simple, maintainable architecture and clear internal ownership so your systems remain operational and scale with your team.</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-lime-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="16" rx="2" width="16" x="4" y="4"></rect><rect height="6" width="6" x="9" y="9"></rect><line x1="9" x2="9" y1="1" y2="4"></line><line x1="15" x2="15" y1="1" y2="4"></line><line x1="9" x2="9" y1="20" y2="23"></line><line x1="15" x2="15" y1="20" y2="23"></line><line x1="20" x2="23" y1="9" y2="9"></line><line x1="20" x2="23" y1="14" y2="14"></line><line x1="1" x2="4" y1="9" y2="9"></line><line x1="1" x2="4" y1="14" y2="14"></line></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Built for Real Operations</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">Our custom software and automated workflows integrate directly into how your team works, replacing messy spreadsheet handoffs with structured processes.</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-cyan-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">End-to-End Reliability</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">From lead intake and customer qualification to back-office workflows, we eliminate pipeline leaks and human error across daily operations.</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-emerald-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Long-Term Systems</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">Once your system is deployed and proven, we offer ongoing management, maintenance, and reusable playbooks so your workflows evolve as you grow.</p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 5: WHO IT'S FOR (Dark Obsidian Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-container-lowest border-b border-outline-variant/30 relative" id="who-its-for">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mx-auto space-y-3 max-w-5xl mb-12 sm:mb-16">
+<h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3 text-center" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Who It’s For and Who It’s Not</h2>
+<p class="font-body-lg text-slate-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-center">
+        We only take projects where we can deliver concrete economic ROI and verified operational relief.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"><div class="animated-border-card"><div class="glass-panel p-6 sm:p-8 lg:p-10 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-lg h-full bg-[#0f131c]"><div class="space-y-5"><div class="flex items-center space-x-3"><h3 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">Who it’s for</h3></div><p class="font-body-lg text-base sm:text-lg text-slate-200 leading-relaxed">Owners and operators stuck in spreadsheets, messy handoffs, and “we’ll automate later” who will pay for diagnosis plus a system that ships.</p><ul class="space-y-3.5 pt-2 text-sm sm:text-base text-slate-200"><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#8cdd35] text-black mt-0.5"><span class="material-symbols-outlined text-xs font-bold">check</span></div><span>Businesses with recurring manual process waste</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#8cdd35] text-black mt-0.5"><span class="material-symbols-outlined text-xs font-bold">check</span></div><span>Leaders who prioritize working code over slide decks</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#8cdd35] text-black mt-0.5"><span class="material-symbols-outlined text-xs font-bold">check</span></div><span>Teams ready to own documentation and playbooks</span></li></ul></div><div class="pt-6 mt-6 border-t border-outline-variant/30 flex items-center space-x-2 text-xs sm:text-sm font-mono text-primary font-semibold"><span>High accountability, measurable operational leverage</span></div></div></div><div class="rounded-2xl border border-outline-variant/30 bg-[#0f131c] p-6 sm:p-8 lg:p-10 relative overflow-hidden flex flex-col justify-between shadow-lg h-full"><div class="space-y-5"><div class="flex items-center space-x-3"><h3 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">Who it’s not</h3></div><p class="font-body-lg text-base sm:text-lg text-slate-200 leading-relaxed">Cheap chatbot shoppers, “AI magic” with no process change, or inventing results / skipping proof.</p><ul class="space-y-3.5 pt-2 text-sm sm:text-base text-slate-200"><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-rose-300 text-[#0E1521] mt-0.5"><span class="material-symbols-outlined text-xs font-bold">close</span></div><span>Wanting quick ChatGPT wrappers without system</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-rose-300 text-[#0E1521] mt-0.5"><span class="material-symbols-outlined text-xs font-bold">close</span></div><span>Speculative vanity projects with zero measurability</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-rose-300 text-[#0E1521] mt-0.5"><span class="material-symbols-outlined text-xs font-bold">close</span></div><span>Organizations unwilling to share workflow transparency</span></li></ul></div><div class="pt-6 mt-6 border-t border-outline-variant/30 flex items-center text-xs sm:text-sm font-mono text-error font-semibold"><span>No vanity tools or ungrounded hype</span></div></div></div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 6: METHOD (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 border-b border-outline-variant/20 relative" id="how-we-work" style="background-color: rgb(255, 255, 255);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-5xl mx-auto mb-12 sm:mb-16 space-y-3"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#0f131c] mb-3 leading-tight" style="font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.15;"><span class="block">How We Work</span><span class="block text-primary">The 4-Step Method</span></h2><p class="font-body-lg text-base sm:text-lg md:text-xl text-surface-variant mb-8 max-w-3xl mx-auto leading-relaxed" style="font-size: clamp(1rem, 2vw, 1.35rem); line-height: 1.5;">A rigorous engineering sequence to dismantle bottlenecks and deliver permanent systems.</p></div><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"><style class="" id="method-accordion-desc-styles">.method-step-btn:not(.text-primary) .method-step-desc { display: none !important; } .method-step-btn.text-primary .method-step-desc { display: block !important; }</style><div class="lg:col-span-5 flex flex-col" id="method-steps-container"><style class="" id="method-step-custom-styles">#method-steps-container .method-step-btn .method-step-name { font-size: clamp(1.5rem, 3.5vw, 2.5rem) !important; font-weight: 800 !important; } #method-steps-container .method-step-btn { padding-left: 1.25rem !important; padding-right: 1.25rem !important; border-radius: 1rem !important; margin-bottom: 0.75rem !important; transition: all 0.3s ease !important; box-shadow: none !important; } #method-steps-container .method-step-btn.text-primary, #method-steps-container .method-step-btn.active, #method-steps-container .method-step-btn[aria-selected="true"] { background-color: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: none !important; } #method-steps-container .method-step-btn.text-primary .method-step-name, #method-steps-container .method-step-btn.active .method-step-name { color: #8CDD35 !important; } #method-steps-container .method-step-btn.text-primary .method-step-desc, #method-steps-container .method-step-btn.active .method-step-desc { color: #000000 !important; } #method-steps-container .method-step-btn.text-primary .method-step-badge, #method-steps-container .method-step-btn.active .method-step-badge { background-color: #8cdd35 !important; color: #000000 !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) { background-color: #F8FAFC !important; border-color: #e2e8f0 !important; box-shadow: none !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) .method-step-name { color: #333333 !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) .method-step-desc { color: #A2A2A2 !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) .method-step-badge { background-color: #e2e8f0 !important; color: #A2A2A2 !important; }</style><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-primary" data-step="0" onclick="switchMethodStep(0)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Diagnose</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-primary/10 text-primary">Step 01</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-[#4B5563] mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: block;">Operational bottleneck audit. Process mapping, data hand-offs, manual friction isolation, and quantifiable baseline definition.</p></button><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-[#222222] hover:text-[#666666]" data-step="1" onclick="switchMethodStep(1)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Design</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-slate-100 text-slate-500">Step 02</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-slate-500 mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: none;">Simplest viable architecture that eliminates the bottleneck without bloat or brittleness.</p></button><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-[#222222] hover:text-[#666666]" data-step="2" onclick="switchMethodStep(2)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Prove</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-slate-100 text-slate-500">Step 03</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-slate-500 mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: none;">Production working prototype shipped in days. Validated with real data before broad rollout.</p></button><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-[#222222] hover:text-[#666666]" data-step="3" onclick="switchMethodStep(3)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Reuse</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-slate-100 text-slate-500">Step 04</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-slate-500 mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: none;">System support, telemetry, and complete documentation so your internal team retains full ownership.</p></button></div><div class="lg:col-span-7 flex flex-col space-y-6"><div class="relative rounded-3xl overflow-hidden border border-slate-200 bg-[#0f131c] shadow-2xl p-2 sm:p-4"><div class="relative w-full h-[280px] sm:h-[380px] md:h-[460px] lg:h-[500px] rounded-2xl overflow-hidden bg-slate-900 group"><img alt="Bottleneck Diagnosis Laptop Dashboard" class="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YrhUaPrXaZB9NajFmINWiGVN7Vak9wrOm73RKiEtjZdqzyKAa5okbPl9SeXDjrcoWq3Yh5sGVeS5uEi_kv4uzbbXGpwAJZLlk1NCPVDgF-0CgkF6tlrZwbWcLySJ0GM7q26UbVTLoEbwKc5faynH9evcnUYk7c1yhYbZj9fteGSfmregtHfKj23_N4wVoNkTWTk9A4HnkwVQaFBCFTb6YmPqLGspy4oQlSVSz109opXvcsdRSFDi"><div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div><div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 pointer-events-none"><span class="inline-block px-3 py-1 rounded bg-[#8adc34] text-black font-mono text-xs font-bold uppercase mb-2" id="method-step-tag">Phase 01 · Diagnostic</span><h4 class="text-white font-headline-md text-lg sm:text-xl md:text-2xl font-bold" id="method-step-heading">Diagnose Bottlenecks</h4></div></div></div></div></div></div><script class="" id="method-controller-script">const methodDescriptions = ["Operational bottleneck audit. Process mapping, data hand-offs, manual friction isolation, and quantifiable baseline definition.", "Simplest viable architecture that eliminates the bottleneck without bloat or brittle dependencies.", "Build a demonstrable, production working prototype as tangible evidence before full team rollout.", "Operational playbooks, telemetry, and complete documentation so your internal team retains full ownership."]; const methodPhases = ["Phase 01 · Diagnostic", "Phase 02 · Engineering", "Phase 03 · Validation", "Phase 04 · Runbook"]; const methodHeadings = ["Diagnose Bottlenecks", "Design Architecture", "Prove & Validate", "Reuse & Hand-off"]; function switchMethodStep(index) { const buttons = document.querySelectorAll('#method-steps-container .method-step-btn'); const desc = document.getElementById('method-step-description'); const tag = document.getElementById('method-step-tag'); const heading = document.getElementById('method-step-heading'); buttons.forEach((btn, idx) => { const badge = btn.querySelector('.method-step-badge'); if (idx === index) { btn.classList.remove('text-[#222222]', 'hover:text-[#666666]'); btn.classList.add('text-primary'); if (badge) { badge.classList.remove('bg-slate-100', 'text-slate-500'); badge.classList.add('bg-primary/10', 'text-primary'); } } else { btn.classList.remove('text-primary'); btn.classList.add('text-[#222222]', 'hover:text-[#666666]'); if (badge) { badge.classList.remove('bg-primary/10', 'text-primary'); badge.classList.add('bg-slate-100', 'text-slate-500'); } } }); if (desc) { desc.style.opacity = '0'; setTimeout(() => { desc.textContent = methodDescriptions[index]; desc.style.opacity = '1'; }, 150); } if (tag) tag.textContent = methodPhases[index]; if (heading) heading.textContent = methodHeadings[index]; }</script></section>
+<!-- ==========================================================
+     SECTION 7: SOCIAL PROOF / AS SEEN ON (Dark Obsidian Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 lg:py-24 border-b border-outline-variant/30 relative overflow-hidden" id="recognition" style="background-color: rgb(203, 219, 228);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-4xl mx-auto mb-12 sm:mb-16 flex flex-col items-center"><h2 class="font-headline-xl text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-5 leading-tight text-black">The Tale of Our Achievement Story</h2><p class="font-body-lg text-slate-700 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">We engineer lean, high-leverage platforms and AI automation systems built to cut wasted operational hours and deliver concrete revenue growth across modern enterprises.</p></div><div class="relative flex flex-col md:flex-row items-center justify-center gap-6 md:-space-x-8 pt-4 sm:pt-6 max-w-5xl mx-auto z-30 mb-0 md:-mb-16"><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[340px] md:h-[380px] bg-[#181c24] rounded-[20px] p-8 flex flex-col items-center justify-center text-center transition-all duration-300 transform md:-rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border border-outline-variant/40 shadow-2xl"><div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-primary bg-primary/20"><svg class="w-8 h-8 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path><path d="M10.5 7.5A2 2 0 0 1 12 7a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2h-1"></path><path d="M9 11.5V10a1.5 1.5 0 0 1 3 0v4.5"></path></svg></div><h3 class="text-3xl font-bold mb-3 tracking-tight text-white"><span class="counter-animate" data-target="13" data-suffix="+" data-duration="1800" style="font-variant-numeric: tabular-nums;">0+</span> Years</h3><p class="text-sm md:text-base leading-snug text-slate-300">Influencing Digital Landscapes Together</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[340px] md:h-[380px] bg-[#181c24] rounded-[20px] p-8 flex flex-col items-center justify-center text-center transition-all duration-300 transform md:-rotate-1 hover:rotate-0 hover:scale-105 hover:z-40 z-20 cursor-pointer border border-outline-variant/40 shadow-2xl"><div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-primary bg-primary/20"><svg class="w-8 h-8 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M7 4v16l-3-3"></path><path d="M7 4l3 3"></path><path d="M17 20V4l3 3"></path><path d="M17 20l-3-3"></path></svg></div><h3 class="text-3xl font-bold mb-3 tracking-tight text-white"><span class="counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-variant-numeric: tabular-nums;">0+</span> Projects</h3><p class="text-sm md:text-base leading-snug text-slate-300">Excellence Achieved Through Success.</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[340px] md:h-[380px] bg-[#181c24] rounded-[20px] p-8 flex flex-col items-center justify-center text-center transition-all duration-300 transform md:rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border border-outline-variant/40 shadow-2xl"><div class="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-primary bg-primary/20"><svg class="w-8 h-8 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 2 2Z"></path><path d="M8 21h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-6.9a2 2 0 0 1-1.69-.9L10.6 7.9A2 2 0 0 0 8.93 7H6"></path></svg></div><h3 class="text-3xl font-bold mb-3 tracking-tight text-white">Giving Back</h3><p class="text-sm md:text-base leading-snug text-slate-300">Mirrors our Focus on Client Satisfaction.</p></div></div></div></section>
+<!-- ==========================================================
+     SECTION 8: TESTIMONIALS (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 border-b border-outline-variant/20 relative" id="testimonials" style="background-color: rgb(255, 255, 255); position: relative; z-index: 10;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mx-auto mb-12 sm:mb-16 space-y-3 max-w-5xl">
+<h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] mb-3 text-center" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Operator &amp; Technical Feedback</h2>
+<p class="font-body-lg text-base sm:text-lg md:text-xl text-surface-variant max-w-3xl mx-auto text-center leading-relaxed">
+        Authentic feedback from operators, technical founders, and operations leaders praising the zero-fluff, pragmatic engineering approach.
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+<!-- Testimonial 1 -->
+<div class="p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm relative" style="background-color: #f8fafc;">
+<div class="space-y-4">
+<div class="flex text-amber-500 text-sm">
+            ★★★★★
+          </div>
+<p class="font-body-md text-sm sm:text-base text-slate-700 leading-relaxed italic">
+            “Mobile Lab cut through months of AI noise. They diagnosed our exact dispatch bottleneck in 48 hours and shipped a rock-solid system that runs daily without breaking.”
+          </p>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-200">
+<div class="font-headline-sm text-sm font-bold text-slate-900">Operations Director</div>
+<div class="font-mono text-xs text-slate-500">Logistics &amp; Delivery Network</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm relative" style="background-color: #f8fafc;">
+<div class="space-y-4">
+<div class="flex text-amber-500 text-sm">
+            ★★★★★
+          </div>
+<p class="font-body-md text-sm sm:text-base text-slate-700 leading-relaxed italic">
+            “Most AI agencies sell slideware and chat wrappers. Working with Mobile Lab gave us production code, clear API pipelines, and zero vanity metrics. Our team actually uses it.”
+          </p>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-200">
+<div class="font-headline-sm text-sm font-bold text-slate-900">Technical Founder</div>
+<div class="font-mono text-xs text-slate-500">SaaS Platform</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm relative" style="background-color: #f8fafc;">
+<div class="space-y-4">
+<div class="flex text-amber-500 text-sm">
+            ★★★★★
+          </div>
+<p class="font-body-md text-sm sm:text-base text-slate-700 leading-relaxed italic">
+            “The simplest system that actually works. They refused to over-engineer our CRM handoffs and gave us back 15 hours a week of manual spreadsheet coordination.”
+          </p>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-200">
+<div class="font-headline-sm text-sm font-bold text-slate-900">Managing Partner</div>
+<div class="font-mono text-xs text-slate-500">Professional Services Group</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 9: FINAL CTA & INTAKE FORM (Dark Obsidian Background)
+     ========================================================== -->
+<!-- Footer & Contact CTA -->
+<section class="w-full border-t border-[#E2E8F0] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12" id="contact" style="background-color: #fbfbfd;">
+<div class="max-w-3xl mx-auto flex flex-col items-center">
+  <div class="text-center mb-10 sm:mb-12 space-y-3 px-2">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B132B] tracking-tight leading-tight">
+      Talk to us about your bottleneck
+    </h2>
+    <p class="text-base sm:text-lg md:text-xl text-[#4A5568] max-w-2xl mx-auto font-normal leading-relaxed">
+      Tell us where work gets stuck — we’ll diagnose before we build.
+    </p>
+  </div>
+
+  <div class="w-full bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-6 sm:p-10 md:p-12 relative transition-all">
+    <form class="space-y-6" id="ai-inquiry-form" onsubmit="event.preventDefault(); const fb = document.getElementById('form-feedback'); if(fb) fb.classList.remove('hidden'); this.reset();">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+        <!-- 1. Name -->
+        <div class="flex flex-col space-y-2 text-left">
+          <div class="flex items-center justify-between">
+            <label for="diagnostic-name" class="text-sm font-semibold text-[#1A202C]">1. Name</label>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
+          </div>
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-name" placeholder="Your name" required="" type="text">
+        </div>
+        <!-- 2. Work email -->
+        <div class="flex flex-col space-y-2 text-left">
+          <div class="flex items-center justify-between">
+            <label for="diagnostic-email" class="text-sm font-semibold text-[#1A202C]">2. Work email</label>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
+          </div>
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-email" placeholder="name@company.com" required="" type="email">
+        </div>
+      </div>
+
+      <!-- 3. What you're trying to fix -->
+      <div class="flex flex-col space-y-2 text-left">
+        <div class="flex items-center justify-between">
+          <label for="diagnostic-fix" class="text-sm font-semibold text-[#1A202C]">3. What you’re trying to fix</label>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
+        </div>
+        <textarea class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm resize-y min-h-[140px]" id="diagnostic-fix" placeholder="Describe where work gets stuck, manual handoffs, or spreadsheet bottlenecks..." required="" rows="5"></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-2">
+        <button class="w-full bg-[#8cdd35] hover:bg-[#9de448] text-[#0f172a] font-bold text-base sm:text-lg py-4 px-8 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer" type="submit">
+          <span>Talk to us about your bottleneck</span>
+          <span class="material-symbols-outlined text-xl font-bold">arrow_forward</span>
+        </button>
+      </div>
+
+      <div class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all" id="form-feedback">
+        <div class="flex items-center justify-center gap-2 mb-1">
+          <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+          <span class="font-bold">Thank you for submitting!</span>
+        </div>
+        We have received your bottleneck description and will be in touch within 24 hours to schedule your diagnosis.
+      </div>
+    </form>
+  </div>
+  <p class="text-[12px] text-[#94A3B8] mt-6 text-center">
+    Mobile Lab is a trade name under Aura Vera Agency. We do not sell data or spam. Review our <a class="underline hover:text-[#475569]" href="#">Privacy Policy</a>.
+  </p>
+</div>
+</section><footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-outline-variant/20">
+<!-- Brand / Info -->
+<div class="space-y-3">
+<div class="flex items-center space-x-2.5">
+<div class="h-7 w-7 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-sm">M</div>
+<span class="font-headline-md text-lg font-bold text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+</div>
+<p class="font-body-sm text-xs text-on-surface-variant max-w-md leading-relaxed">
+          Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
+        </p>
+</div>
+<!-- Links -->
+<div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-label-lg"><a class="text-on-surface-variant hover:text-primary transition-colors" href="#services">Services</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#how-we-work">How We Work</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#who-its-for">About</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">Contact</a><a class="inline-flex items-center gap-1.5 text-primary hover:text-white transition-colors border border-primary/40 hover:border-primary px-3 py-1 rounded-lg text-xs font-mono font-medium" download="mobilelab-github.zip" href="/download"><span class="material-symbols-outlined text-sm">download</span>Download for GitHub (.zip)</a></div>
+</div>
+<!-- Bottom Row -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-on-surface-variant gap-4 text-center sm:text-left">
+<div class="">
+        © 2025 Mobile Lab · Aura Vera Agency. All rights reserved. Zero vanity proof policy.
+      </div>
+<div class="flex items-center space-x-4"><a aria-label="Facebook" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a><a aria-label="X" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a><a aria-label="Instagram" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a><a aria-label="YouTube" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a></div>
+</div>
+</div>
+</footer>
+<!-- Interactive Scripts: Header Cursor Glow & Form & Mobile Menu -->
+<script>
+  // Subtle interactive cursor radial glow on header
+  const header = document.getElementById('site-header');
+  const glow = document.getElementById('header-glow');
+  if (header && glow) {
+    header.addEventListener('mousemove', (e) => {
+      glow.style.opacity = '1';
+      glow.style.left = `${e.clientX}px`;
+      glow.style.top = `${e.clientY}px`;
+    });
+    header.addEventListener('mouseleave', () => {
+      glow.style.opacity = '0';
+    });
+  }
+
+  // Mobile navigation drawer toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+  if (mobileMenuBtn && mobileNav && mobileMenuIcon) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileNav.classList.contains('hidden');
+      if (isHidden) {
+        mobileNav.classList.remove('hidden');
+        mobileMenuIcon.textContent = 'close';
+      } else {
+        mobileNav.classList.add('hidden');
+        mobileMenuIcon.textContent = 'menu';
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+        mobileMenuIcon.textContent = 'menu';
+      });
+    });
+  }
+</script>
+<script class="">
+  (function() {
+    const track = document.getElementById('testimonial-track');
+    const prevBtn = document.getElementById('carousel-prev-btn');
+    const nextBtn = document.getElementById('carousel-next-btn');
+
+    if (track && prevBtn && nextBtn) {
+      const updateBtnVisibility = () => {
+        if (track.scrollLeft > 20) {
+          prevBtn.classList.remove('hidden');
+          prevBtn.classList.add('flex');
+        } else {
+          prevBtn.classList.add('hidden');
+          prevBtn.classList.remove('flex');
+        }
+
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 20) {
+          nextBtn.classList.add('hidden');
+        } else {
+          nextBtn.classList.remove('hidden');
+          nextBtn.classList.add('flex');
+        }
+      };
+
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+
+      track.addEventListener('scroll', updateBtnVisibility);
+      window.addEventListener('resize', updateBtnVisibility);
+      updateBtnVisibility();
+    }
+  })();
+</script>
+
+<script id="counter-animation-script">
+  (function() {
+    function animateCounter(el) {
+      if (el.dataset.hasAnimated === 'true') return;
+      el.dataset.hasAnimated = 'true';
+
+      const target = parseInt(el.getAttribute('data-target') || '0', 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const prefix = el.getAttribute('data-prefix') || '';
+      const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic: starts quickly and smoothly settles on the final number
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(ease * target);
+
+        el.textContent = prefix + current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = prefix + target + suffix;
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    function initMetricCounters() {
+      const counters = document.querySelectorAll('.counter-animate');
+      if (!counters.length) return;
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          rootMargin: '0px 0px -20px 0px',
+          threshold: 0.1
+        });
+
+        counters.forEach(counter => {
+          const rect = counter.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            animateCounter(counter);
+          } else {
+            observer.observe(counter);
+          }
+        });
+      } else {
+        counters.forEach(animateCounter);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMetricCounters);
+    } else {
+      initMetricCounters();
+    }
+  })();
+</script>
+
+</body></html>

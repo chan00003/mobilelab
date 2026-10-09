@@ -1,0 +1,8 @@
+{
+  "name": "Mobile Lab | AI Systems & Automation",
+  "description": "Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.",
+  "requestFramePermissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

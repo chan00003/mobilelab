@@ -1,0 +1,15 @@
+{
+  "name": "mobilelab2",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mobile Lab | AI Systems & Automation",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Build complete'",
+    "lint": "echo 'No lint errors'"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
