@@ -15,7 +15,7 @@ const HOST = '0.0.0.0';
 function ensureZipArchive() {
   try {
     execSync(
-      `python3 -c "import zipfile, os; files = ['index.html', 'contact.html', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md']; z = zipfile.ZipFile('mobilelab-github.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(f) for f in files if os.path.exists(f)]; z.close()"`
+      `python3 -c "import zipfile, os; files = ['index.html', 'about.html', 'contact.html', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md']; z = zipfile.ZipFile('mobilelab-github.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(f) for f in files if os.path.exists(f)]; z.close()"`
     );
   } catch (err) {
     console.error('Error generating zip:', err);
@@ -33,7 +33,11 @@ app.get(['/download', '/download-zip', '/api/download'], (req, res) => {
   }
 });
 
-// Explicit contact page route
+// Explicit about and contact page routes
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'about.html'));
+});
+
 app.get('/contact', (req, res) => {
   res.sendFile(path.join(__dirname, 'contact.html'));
 });
