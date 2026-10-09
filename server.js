@@ -15,7 +15,7 @@ const HOST = '0.0.0.0';
 function ensureZipArchive() {
   try {
     execSync(
-      `python3 -c "import zipfile, os; files = ['index.html', 'about.html', 'contact.html', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md']; z = zipfile.ZipFile('mobilelab-github.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(f) for f in files if os.path.exists(f)]; z.close()"`
+      `python3 -c "import zipfile, os; files = ['index.html', 'about.html', 'services.html', 'how-we-work.html', 'contact.html', 'mobilelab-ogimage.png', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md']; z = zipfile.ZipFile('mobilelab-github.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(f) for f in files if os.path.exists(f)]; z.close()"`
     );
   } catch (err) {
     console.error('Error generating zip:', err);
@@ -33,13 +33,26 @@ app.get(['/download', '/download-zip', '/api/download'], (req, res) => {
   }
 });
 
-// Explicit about and contact page routes
+// Explicit dedicated page routes
+app.get('/services', (req, res) => {
+  res.sendFile(path.join(__dirname, 'services.html'));
+});
+
+app.get('/how-we-work', (req, res) => {
+  res.sendFile(path.join(__dirname, 'how-we-work.html'));
+});
+
 app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'about.html'));
 });
 
 app.get('/contact', (req, res) => {
   res.sendFile(path.join(__dirname, 'contact.html'));
+});
+
+// Dedicated route for Open Graph image
+app.get('/mobilelab-ogimage.png', (req, res) => {
+  res.type('image/png').sendFile(path.join(__dirname, 'mobilelab-ogimage.png'));
 });
 
 // Serve static assets from root directory

@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>How We Work | The 4-Step Engineering Method — Mobile Lab</title>
+  <meta name="description" content="Discover Mobile Lab's rigorous 4-step method: Diagnose, Design, Prove, and Reuse. We eliminate the risk of software projects by diagnosing bottlenecks first and shipping working code in days.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mobile Lab">
+  <meta property="og:title" content="How We Work | The 4-Step Engineering Method — Mobile Lab">
+  <meta property="og:description" content="Discover Mobile Lab's rigorous 4-step method: Diagnose, Design, Prove, and Reuse. We eliminate the risk of software projects by diagnosing bottlenecks first and shipping working code in days.">
+  <meta property="og:image" content="/mobilelab-ogimage.png">
+  <meta property="og:image:secure_url" content="/mobilelab-ogimage.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:alt" content="Mobile Lab — AI Systems &amp; Automation">
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How We Work | The 4-Step Engineering Method — Mobile Lab">
+  <meta name="twitter:description" content="A rigorous engineering sequence to dismantle bottlenecks and deliver permanent systems. Zero AI hype or fake proof.">
+  <meta name="twitter:image" content="/mobilelab-ogimage.png">
+  <meta name="twitter:image:alt" content="Mobile Lab — AI Systems &amp; Automation">
+
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, Montserrat -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Montserrat:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#8cdd35",
+            "primary-container": "#72c012",
+            "on-primary": "#1c3700",
+            "surface": "#0f131c",
+            "surface-container": "#1c2028",
+            "surface-container-high": "#262a33",
+            "surface-container-lowest": "#0a0e16",
+            "on-surface": "#dfe2ee",
+            "on-surface-variant": "#c1cab1",
+            "outline-variant": "#414a37"
+          },
+          fontFamily: {
+            "display-hero": ["Space Grotesk", "sans-serif"],
+            "headline-md": ["Space Grotesk", "sans-serif"],
+            "headline-sm": ["Space Grotesk", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .glow-primary {
+      box-shadow: 0 0 25px -4px rgba(114, 192, 18, 0.4);
+    }
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, label, div:not(.material-symbols-outlined), span:not(.material-symbols-outlined) {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    @keyframes gradientRtl {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+    .running-gradient-ai {
+      background: linear-gradient(270deg, #72c012, #a3e635, #38bdf8, #72c012, #a3e635);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      animation: gradientRtl 18s linear infinite;
+    }
+    .cyber-grid-bg {
+      background-image: radial-gradient(rgba(114, 192, 18, 0.08) 1px, transparent 1px),
+                        radial-gradient(rgba(0, 241, 253, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+    }
+    @property --card-border-angle {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+    @keyframes rotateCardBorder {
+      0% { --card-border-angle: 0deg; }
+      100% { --card-border-angle: 360deg; }
+    }
+    .animated-border-card {
+      position: relative;
+      border-radius: 1.25rem;
+      padding: 1.5px;
+      overflow: hidden;
+      background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, #8cdd35 0deg, #6ff6ff 60deg, transparent 130deg, rgba(65, 74, 55, 0.4) 220deg, transparent 300deg, #8cdd35 360deg);
+      animation: rotateCardBorder 6s linear infinite;
+      filter: drop-shadow(0 0 14px rgba(140, 221, 53, 0.18));
+    }
+    .animated-border-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      border-radius: inherit;
+      background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, rgba(140, 221, 53, 0.4) 0deg, rgba(111, 246, 255, 0.4) 60deg, transparent 140deg, transparent 300deg, rgba(140, 221, 53, 0.4) 360deg);
+      filter: blur(4px);
+      opacity: 0.6;
+      animation: rotateCardBorder 6s linear infinite;
+    }
+    .step-active-bg {
+      background: linear-gradient(135deg, rgba(140, 221, 53, 0.15) 0%, rgba(15, 19, 28, 0.8) 100%);
+      border-color: #8cdd35 !important;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+
+  <!-- Interactive Header Radial Glow Tracker -->
+  <div class="fixed pointer-events-none rounded-full blur-[100px] bg-primary/20 w-80 h-80 -translate-x-1/2 -translate-y-1/2 z-40 transition-opacity duration-300 opacity-0" id="header-glow"></div>
+
+  <!-- Ambient Radial Light Bleeds -->
+  <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-10 right-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+
+  <!-- Header -->
+  <header class="top-0 sticky z-50 bg-surface/85 backdrop-blur-md shadow-sm border-b border-outline-variant/40 w-full" id="site-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between w-full">
+      <a class="flex items-center space-x-3 group" href="/">
+        <div class="h-9 w-9 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-lg shadow-sm">M</div>
+        <span class="font-headline-md text-xl font-bold tracking-tight text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-sm font-semibold" href="/services">Services</a>
+        <a class="text-primary border-b-2 border-primary pb-0.5 font-bold text-sm transition-colors duration-200" href="/how-we-work">How We Work</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-sm font-semibold" href="/about">About</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-sm font-semibold" href="/contact">Contact</a>
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/60 hover:border-primary text-xs font-mono text-on-surface hover:text-primary transition-all duration-200" download="mobilelab-github.zip" href="/download" title="Download ZIP for GitHub">
+          <span class="material-symbols-outlined text-base">download</span>
+          <span>Download for GitHub</span>
+        </a>
+        <a class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-on-primary text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-md" href="/contact">
+          <span>Talk to Us</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Nav Toggle -->
+      <div class="flex items-center md:hidden">
+        <button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+          <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="hidden md:hidden border-b border-outline-variant/40 bg-surface/95 backdrop-blur-xl px-6 py-6 transition-all duration-300" id="mobile-nav">
+      <div class="flex flex-col space-y-4">
+        <a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/services">Services</a>
+        <a class="mobile-nav-link text-primary font-bold text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/how-we-work">How We Work</a>
+        <a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/about">About</a>
+        <a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/contact">Contact</a>
+        <div class="pt-2 flex flex-col space-y-3">
+          <a class="mobile-nav-link inline-flex w-full items-center justify-center px-6 py-3.5 rounded-xl bg-primary text-on-primary font-bold text-base glow-primary shadow-md transition-all active:scale-95" href="/contact">
+            <span>Talk to Us</span>
+            <span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
+          </a>
+          <a class="mobile-nav-link inline-flex w-full items-center justify-center px-4 py-2.5 rounded-xl border border-outline-variant/60 text-xs font-mono text-on-surface hover:text-primary transition-colors" download="mobilelab-github.zip" href="/download">
+            <span class="material-symbols-outlined mr-2 text-base">download</span>
+            <span>Download ZIP for GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="relative pt-20 pb-24 md:pt-28 md:pb-32 cyber-grid-bg border-b border-outline-variant/30 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>The 4-Step Engineering Sequence · Proof Over Promises</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.12]">
+          <span class="block">How We Work</span>
+          <span class="block running-gradient-ai mt-1">From Bottleneck Audit to Shipped System</span>
+        </h1>
+
+        <p class="mt-6 text-base sm:text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
+          Most tech projects fail because teams write code before understanding the real human bottleneck. We eliminate that risk with a structured, high-accountability sequence: diagnose first, architect lean, prove in days, and guarantee internal ownership.
+        </p>
+
+        <!-- CTA Row -->
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl bg-primary text-on-primary font-bold text-base tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-lg" href="/contact">
+            <span>Schedule Discovery Call</span>
+            <span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
+          </a>
+          <a class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 rounded-xl border border-outline-variant/60 hover:border-primary text-on-surface hover:text-white bg-surface-container/60 backdrop-blur-sm transition-all duration-200 text-base font-semibold" href="#four-phases">
+            <span>Walkthrough the 4 Phases</span>
+            <span class="material-symbols-outlined ml-2 text-xl">expand_more</span>
+          </a>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="mt-16 pt-10 border-t border-outline-variant/20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-white tracking-tight counter-animate" data-target="1" data-suffix=" Week">0 Weeks</div>
+            <div class="text-xs uppercase font-mono tracking-wider text-on-surface-variant mt-1">Diagnostic Audit</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-white tracking-tight counter-animate" data-target="14" data-suffix=" Days">0 Days</div>
+            <div class="text-xs uppercase font-mono tracking-wider text-on-surface-variant mt-1">To Clickable Prototype</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-white tracking-tight counter-animate" data-target="100" data-suffix="%">0%</div>
+            <div class="text-xs uppercase font-mono tracking-wider text-on-surface-variant mt-1">Client IP &amp; Git Access</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl sm:text-4xl font-bold text-white tracking-tight counter-animate" data-target="0" data-suffix=" Slides">0 Slides</div>
+            <div class="text-xs uppercase font-mono tracking-wider text-on-surface-variant mt-1">Working Code Over Decks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         INTERACTIVE 4-PHASE DETAILED WALKTHROUGH
+         ========================================== -->
+    <section class="py-20 md:py-28 bg-surface-container-lowest border-b border-outline-variant/20 scroll-mt-24" id="four-phases">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">The Engineering Sequence</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+            The 4-Step Method
+          </h2>
+          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
+            Click through each phase below to see exact workflows, required client time, and technical deliverables produced.
+          </p>
+        </div>
+
+        <!-- Stepper Navigation -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 max-w-5xl mx-auto" id="phase-tabs">
+          <button class="phase-tab-btn p-4 rounded-xl border border-outline-variant/40 bg-surface-container text-left transition-all duration-200 cursor-pointer step-active-bg" data-phase="0" type="button">
+            <div class="text-xs font-mono font-bold text-primary mb-1">PHASE 01</div>
+            <div class="text-sm sm:text-base font-bold text-white">01. Diagnose</div>
+            <div class="text-xs text-on-surface-variant mt-1 hidden sm:block">Operational Audit</div>
+          </button>
+
+          <button class="phase-tab-btn p-4 rounded-xl border border-outline-variant/40 bg-surface-container text-left transition-all duration-200 cursor-pointer hover:border-outline-variant" data-phase="1" type="button">
+            <div class="text-xs font-mono font-bold text-slate-400 mb-1">PHASE 02</div>
+            <div class="text-sm sm:text-base font-bold text-white">02. Design</div>
+            <div class="text-xs text-on-surface-variant mt-1 hidden sm:block">Lean Architecture</div>
+          </button>
+
+          <button class="phase-tab-btn p-4 rounded-xl border border-outline-variant/40 bg-surface-container text-left transition-all duration-200 cursor-pointer hover:border-outline-variant" data-phase="2" type="button">
+            <div class="text-xs font-mono font-bold text-slate-400 mb-1">PHASE 03</div>
+            <div class="text-sm sm:text-base font-bold text-white">03. Prove</div>
+            <div class="text-xs text-on-surface-variant mt-1 hidden sm:block">Production Prototype</div>
+          </button>
+
+          <button class="phase-tab-btn p-4 rounded-xl border border-outline-variant/40 bg-surface-container text-left transition-all duration-200 cursor-pointer hover:border-outline-variant" data-phase="3" type="button">
+            <div class="text-xs font-mono font-bold text-slate-400 mb-1">PHASE 04</div>
+            <div class="text-sm sm:text-base font-bold text-white">04. Reuse</div>
+            <div class="text-xs text-on-surface-variant mt-1 hidden sm:block">Ownership &amp; Runbook</div>
+          </button>
+        </div>
+
+        <!-- Dynamic Phase Display Card -->
+        <div class="animated-border-card max-w-5xl mx-auto">
+          <div class="p-6 sm:p-10 rounded-2xl bg-[#0f131c] space-y-8" id="phase-content-card">
+            
+            <!-- Phase Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant/30 pb-6">
+              <div>
+                <span class="inline-block px-3 py-1 rounded bg-primary/20 text-primary font-mono text-xs font-bold uppercase mb-2" id="phase-badge">
+                  Phase 01 · Diagnostic Investigation
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white" id="phase-title">
+                  Diagnose the True Bottleneck
+                </h3>
+              </div>
+              <div class="text-left sm:text-right font-mono text-xs">
+                <span class="text-on-surface-variant block">Typical Duration</span>
+                <span class="text-primary font-bold text-sm" id="phase-duration">Week 1 (5–7 Business Days)</span>
+              </div>
+            </div>
+
+            <!-- Phase Body Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              <!-- Left Explanation -->
+              <div class="lg:col-span-7 space-y-4">
+                <h4 class="text-white font-semibold text-lg">What happens in this phase:</h4>
+                <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed" id="phase-description">
+                  We don't take your feature wish list at face value. Instead, we shadow key operators, inspect current database records, review spreadsheet handoffs, and calculate the exact friction points. We measure the cost of delay, identify manual data leaks, and establish clear baseline metrics before proposing solutions.
+                </p>
+
+                <div class="space-y-3 pt-3">
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-base mt-0.5">search_insights</span>
+                    <span class="text-xs sm:text-sm text-slate-200" id="phase-bullet-1">
+                      Process mapping: tracing every single touchpoint from lead intake to final delivery.
+                    </span>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-base mt-0.5">table_view</span>
+                    <span class="text-xs sm:text-sm text-slate-200" id="phase-bullet-2">
+                      Spreadsheet &amp; tool autopsy: finding where data gets lost or manually re-keyed.
+                    </span>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined text-primary text-base mt-0.5">calculate</span>
+                    <span class="text-xs sm:text-sm text-slate-200" id="phase-bullet-3">
+                      Acceptance criteria definition: mathematically defining what success looks like.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Deliverables Box -->
+              <div class="lg:col-span-5 rounded-xl bg-surface-container border border-outline-variant/40 p-5 space-y-4">
+                <div class="text-xs font-mono text-primary uppercase font-bold tracking-wider flex items-center justify-between">
+                  <span>Tangible Deliverables</span>
+                  <span class="material-symbols-outlined text-sm">inventory_2</span>
+                </div>
+                
+                <ul class="space-y-3 text-xs sm:text-sm text-slate-300" id="phase-deliverables-list">
+                  <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <span>Workflow Topology Map</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <span>Cost-of-Friction Financial Analysis</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <span>Technical Architecture Blueprint</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <span>90-Day Build &amp; Rollout Roadmap</span>
+                  </li>
+                </ul>
+
+                <div class="pt-3 border-t border-outline-variant/30 text-xs font-mono text-on-surface-variant flex items-center justify-between">
+                  <span>Your Team Time Needed:</span>
+                  <span class="text-white font-semibold" id="phase-time-needed">2–3 Hours Total</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Navigation Inside Card -->
+            <div class="flex items-center justify-between pt-6 border-t border-outline-variant/30">
+              <button class="inline-flex items-center gap-1.5 text-xs font-mono text-on-surface-variant hover:text-white transition-colors cursor-pointer" id="phase-prev-btn" onclick="prevPhase()" type="button">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                <span>Previous Phase</span>
+              </button>
+              <div class="flex gap-1.5" id="phase-dots">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
+                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
+              </div>
+              <button class="inline-flex items-center gap-1.5 text-xs font-mono text-primary font-bold hover:text-white transition-colors cursor-pointer" id="phase-next-btn" onclick="nextPhase()" type="button">
+                <span>Next Phase</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ENGINEERING DISCIPLINE: WHAT WE DO VS REJECT
+         ========================================== -->
+    <section class="py-20 md:py-28 bg-[#f9f8f6] border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-emerald-700 font-mono text-xs uppercase font-bold tracking-wider">Our Standards</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827]">
+            Disciplined Engineering vs. Agency Theater
+          </h2>
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+            We hold ourselves to strict architectural principles so your software survives real-world operation.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          <!-- What We Do -->
+          <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+              <div class="w-8 h-8 rounded-full bg-lime-100 text-lime-800 flex items-center justify-center">
+                <span class="material-symbols-outlined text-lg">check</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900">What We Build &amp; Practice</h3>
+            </div>
+
+            <ul class="space-y-4 text-sm text-slate-700">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-lime-600 mt-0.5 shrink-0">check_circle</span>
+                <div>
+                  <strong class="text-slate-900 block">Diagnosis Before Building</strong>
+                  <span>We never build features without verifying the root operational cause.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-lime-600 mt-0.5 shrink-0">check_circle</span>
+                <div>
+                  <strong class="text-slate-900 block">Deterministic Pipelines</strong>
+                  <span>Typed codebases, explicit retry policies, and structured exception handlers.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-lime-600 mt-0.5 shrink-0">check_circle</span>
+                <div>
+                  <strong class="text-slate-900 block">Working Prototypes in Days</strong>
+                  <span>Interactive software you can click and test against real data in 10-14 days.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-lime-600 mt-0.5 shrink-0">check_circle</span>
+                <div>
+                  <strong class="text-slate-900 block">100% Client Ownership</strong>
+                  <span>Full Git repositories, deployment scripts, and recorded runbooks for your team.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- What We Reject -->
+          <div class="p-8 rounded-2xl bg-white border border-rose-100 shadow-sm space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+              <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center">
+                <span class="material-symbols-outlined text-lg">close</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900">What We Strictly Reject</h3>
+            </div>
+
+            <ul class="space-y-4 text-sm text-slate-700">
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-rose-500 mt-0.5 shrink-0">cancel</span>
+                <div>
+                  <strong class="text-slate-900 block">Fragile No-Code Zap Chains</strong>
+                  <span>No brittle spaghetti zaps that quietly fail without error logs or monitoring.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-rose-500 mt-0.5 shrink-0">cancel</span>
+                <div>
+                  <strong class="text-slate-900 block">Ungrounded Chatbot Hype</strong>
+                  <span>No generic ChatGPT wrappers that hallucinate prices, terms, or customer data.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-rose-500 mt-0.5 shrink-0">cancel</span>
+                <div>
+                  <strong class="text-slate-900 block">Months-Long Dark Periods</strong>
+                  <span>No billing for months while showing slide decks instead of functioning software.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-rose-500 mt-0.5 shrink-0">cancel</span>
+                <div>
+                  <strong class="text-slate-900 block">Proprietary Lock-in</strong>
+                  <span>No hostage codebases or undisclosed closed systems you cannot inspect.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         COLLABORATION CADENCE & TRANSPARENCY
+         ========================================== -->
+    <section class="py-20 md:py-28 bg-surface-container border-b border-outline-variant/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">Communication &amp; Cadence</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+            How We Collaborate Day-to-Day
+          </h2>
+          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
+            Direct access to senior software engineers. No non-technical account managers playing telephone.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          
+          <!-- Card 1 -->
+          <div class="p-6 rounded-2xl bg-surface-container-high border border-outline-variant/40 space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">forum</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Shared Private Slack Channel</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Real-time async communication directly with our core engineering team. Ask questions, share screenshots, and receive fast updates.
+            </p>
+            <div class="text-xs font-mono text-primary pt-2">Zero intermediate layers</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="p-6 rounded-2xl bg-surface-container-high border border-outline-variant/40 space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">videocam</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Weekly Live Demos &amp; Looms</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Every Friday, we ship a live demonstration of working features or record concise 3-minute video walkthroughs of everything added.
+            </p>
+            <div class="text-xs font-mono text-primary pt-2">Verifiable progress weekly</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="p-6 rounded-2xl bg-surface-container-high border border-outline-variant/40 space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">code</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Transparent Git Repositories</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Your technical leaders are added to the private GitHub repository from day one. Full commit logs, pull requests, and automated tests.
+            </p>
+            <div class="text-xs font-mono text-primary pt-2">Full repository transparency</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         METHOD CASE STUDY WALKTHROUGH
+         ========================================== -->
+    <section class="py-20 md:py-28 bg-surface-container-lowest border-b border-outline-variant/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">Real Project Journey</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+            The Method in Action: VitalSpark SaaS
+          </h2>
+          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
+            How our 4-step sequence took a health company from manual spreadsheet coaching to automated AI personalization in 4 weeks.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto relative">
+          
+          <!-- Step 1 in Action -->
+          <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
+            <div class="text-xs font-mono text-primary font-bold">WEEK 1 · DIAGNOSE</div>
+            <h4 class="text-white font-bold text-base">The Bottleneck</h4>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              VitalSpark trainers spent 4.5 hours per client manually writing custom workout splits across 7 different spreadsheets, limiting client intake to 15 members monthly.
+            </p>
+          </div>
+
+          <!-- Step 2 in Action -->
+          <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
+            <div class="text-xs font-mono text-primary font-bold">WEEK 2 · DESIGN</div>
+            <h4 class="text-white font-bold text-base">The Architecture</h4>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Designed a deterministic prompt routing engine tied to an exercise biomechanics database with strict injury-prevention validation rules.
+            </p>
+          </div>
+
+          <!-- Step 3 in Action -->
+          <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
+            <div class="text-xs font-mono text-primary font-bold">WEEKS 3-4 · PROVE</div>
+            <h4 class="text-white font-bold text-base">The Prototype</h4>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              Shipped a working web app to 25 beta testers. Generated full 12-week workout and nutrition plans in 8 seconds, reviewed and approved by head coaches.
+            </p>
+          </div>
+
+          <!-- Step 4 in Action -->
+          <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
+            <div class="text-xs font-mono text-primary font-bold">WEEK 4+ · REUSE</div>
+            <h4 class="text-white font-bold text-base">Full Handover</h4>
+            <p class="text-xs text-on-surface-variant leading-relaxed">
+              VitalSpark onboarded 150+ paid subscribers in month one with zero trainer burnout. Internal team trained to manage database and prompt models independently.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         HOW WE WORK FAQ
+         ========================================== -->
+    <section class="py-20 md:py-28 bg-surface-container border-b border-outline-variant/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16 space-y-3">
+          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">Process Clarifications</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Frequently Asked Questions</h2>
+          <p class="text-base text-on-surface-variant">Common questions regarding our timeline, process, and deliverables.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- FAQ 1 -->
+          <details class="group rounded-2xl bg-surface-container-high border border-outline-variant/40 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base sm:text-lg">
+              <span>How much time does my leadership team need to invest?</span>
+              <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <p class="mt-4 text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/20 pt-4">
+              We respect your calendar. During Phase 01 (Diagnose), we require roughly 2 to 3 hours total from key operators to review workflows and map handoffs. During development, you participate in weekly 30-minute review demos. We handle all architecture, coding, testing, and deployment.
+            </p>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="group rounded-2xl bg-surface-container-high border border-outline-variant/40 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base sm:text-lg">
+              <span>Can we keep our existing tools (CRMs, databases, email providers)?</span>
+              <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <p class="mt-4 text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/20 pt-4">
+              Absolutely. Our methodology emphasizes making your existing software work harmoniously rather than forcing a painful migration. We connect directly into HubSpot, Salesforce, Postgres, Google Workspace, Stripe, and specialized internal tools via clean API adapters.
+            </p>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="group rounded-2xl bg-surface-container-high border border-outline-variant/40 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base sm:text-lg">
+              <span>What happens if the system requires maintenance later?</span>
+              <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <p class="mt-4 text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/20 pt-4">
+              In Phase 04 (Reuse), we provide video runbooks and documentation so your in-house team can maintain the system. If you prefer continuous peace of mind, we offer our Managed Systems Retainer which provides 24/7 telemetry monitoring, drift prevention, and dedicated monthly iteration sprints.
+            </p>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="group rounded-2xl bg-surface-container-high border border-outline-variant/40 p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-300">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-white text-base sm:text-lg">
+              <span>What if the prototype reveals our bottleneck was different than expected?</span>
+              <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+            </summary>
+            <p class="mt-4 text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/20 pt-4">
+              That is precisely why we build working prototypes in days rather than waiting months. Our iterative process surfaces real operational truths early, allowing agile adjustments without wasting capital or burning team morale.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CALL TO ACTION BANNER
+         ========================================== -->
+    <section class="py-20 md:py-28 cyber-grid-bg relative overflow-hidden text-center">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+        <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+          Ready to Start with Phase 01: The Bottleneck Diagnosis?
+        </h2>
+        <p class="text-base sm:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+          Book a free 30-minute discovery call with our technical leadership. We'll examine your process and outline the high-ROI fixes.
+        </p>
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a class="w-full sm:w-auto inline-flex items-center justify-center px-9 py-4 rounded-xl bg-primary text-on-primary font-bold text-base tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-xl" href="/contact">
+            <span>Schedule Discovery Call</span>
+            <span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
+          </a>
+          <a class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl border border-outline-variant/60 hover:border-primary text-white bg-surface-container/60 transition-all duration-200 text-base font-semibold" href="/services">
+            <span>Explore Services</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-outline-variant/20">
+        
+        <!-- Brand / Info -->
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2.5">
+            <div class="h-7 w-7 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-sm">M</div>
+            <span class="font-headline-md text-lg font-bold text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+          </div>
+          <p class="font-body-sm text-xs text-on-surface-variant max-w-md leading-relaxed">
+            Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-label-lg">
+          <a class="text-on-surface-variant hover:text-primary transition-colors" href="/services">Services</a>
+          <a class="text-primary hover:text-primary transition-colors font-bold" href="/how-we-work">How We Work</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors" href="/about">About</a>
+          <a class="text-on-surface-variant hover:text-primary transition-colors" href="/contact">Contact</a>
+          <a class="inline-flex items-center gap-1.5 text-primary hover:text-white transition-colors border border-primary/40 hover:border-primary px-3 py-1 rounded-lg text-xs font-mono font-medium" download="mobilelab-github.zip" href="/download">
+            <span class="material-symbols-outlined text-sm">download</span>
+            <span>Download for GitHub (.zip)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-on-surface-variant gap-4 text-center sm:text-left">
+        <div>
+          © 2025 Mobile Lab · Aura Vera Agency. All rights reserved. Zero vanity proof policy.
+        </div>
+        <div class="flex items-center space-x-4">
+          <!-- Facebook -->
+          <a aria-label="Facebook" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+          </a>
+          <!-- X -->
+          <a aria-label="X" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+          </a>
+          <!-- Instagram -->
+          <a aria-label="Instagram" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+          </a>
+          <!-- YouTube -->
+          <a aria-label="YouTube" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Header Glow
+    const header = document.getElementById('site-header');
+    const glow = document.getElementById('header-glow');
+    if (header && glow) {
+      header.addEventListener('mousemove', (e) => {
+        glow.style.opacity = '1';
+        glow.style.left = `${e.clientX}px`;
+        glow.style.top = `${e.clientY}px`;
+      });
+      header.addEventListener('mouseleave', () => {
+        glow.style.opacity = '0';
+      });
+    }
+
+    // Mobile nav drawer
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+    if (mobileMenuBtn && mobileNav && mobileMenuIcon) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileNav.classList.contains('hidden');
+        if (isHidden) {
+          mobileNav.classList.remove('hidden');
+          mobileMenuIcon.textContent = 'close';
+        } else {
+          mobileNav.classList.add('hidden');
+          mobileMenuIcon.textContent = 'menu';
+        }
+      });
+    }
+
+    // Number counters
+    function animateCounter(el) {
+      if (el.dataset.hasAnimated === 'true') return;
+      el.dataset.hasAnimated = 'true';
+      const target = parseInt(el.getAttribute('data-target') || '0', 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const prefix = el.getAttribute('data-prefix') || '';
+      const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(ease * target);
+        el.textContent = prefix + current + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = prefix + target + suffix;
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    function initMetricCounters() {
+      const counters = document.querySelectorAll('.counter-animate');
+      if (!counters.length) return;
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        counters.forEach(c => observer.observe(c));
+      } else {
+        counters.forEach(animateCounter);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMetricCounters);
+    } else {
+      initMetricCounters();
+    }
+
+    // Interactive Phase Stepper Data
+    const phasesData = [
+      {
+        badge: "Phase 01 · Diagnostic Investigation",
+        title: "Diagnose the True Bottleneck",
+        duration: "Week 1 (5–7 Business Days)",
+        description: "We don't take your feature wish list at face value. Instead, we shadow key operators, inspect current database records, review spreadsheet handoffs, and calculate the exact friction points. We measure the cost of delay, identify manual data leaks, and establish clear baseline metrics before proposing solutions.",
+        bullet1: "Process mapping: tracing every single touchpoint from lead intake to final delivery.",
+        bullet2: "Spreadsheet & tool autopsy: finding where data gets lost or manually re-keyed.",
+        bullet3: "Acceptance criteria definition: mathematically defining what success looks like.",
+        deliverables: [
+          "Workflow Topology Map",
+          "Cost-of-Friction Financial Analysis",
+          "Technical Architecture Blueprint",
+          "90-Day Build & Rollout Roadmap"
+        ],
+        timeNeeded: "2–3 Hours Total"
+      },
+      {
+        badge: "Phase 02 · Lean Engineering Specification",
+        title: "Design the Simplest Viable Architecture",
+        duration: "Week 2 (3–5 Business Days)",
+        description: "Complexity is the enemy of reliability. We design the leanest technical architecture that completely dissolves the bottleneck without unnecessary bloat, fragile Zapier chains, or speculative tech dependencies. We specify typed data contracts, permission boundaries, and database schemas.",
+        bullet1: "Database schema modeling: structuring clean relational Postgres tables.",
+        bullet2: "API contract definitions: deterministic webhook and endpoint payloads.",
+        bullet3: "Security & permissions: RBAC, token management, and secret encryption.",
+        deliverables: [
+          "Complete System Architecture Schema",
+          "API & Webhook Integration Specs",
+          "Security & RBAC Permission Matrix",
+          "Interactive Figma / UI Wireframes"
+        ],
+        timeNeeded: "1–2 Hours Review"
+      },
+      {
+        badge: "Phase 03 · Rapid Production Validation",
+        title: "Prove with Working Code in Days",
+        duration: "Weeks 2–4 (10–14 Business Days)",
+        description: "We ship a production working prototype into a live staging sandbox. You don't read theoretical slide decks—you click, submit forms, trigger webhooks, and watch real customer data flow through deterministic pipelines. We test edge cases, exception retries, and failure modes with your real team.",
+        bullet1: "Rapid build sprints: functional software shipped in days, not quarters.",
+        bullet2: "Live sandbox validation: click and test against your real operational data.",
+        bullet3: "Load & exception testing: verifying zero data loss under spike volumes.",
+        deliverables: [
+          "Live Interactive Working Sandbox",
+          "Automated Regression Test Suites",
+          "Staging Test Flight Data Logs",
+          "Executive User Acceptance Sign-off"
+        ],
+        timeNeeded: "2–3 Hours Testing"
+      },
+      {
+        badge: "Phase 04 · Ownership Transfer & Long-Term Reliability",
+        title: "Reuse, Document & Hand Over",
+        duration: "Week 4+ (Ongoing or Complete Handover)",
+        description: "Our goal is permanent client empowerment. We provide clean, fully documented Git repositories, recorded video runbooks, automated telemetry alerts, and training for your staff. You retain 100% intellectual property ownership. Optionally, we offer our continuous managed retainer.",
+        bullet1: "Complete Git handover: full code ownership transferred to your GitHub org.",
+        bullet2: "Loom video runbooks: operational SOPs showing how everything functions.",
+        bullet3: "Telemetry & health checks: automated Slack/email exception monitors.",
+        deliverables: [
+          "GitHub Repository Transfer & Full IP",
+          "Operational SOPs & Video Runbooks",
+          "Production Deployment CI/CD Scripts",
+          "Optional Ongoing Systems Retainer"
+        ],
+        timeNeeded: "1 Hour Handover Call"
+      }
+    ];
+
+    let currentPhaseIndex = 0;
+
+    function renderPhase(index) {
+      currentPhaseIndex = index;
+      const data = phasesData[index];
+
+      // Update text
+      document.getElementById('phase-badge').textContent = data.badge;
+      document.getElementById('phase-title').textContent = data.title;
+      document.getElementById('phase-duration').textContent = data.duration;
+      document.getElementById('phase-description').textContent = data.description;
+      document.getElementById('phase-bullet-1').textContent = data.bullet1;
+      document.getElementById('phase-bullet-2').textContent = data.bullet2;
+      document.getElementById('phase-bullet-3').textContent = data.bullet3;
+      document.getElementById('phase-time-needed').textContent = data.timeNeeded;
+
+      // Deliverables list
+      const delList = document.getElementById('phase-deliverables-list');
+      delList.innerHTML = data.deliverables.map(item => `
+        <li class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          <span>${item}</span>
+        </li>
+      `).join('');
+
+      // Update tab styles
+      const tabs = document.querySelectorAll('.phase-tab-btn');
+      tabs.forEach((tab, idx) => {
+        if (idx === index) {
+          tab.classList.add('step-active-bg');
+          tab.querySelector('.font-mono').classList.remove('text-slate-400');
+          tab.querySelector('.font-mono').classList.add('text-primary');
+        } else {
+          tab.classList.remove('step-active-bg');
+          tab.querySelector('.font-mono').classList.remove('text-primary');
+          tab.querySelector('.font-mono').classList.add('text-slate-400');
+        }
+      });
+
+      // Update dots
+      const dotsContainer = document.getElementById('phase-dots');
+      dotsContainer.innerHTML = [0, 1, 2, 3].map(i => `
+        <span class="w-2 h-2 rounded-full ${i === index ? 'bg-primary' : 'bg-slate-600'}"></span>
+      `).join('');
+    }
+
+    function prevPhase() {
+      const nextIndex = currentPhaseIndex === 0 ? phasesData.length - 1 : currentPhaseIndex - 1;
+      renderPhase(nextIndex);
+    }
+
+    function nextPhase() {
+      const nextIndex = (currentPhaseIndex + 1) % phasesData.length;
+      renderPhase(nextIndex);
+    }
+
+    // Attach click listeners to tabs
+    document.querySelectorAll('.phase-tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const phaseIdx = parseInt(btn.getAttribute('data-phase'), 10);
+        renderPhase(phaseIdx);
+      });
+    });
+  </script>
+</body>
+</html>
