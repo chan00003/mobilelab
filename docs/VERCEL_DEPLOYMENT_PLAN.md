@@ -8,14 +8,14 @@ MobileLab now uses Vercel's Node.js Express deployment shape and a Node-native s
 
 The existing Express routes, security middleware, contact behavior, and browser pages are preserved. Deployment-facing pages and assets are copied into `public/`, while source, tests, package metadata, and agent configuration remain outside that directory.
 
-`public/` is the deployment source of truth for served pages and assets. The root page copies are retained temporarily for archive compatibility and rollback safety; until the project adopts a real build/synchronization step, page edits must be mirrored in both locations and verified with a parity check.
+`public/` is the deployment source of truth for served pages and assets. The root page copies are retained temporarily for archive compatibility and rollback safety; until the project adopts a real build/synchronization step, page edits must be mirrored in both locations and verified with a parity check. `vercel.json` explicitly includes the safe archive inputs in the Express Function bundle because Vercel's static `public/` deployment and Node Function filesystem are separate packaging surfaces.
 
 The ZIP routes use `archiver` to stream fixed allowlisted entries directly to the response. No Python runtime is required by the application. A separately hosted backend remains an alternative only if Python fidelity or long-lived backend behavior becomes a product requirement.
 
 ## Evidence from the current repository
 
 - `server.js` is a root-level Express 4 application and already exports `app` as a named export. It also calls `app.listen()` when run directly.
-- `package.json` is an ES-module package with `dev` and `start` scripts running `node server.js`; there is no `vercel.json`, `vercel.yaml`, or `.vercelignore`.
+- `package.json` is an ES-module package with `dev` and `start` scripts running `node server.js`; `vercel.json` includes the ZIP's safe non-secret inputs in the `server.js` Function bundle.
 - Pages are stored at the repository root. Assets are under `assets/`. The server uses `res.sendFile()` for pages and `express.static()` for `/assets` and optional `/public`.
 - `/download`, `/download-zip`, and `/api/download` create an isolated `archiver` stream from fixed source paths and abort it on client disconnect or failure.
 - `/api/contact` validates input and intentionally returns `503` because no delivery provider is configured.
@@ -43,7 +43,7 @@ Official references:
 3. Make the app export unambiguous for Vercel with a reviewed default export, while retaining direct `npm start` behavior locally.
 4. The five HTML pages, `mobilelab-ogimage.png`, and `/assets` content are copied into `public/`; existing route URLs are unchanged.
 5. Retain security headers, bounded body parsing, rate limits, allowlisted routes, and the intentional `503` contact response.
-6. No `vercel.json` is currently needed; add one only if protected-preview verification proves that routing or function limits require it.
+6. `vercel.json` includes `public/**`, `package.json`, `.env.example`, `.gitignore`, and `README.md` for the `server.js` Function. It excludes secrets, tests, screenshots, Graphify output, and unrelated repository files.
 
 ### Phase 2: Node-native ZIP generation — implemented
 
@@ -55,7 +55,7 @@ The Python subprocess was replaced with the maintained MIT-licensed `archiver` p
 - streams without temporary archive files;
 - clean up on success, client disconnect, and error;
 - preserve all three download aliases and `mobilelab-github.zip` response naming;
-- return a clear 500 response when archive creation fails;
+- return a clear 500 response when an explicitly allowlisted bundle input is unavailable;
 - preserve the existing download rate limit;
 - test concurrent requests and archive integrity.
 

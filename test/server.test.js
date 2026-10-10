@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import { after, before, describe, it } from 'node:test';
 import unzipper from 'unzipper';
-import { app, cleanupZipArchive, createZipArchive } from '../server.js';
+import { app, cleanupZipArchive, createZipArchive, resolveArchiveSource } from '../server.js';
 
 let server;
 let baseUrl;
@@ -18,6 +18,7 @@ before(async () => {
 after(() => {
   app.locals.createZipArchive = createZipArchive;
   app.locals.cleanupZipArchive = cleanupZipArchive;
+  app.locals.resolveArchiveSource = undefined;
   server.close();
 });
 
@@ -70,6 +71,7 @@ describe('server routes', () => {
     const bytes = Buffer.from(await response.arrayBuffer());
     const directory = await unzipper.Open.buffer(bytes);
     const names = directory.files.map((file) => file.path);
+    await Promise.all(directory.files.map((file) => file.buffer()));
     const index = await directory.files.find((file) => file.path === 'index.html').buffer();
 
     assert.equal(response.status, 200);
@@ -82,8 +84,9 @@ describe('server routes', () => {
     assert.match(index.toString('utf8'), /Mobile Lab/i);
   });
 
-  it('returns a server error when required archive resources are unavailable', async () => {
-    app.locals.createZipArchive = () => null;
+  it('returns a server error when the function bundle omits an archive source', async () => {
+    app.locals.resolveArchiveSource = () => null;
+    app.locals.createZipArchive = createZipArchive;
 
     for (const route of ['/download', '/download-zip', '/api/download']) {
       const response = await request(route);
@@ -92,6 +95,7 @@ describe('server routes', () => {
       assert.equal(response.status, 500);
       assert.equal(body, 'Could not generate zip archive');
     }
+    app.locals.resolveArchiveSource = resolveArchiveSource;
   });
 
   it('handles concurrent downloads with isolated archive streams', async () => {

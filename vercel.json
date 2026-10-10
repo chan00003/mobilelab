@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "server.js": {
+      "includeFiles": [
+        "public/**",
+        "package.json",
+        ".env.example",
+        ".gitignore",
+        "README.md"
+      ]
+    }
+  }
+}

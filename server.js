@@ -73,15 +73,18 @@ function createRateLimiter({ windowMs, max }) {
 const downloadRateLimit = createRateLimiter({ windowMs: 60_000, max: 10 });
 const contactRateLimit = createRateLimiter({ windowMs: 15 * 60_000, max: 5 });
 
+function resolveArchiveSource(source) {
+  const publicPath = path.join(PUBLIC_DIR, source);
+  const rootPath = path.join(__dirname, source);
+  return fs.existsSync(publicPath) ? publicPath : fs.existsSync(rootPath) ? rootPath : null;
+}
+
 function createZipArchive() {
-  if (!ARCHIVE_FILES.every(([source]) => fs.existsSync(path.join(PUBLIC_DIR, source)) || fs.existsSync(path.join(__dirname, source)))) {
-    return null;
-  }
+  const resolveSource = app.locals.resolveArchiveSource || resolveArchiveSource;
+  const archiveSources = ARCHIVE_FILES.map(([source, name]) => [resolveSource(source), name]);
+  if (archiveSources.some(([sourcePath]) => !sourcePath)) return null;
   const archive = new archiverModule.ZipArchive({ zlib: { level: 9 } });
-  for (const [source, name] of ARCHIVE_FILES) {
-    const sourcePath = fs.existsSync(path.join(PUBLIC_DIR, source))
-      ? path.join(PUBLIC_DIR, source)
-      : path.join(__dirname, source);
+  for (const [sourcePath, name] of archiveSources) {
     archive.file(sourcePath, { name });
   }
   const assetsPath = path.join(PUBLIC_DIR, 'assets');
@@ -95,6 +98,7 @@ function cleanupZipArchive(archive) {
 
 app.locals.createZipArchive = createZipArchive;
 app.locals.cleanupZipArchive = cleanupZipArchive;
+app.locals.resolveArchiveSource = resolveArchiveSource;
 app.get(['/download', '/download-zip', '/api/download'], downloadRateLimit, (req, res, next) => {
   const archive = app.locals.createZipArchive();
   if (!archive) {
@@ -167,7 +171,7 @@ app.use((err, req, res, next) => {
   return res.status(500).send('Internal server error');
 });
 
-export { app, cleanupZipArchive, createZipArchive };
+export { app, cleanupZipArchive, createZipArchive, resolveArchiveSource };
 export default app;
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
