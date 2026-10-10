@@ -9,8 +9,8 @@ Mobile Lab designs and builds lean, high-leverage AI platforms and business auto
 - **Interactive Workflows**: Diagnostic 4-step method switcher and multi-device service accordion.
 - **Mobile Navigation**: Collapsible slide-down navigation drawer with active state indicators.
 - **Dedicated Pages**: About, services, how-we-work, and contact routes with optimized asset delivery.
-- **Safe Project Download**: Per-request ZIP generation with Windows Python detection and cleanup.
-- **Node.js Express Server**: Ready for local development or deployment to Cloud platforms (Google Cloud Run, Vercel, Railway, Render, Heroku).
+- **Safe Project Download**: Per-request Node.js ZIP streaming with a fixed archive allowlist and cleanup on failure.
+- **Node.js Express Server**: Ready for local development and Vercel's Node.js Express runtime.
 
 ---
 
@@ -41,9 +41,23 @@ Run the built-in Node test suite:
 npm test
 ```
 
-Tests use only Node's built-in test runner and cover page routes, sensitive static paths, security headers, verified Python resolution, valid ZIP generation, download failure and concurrent cleanup behavior, contact validation, and request-size handling. Contact submissions are validated server-side but return a clear `503` until an approved delivery provider is configured; no credentials or provider have been added.
+Tests use only Node's built-in test runner and cover page routes, sensitive static paths, security headers, extracted ZIP entries and content, missing resources, concurrent streams, client disconnect cleanup, contact validation, and request-size handling. Contact submissions are validated server-side but return a clear `503` until an approved delivery provider is configured; no credentials or provider have been added.
 
-The download route requires Python 3.10 or newer. On Windows, the server checks `PYTHON_EXECUTABLE`, the `py` launcher, valid PATH interpreters, and common installed `python.exe` locations. Set `PYTHON_EXECUTABLE` to an absolute verified interpreter path when Python is not discoverable automatically.
+Run browser smoke tests separately:
+
+```bash
+npm run test:e2e
+```
+
+The Playwright suite starts a dedicated local server, checks all five pages at 390px, 768px, and 1440px, captures ignored screenshots under `artifacts/browser-qa/`, verifies responsive layout and accessibility interactions, checks the unconfigured contact error, and validates download/privacy responses. The ZIP route uses the Node.js `archiver` package and does not require Python at runtime.
+
+For clean dependency validation without enabling lifecycle scripts, use `npm ci --ignore-scripts`.
+
+### Vercel deployment
+
+The Express app is detected from root `server.js` and exports the app for the Node.js runtime. Deployment-served pages and browser assets are copied under `public/`; sensitive application files remain outside that directory. The three download routes stream an allowlisted ZIP from Node.js without invoking Python.
+
+Before relying on a preview, verify the protected deployment with an authorized Vercel Shareable Link or a CI-only `x-vercel-protection-bypass` header. Do not commit or expose bypass secrets. See [docs/VERCEL_DEPLOYMENT_PLAN.md](docs/VERCEL_DEPLOYMENT_PLAN.md) for the compatibility checklist and rollback plan.
 
 GitHub Actions runs the same `npm ci`, lint, test, and build checks for pull requests and pushes to `main`. See [docs/PROJECT_AUDIT.md](docs/PROJECT_AUDIT.md) for the current application audit and prioritized follow-up work.
 
@@ -69,15 +83,16 @@ Create a focused branch and pull request. CI runs automatically; do not force-pu
 ## 📁 Project Structure
 
 ```
-├── index.html        # Main landing page markup, Tailwind styling, and interactive scripts
-├── about.html        # About page
-├── services.html     # Services page
-├── how-we-work.html  # Process page
-├── contact.html      # Dedicated contact page matching bottleneck diagnostic form
-├── assets/           # Optimized static image assets
+├── index.html        # Source landing page markup, styling, and interactive scripts
+├── about.html        # Source About page
+├── services.html     # Source Services page
+├── how-we-work.html  # Source Process page
+├── contact.html      # Source contact page
+├── assets/           # Source optimized image assets
+├── public/           # Vercel-served copies of pages and assets
 ├── server.js         # Express server (port 3000)
 ├── package.json      # Dependencies and npm scripts
-├── test/              # Node built-in route tests
+├── test/              # Node route tests and Playwright smoke tests
 ├── docs/              # Project audit and engineering documentation
 ├── .github/workflows/ # Pull request and main-branch CI
 ├── .env.example      # Environment variables template

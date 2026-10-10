@@ -1,0 +1,739 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mobile Lab | AI Systems &amp; Automation</title>
+<meta name="description" content="Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mobile Lab">
+<meta property="og:title" content="Mobile Lab | AI Systems &amp; Automation">
+<meta property="og:description" content="Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.">
+<meta property="og:image" content="/mobilelab-ogimage.png">
+<meta property="og:image:secure_url" content="/mobilelab-ogimage.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mobile Lab — AI Systems &amp; Automation">
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mobile Lab | AI Systems &amp; Automation">
+<meta name="twitter:description" content="Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.">
+<meta name="twitter:image" content="/mobilelab-ogimage.png">
+<meta name="twitter:image:alt" content="Mobile Lab — AI Systems &amp; Automation">
+<!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+<!-- Material Symbols Outlined -->
+
+  <!-- Resource Hints & Preconnect for Fast Asset Delivery -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
+  <!-- Consolidated Optimized Typography: Montserrat, Plus Jakarta Sans, Space Grotesk & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS with Forms and Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary": "#00373a",
+            "on-primary": "#1c3700",
+            "on-primary-container": "#274900",
+            "tertiary-container": "#28c38a",
+            "on-background": "#dfe2ee",
+            "surface-bright": "#353942",
+            "surface": "#0f131c",
+            "error-container": "#93000a",
+            "on-secondary-fixed-variant": "#004f53",
+            "surface-container-highest": "#31353e",
+            "secondary": "#dcfdff",
+            "on-tertiary-fixed-variant": "#005236",
+            "primary-fixed-dim": "#8bdc34",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-secondary-fixed": "#002022",
+            "secondary-fixed": "#6ff6ff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary": "#003824",
+            "primary-container": "#72c012",
+            "tertiary": "#50dfa4",
+            "surface-container-low": "#181c24",
+            "inverse-primary": "#3b6a00",
+            "surface-dim": "#0f131c",
+            "on-primary-fixed-variant": "#2b5000",
+            "on-error": "#690005",
+            "inverse-surface": "#dfe2ee",
+            "inverse-on-surface": "#2c3039",
+            "secondary-fixed-dim": "#00dce6",
+            "secondary-container": "#00f1fd",
+            "surface-container": "#1c2028",
+            "surface-container-high": "#262a33",
+            "surface-variant": "#31353e",
+            "primary-fixed": "#a6f950",
+            "on-primary-fixed": "#0e2000",
+            "outline": "#8b947d",
+            "background": "#0f131c",
+            "on-surface-variant": "#c1cab1",
+            "on-secondary-container": "#006a6f",
+            "on-surface": "#dfe2ee",
+            "surface-tint": "#8bdc34",
+            "on-tertiary-fixed": "#002113",
+            "on-error-container": "#ffdad6",
+            "surface-container-lowest": "#0a0e16",
+            "error": "#ffb4ab",
+            "outline-variant": "#414a37",
+            "on-tertiary-container": "#004a31",
+            "primary": "#8cdd35"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-md": "3rem",
+            "gutter-lg": "2rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-sm": "1rem",
+            "margin-lg": "5rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.5rem",
+            "margin": "1.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "display-hero": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Space Grotesk"],
+            "label-tech": ["Space Grotesk"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "display-hero-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "display-hero": ["64px", {"lineHeight": "72px", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+            "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-xl-mobile": ["30px", {"lineHeight": "38px", "fontWeight": "700"}],
+            "label-tech": ["11px", {"lineHeight": "14px", "fontWeight": "700"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+            "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+            "headline-xl": ["48px", {"lineHeight": "56px", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-panel-elevated {
+      background: rgba(27, 36, 52, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .glow-primary {
+      box-shadow: 0 0 25px -4px rgba(114, 192, 18, 0.4);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -4px rgba(0, 242, 254, 0.35);
+    }
+    .cyber-grid-bg {
+      background-image: radial-gradient(rgba(114, 192, 18, 0.08) 1px, transparent 1px),
+                        radial-gradient(rgba(0, 241, 253, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+    }
+  </style>
+<style class="" id="montserrat-global-font">body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, label, div:not(.material-symbols-outlined), span:not(.material-symbols-outlined) { font-family: 'Montserrat', sans-serif !important; }</style><style class="" id="animated-card-border-styles">@property --card-border-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; } @keyframes rotateCardBorder { 0% { --card-border-angle: 0deg; } 100% { --card-border-angle: 360deg; } } .animated-border-card { position: relative; border-radius: 1rem; padding: 1.5px; overflow: hidden; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, #8cdd35 0deg, #6ff6ff 60deg, transparent 130deg, rgba(65, 74, 55, 0.4) 220deg, transparent 300deg, #8cdd35 360deg); animation: rotateCardBorder 5s linear infinite; filter: drop-shadow(0 0 14px rgba(140, 221, 53, 0.18)); } .animated-border-card::before { content: ''; position: absolute; inset: -2px; z-index: -1; border-radius: inherit; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, rgba(140, 221, 53, 0.4) 0deg, rgba(111, 246, 255, 0.4) 60deg, transparent 140deg, transparent 300deg, rgba(140, 221, 53, 0.4) 360deg); filter: blur(4px); opacity: 0.6; animation: rotateCardBorder 5s linear infinite; }</style></head>
+<style id="accessibility-refinements">
+  :focus-visible { outline: 3px solid #8cdd35; outline-offset: 3px; }
+  #mobile-menu-btn { min-width: 44px; min-height: 44px; }
+  .mobile-nav-link { min-height: 44px; }
+  section { scroll-margin-top: 5rem; }
+  h1, h2 { text-wrap: balance; }
+  button:disabled { cursor: wait; opacity: 0.65; transform: none !important; }
+  .form-feedback-error { background: #fef2f2 !important; border-color: #fecaca !important; color: #991b1b !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+    #header-glow { display: none !important; }
+  }
+</style>
+<body class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary min-h-screen relative overflow-x-hidden w-full max-w-full">
+<!-- Interactive Header Radial Glow Tracker -->
+<div class="fixed pointer-events-none rounded-full blur-[100px] bg-primary/20 w-80 h-80 -translate-x-1/2 -translate-y-1/2 z-40 transition-opacity duration-300 opacity-0" id="header-glow" style="opacity: 0; left: 25px; top: 42px;"></div>
+<!-- Ambient Radial Light Bleeds -->
+<div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="fixed top-1/3 right-10 w-[550px] h-[550px] bg-secondary-container/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-10 left-10 w-[500px] h-[500px] bg-tertiary-container/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+<!-- ==========================================
+     SECTION 1: HERO (Dark Obsidian Background)
+     ========================================== -->
+<header class="docked top-0 sticky z-50 bg-surface/85 backdrop-blur-md shadow-sm border-b border-outline-variant/40 w-full" id="site-header">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between w-full">
+<a class="flex items-center space-x-3 group" href="#">
+<div class="h-9 w-9 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-lg shadow-sm">M</div>
+<span class="font-headline-md text-xl font-bold tracking-tight text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+</a>
+<nav class="hidden md:flex items-center space-x-6 lg:space-x-8"><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="/services">Services</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="/how-we-work">How We Work</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="/about">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="/contact">Contact</a>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/60 hover:border-primary text-xs font-mono text-on-surface hover:text-primary transition-all duration-200" download="mobilelab-github.zip" href="/download" title="Download ZIP of project for GitHub"><span class="material-symbols-outlined text-base">download</span><span>Download for GitHub</span></a>
+<a class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-on-primary font-headline-sm text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-md" href="/contact"><span class="">Talk to Us</span></a></nav>
+<!-- Mobile Navigation Toggle -->
+<div class="flex items-center md:hidden">
+<button aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+<span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Navigation Drawer -->
+<div class="hidden md:hidden border-b border-outline-variant/40 bg-surface/95 backdrop-blur-xl px-6 py-6 transition-all duration-300" id="mobile-nav">
+<div class="flex flex-col space-y-4">
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/services">Services</a>
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/how-we-work">How We Work</a>
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/about">About</a>
+<a class="mobile-nav-link text-on-surface-variant hover:text-primary font-medium text-lg py-2 border-b border-outline-variant/20 transition-colors" href="/contact">Contact</a>
+<div class="pt-2 flex flex-col space-y-3">
+<a class="mobile-nav-link inline-flex w-full items-center justify-center px-6 py-3.5 rounded-xl bg-primary text-on-primary font-bold text-base glow-primary shadow-md transition-all active:scale-95" href="/contact">
+<span>Talk to Us</span>
+<span class="material-symbols-outlined ml-2 text-xl">arrow_forward</span>
+</a>
+<a class="mobile-nav-link inline-flex w-full items-center justify-center px-4 py-2.5 rounded-xl border border-primary/50 text-primary font-mono text-xs font-semibold hover:bg-primary/10 transition-colors" download="mobilelab-github.zip" href="/download">
+<span class="material-symbols-outlined mr-1.5 text-base">download</span>
+<span>Download Files for GitHub (.zip)</span>
+</a>
+</div>
+</div>
+</div>
+</header>
+<section class="relative pt-24 pb-32 lg:pt-32 lg:pb-40 cyber-grid-bg w-full overflow-hidden border-b border-outline-variant/30 py-24" onmouseleave="(function(){ const g = document.getElementById('hero-cursor-glow'); if(g) g.style.opacity = '0'; })()" onmousemove="(function(e, sec){ const g = document.getElementById('hero-cursor-glow'); if(!g) return; const rect = sec.getBoundingClientRect(); g.style.opacity = '0.5'; g.style.left = (e.clientX - rect.left) + 'px'; g.style.top = (e.clientY - rect.top) + 'px'; })(event, this)"><div class="pointer-events-none absolute w-[700px] h-[700px] rounded-full transition-opacity duration-300 opacity-0 z-0" data-stitch-orig-opacity="0" id="hero-cursor-glow" style="background: radial-gradient(circle, rgba(140, 221, 53, 0.15) 0%, rgba(114, 192, 18, 0.075) 35%, rgba(114, 192, 18, 0.02) 60%, transparent 75%); filter: blur(36px); mix-blend-mode: screen; transform: translate(-50%, -50%); will-change: left, top, opacity; opacity: 0; left: 1909px; top: 1149.2px;"></div><div class="absolute inset-0 overflow-hidden pointer-events-none -z-10"><style class="">@keyframes collageScrollUp { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } } @keyframes collageScrollDown { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } } .collage-col-up { animation: collageScrollUp 180s linear infinite; } .collage-col-down { animation: collageScrollDown 210s linear infinite; } .collage-col-up-slow { animation: collageScrollUp 240s linear infinite; } .collage-col-down-slow { animation: collageScrollDown 220s linear infinite; } .collage-tilt-canvas { transform: rotate(-10deg) scale(1.08); transform-origin: center center; }</style><div class="absolute -inset-[20%] w-[140%] h-[140%] flex justify-center items-center pointer-events-none collage-tilt-canvas" style="transform: rotate(-12deg) scale(0.79); transform-origin: center center; opacity: 0.58; filter: none;"><div class="grid grid-cols-5 gap-4 w-full h-full diagonal-collage-scroll"><div class="flex flex-col gap-4 collage-col-up"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-65530cf809.webp" width="56" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-1501d47931.webp" width="76" height="272" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-769fd0d30b.webp" width="69" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-30bd8d0c1a.webp" width="76" height="345" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-a797373c93.webp" width="56" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-6035240480.webp" width="76" height="272" decoding="async" loading="lazy"></div></div><div class="flex flex-col gap-4 collage-col-down"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-7ac5247604.webp" width="74" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-7c5ea8939b.webp" width="75" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-bf765c255f.webp" width="76" height="469" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-cce1e0fde3.webp" width="69" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-05df0a0a45.webp" width="74" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-2ff7330dfa.webp" width="75" height="512" decoding="async" loading="lazy"></div></div><div class="flex flex-col gap-4 collage-col-up-slow"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-60a0fb8b74.webp" width="78" height="431" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-48a7b42d3e.webp" width="76" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-4c87ffd860.webp" width="77" height="351" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-f008aafa70.webp" width="76" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-d00d3b7df0.webp" width="78" height="431" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-e525e91aca.webp" width="76" height="512" decoding="async" loading="lazy"></div></div><div class="flex flex-col gap-4 collage-col-down-slow"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-f8552506c7.webp" width="58" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-35113cdc5f.webp" width="76" height="289" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-3df07336cc.webp" width="76" height="368" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-c6319bdae7.webp" width="68" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-11340ab1b3.webp" width="58" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-bb96c671a7.webp" width="76" height="289" decoding="async" loading="lazy"></div></div><div class="flex flex-col gap-4 collage-col-up"><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-dbee276213.webp" width="70" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-9336e41e7f.webp" width="76" height="370" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-bfe71351eb.webp" width="63" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-7b4b8699a8.webp" width="56" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-2241a8f015.webp" width="70" height="512" decoding="async" loading="lazy"></div><div class="rounded-lg overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container"><img alt="Project Showcase" class="w-full object-cover rounded-lg" src="/assets/images/img-b6e99ae66b.webp" width="76" height="370" decoding="async" loading="lazy"></div></div></div></div><div class="absolute inset-0 bg-surface-container-lowest/85" style="background-color: rgba(10, 14, 22, 0.45);"></div><div class="absolute inset-0" style="background: linear-gradient(rgba(15, 19, 28, 0.92) 0%, rgba(15, 19, 28, 0.55) 50%, rgba(10, 14, 22, 0.98) 100%);"></div><div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/85 to-transparent pointer-events-none"></div></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="flex flex-col items-center justify-center text-center mx-auto space-y-6 sm:space-y-8 max-w-7xl">
+<h1 class="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[68px] leading-tight text-on-surface tracking-tight font-bold w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center gap-2 px-2"><style>@keyframes gradientRtl{0%{background-position:200% center}100%{background-position:-200% center}}.running-gradient-ai{background:linear-gradient(270deg,#72c012,#a3e635,#38bdf8,#72c012,#a3e635);background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;animation:gradientRtl 18s linear infinite;}</style><span class="block running-gradient-ai text-center">AI and Automation</span><span class="block text-center sm:whitespace-nowrap">Built to Increase Revenue,</span><span class="block text-center sm:whitespace-nowrap">Cut Wasted Work, and Stick.</span></h1>
+<p class="font-body-lg text-base sm:text-lg md:text-xl lg:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mx-auto px-4" style="color: rgb(255, 255, 255);">We diagnose your exact bottleneck, design the simplest fixing system, and prove it works with zero AI hype or fake proof.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-5 w-full sm:w-auto px-4"><a class="w-full sm:w-auto inline-flex items-center justify-center px-8 sm:px-9 py-3.5 sm:py-4.5 rounded-xl bg-primary text-on-primary font-headline-sm text-base sm:text-lg font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-lg" href="#projects"><span class="">See Latest Projects</span><span class="material-symbols-outlined ml-2 text-2xl">arrow_forward</span></a></div><div class="pt-6 sm:pt-8 mt-2 w-full max-w-3xl mx-auto px-2 sm:px-4">
+<div class="grid grid-cols-2 divide-x divide-outline-variant/30 py-3 sm:py-4 w-full max-w-3xl mx-auto" style="border-color: rgba(65, 74, 55, 0.8);"><div class="flex flex-col items-center justify-center px-2 sm:px-7 text-center"><span class="font-display-hero tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[76px] counter-animate" data-target="13" data-duration="1800" style="font-weight: 300; color: rgb(255, 255, 255); text-shadow: rgba(255, 255, 255, 0.38) 0px 0px 18px; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block;">0</span><span class="font-mono text-xs sm:text-base md:text-lg text-on-surface-variant uppercase tracking-wider mt-1.5 sm:mt-2.5 font-medium" style="color: rgb(255, 255, 255);">Years In Business</span></div><div class="flex flex-col items-center justify-center px-2 sm:px-7 text-center" style="border-color: rgba(65, 74, 55, 0.8);"><span class="font-display-hero tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[76px] counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-weight: 300; color: rgb(255, 255, 255); text-shadow: rgba(255, 255, 255, 0.38) 0px 0px 18px; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block;">0+</span><span class="font-mono text-xs sm:text-base md:text-lg text-on-surface-variant uppercase tracking-wider mt-1.5 sm:mt-2.5 font-medium" style="color: rgb(255, 255, 255);">Clients Served</span></div></div>
+</div><div class="w-full mx-auto mt-12 sm:mt-16 pt-6 border-t border-outline-variant/20 px-4 sm:px-8"><style>@keyframes brandMarquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } } .animate-marquee { display: flex; width: max-content; animation: brandMarquee 28s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style><p class="text-xs uppercase tracking-widest text-slate-400 font-medium mb-6 text-center">Trusted By Brands</p><div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"><div class="animate-marquee flex items-center gap-12"><div class="flex items-center gap-16 shrink-0"><img alt="YourVcam" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-6342992ee4.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="We Love LED" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-1bd7fb7ce5.webp" width="102" height="80" decoding="async" loading="lazy"><img alt="Tampa Strength" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-3311de6663.webp" width="95" height="95" decoding="async" loading="lazy"><img alt="Intercity Perfumes" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-1924ba6c49.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="GoRunners" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-79101e9c13.webp" width="96" height="83" decoding="async" loading="lazy"><img alt="Broome Street" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-05ffa92e4c.webp" width="240" height="40" decoding="async" loading="lazy"><img alt="Avidian" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-c4de067aee.webp" width="165" height="41" decoding="async" loading="lazy"></div><div aria-hidden="true" class="flex items-center gap-16 shrink-0"><img alt="YourVcam" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-c1c8f6512a.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="We Love LED" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-60df726d53.webp" width="102" height="80" decoding="async" loading="lazy"><img alt="Tampa Strength" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-8049566dda.webp" width="95" height="95" decoding="async" loading="lazy"><img alt="Intercity Perfumes" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-464e9668f1.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="GoRunners" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-ab8c572c61.webp" width="96" height="83" decoding="async" loading="lazy"><img alt="Broome Street" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-85019b70e3.webp" width="240" height="40" decoding="async" loading="lazy"><img alt="Avidian" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-e60fcb6ee9.webp" width="165" height="41" decoding="async" loading="lazy"></div></div></div></div>
+</div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 2: SERVICES SNAPSHOT (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 w-full relative overflow-hidden" id="client-carousel" style="background-color: rgb(249, 248, 246);"><style id="carousel-scroll-styles">.carousel-glide-active{scroll-behavior:smooth}.carousel-card-focused{box-shadow:0 12px 30px -4px rgba(114,192,18,0.35),0 6px 14px -2px rgba(0,0,0,0.12)!important}.carousel-btn-pulse{animation:btnPulseBurst 0.4s cubic-bezier(0.16,1,0.3,1)}@keyframes btnPulseBurst{0%{transform:translateY(-50%) scale(0.9)}50%{transform:translateY(-50%) scale(1.12);box-shadow:0 0 25px rgba(140,221,53,0.8)}100%{transform:translateY(-50%) scale(1)}}</style>
+<div class="max-w-7xl mx-auto mb-10 flex flex-col items-center text-center"><h2 class="font-headline-xl font-bold tracking-tight text-[#111827] mb-3 text-center leading-tight px-2" style="font-size: clamp(1.85rem, 4.5vw, 3.5rem); line-height: 1.15;">Trusted by Operators<span class="block sm:inline">&nbsp;&amp; High-Growth Leaders</span></h2><p class="font-body-lg text-base sm:text-lg md:text-xl text-[#4B5563] leading-relaxed mx-auto text-center max-w-3xl px-4" style="font-size: clamp(1rem, 2vw, 1.5rem); line-height: 1.5;">A selection of platforms and operational tools built to capture demand, streamline handoffs, and drive enterprise value.</p></div>
+<div class="relative max-w-7xl mx-auto z-10">
+<button aria-label="Previous testimonial" class="absolute left-1 sm:-left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#8cdd35] text-black items-center justify-center shadow-lg transition-all duration-200 hidden opacity-40 pointer-events-none cursor-not-allowed" disabled="" id="carousel-prev-btn" onclick="document.getElementById('testimonial-track').scrollBy({ left: -320, behavior: 'smooth' })" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;"><span class="material-symbols-outlined text-xl sm:text-2xl font-bold">arrow_back</span></button>
+<button aria-label="Next testimonial" class="absolute right-1 sm:-right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#8cdd35] text-black flex items-center justify-center shadow-lg hover:bg-[#9be645] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer" id="carousel-next-btn" onclick="document.getElementById('testimonial-track').scrollBy({ left: 320, behavior: 'smooth' })" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;">
+<span class="material-symbols-outlined text-xl sm:text-2xl font-bold">arrow_forward</span>
+</button>
+<div class="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-2 select-none px-2 sm:px-0" id="testimonial-track" onscroll="(function(el){ const p = document.getElementById('carousel-prev-btn'); if(!p) return; if(el.scrollLeft &gt; 10){ p.removeAttribute('disabled'); p.classList.remove('opacity-40','pointer-events-none','cursor-not-allowed'); p.classList.add('opacity-100','hover:scale-105','active:scale-95','hover:bg-[#9be645]','cursor-pointer'); } else { p.setAttribute('disabled',''); p.classList.add('opacity-40','pointer-events-none','cursor-not-allowed'); p.classList.remove('opacity-100','hover:scale-105','active:scale-95','hover:bg-[#9be645]','cursor-pointer'); } })(this)" style="scrollbar-width: none;"><!-- Card 1 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Matt Canard - VP of Operations" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-a62a271d54.webp" width="427" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">MATT C.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">VP of Operations</span></div>
+</div>
+<!-- Card 2 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Ava Angela - Founder &amp; CEO" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-4af4439387.webp" width="427" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">AVA A.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Founder &amp; CEO</span></div>
+</div>
+<!-- Card 3 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="John Doe - Head of Revenue" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-058d42093f.webp" width="427" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">CHRISTIAN S.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Head of Revenue</span></div>
+</div>
+<!-- Card 4 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Sarah Jenkins - Technical Founder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-e02454e2d3.webp" width="427" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">DAVE A.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Technical Founder</span></div>
+</div>
+<!-- Card 5 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Marcus Vance - Managing Partner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-bfe570da4c.webp" width="382" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">MARCUS V.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Managing Partner</span></div>
+</div>
+<!-- Card 6 (bleeds off-screen) -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Elena Rostova - Director of Systems" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-ad90c3a9da.webp" width="382" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">ELENA R.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Director of Systems</span></div>
+</div><!-- Card 7 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Claire Vance - Chief Operating Officer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-b1fc591c78.webp" width="382" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">CLAIRE V.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Chief Operating Officer</span></div>
+</div>
+<!-- Card 8 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="David Chen - VP of Engineering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-e0a24faf70.webp" width="382" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">DAVID C.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">VP of Engineering</span></div>
+</div>
+<!-- Card 9 -->
+<div class="snap-start flex-none relative rounded-[20px] overflow-hidden group transition-transform duration-300 hover:scale-[1.02] cursor-pointer shadow-md bg-surface-container" style="width: min(320px, 80vw); height: 400px; flex-shrink: 0;">
+<img alt="Maya Lin - Head of Growth &amp; Systems" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/images/img-8c49655875.webp" width="382" height="512" decoding="async" loading="lazy">
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 right-0 p-5 z-10 flex flex-col justify-end items-center text-center pointer-events-none"><span class="font-headline-md text-base text-white tracking-wider uppercase font-medium" style="letter-spacing: 0.04em; font-size: 16px;">MAYA L.</span><span class="font-mono text-xs md:text-sm text-white mt-1 font-semibold tracking-wider text-center">Head of Growth &amp; Systems</span></div>
+</div></div>
+</div>
+</section><section class="py-16 sm:py-20 md:py-24 lg:py-28 relative" id="services" style="background-color: rgb(203, 219, 228);"><div class="w-full px-4 sm:px-6 lg:px-12 relative z-10"><div class="text-center mx-auto mb-10 sm:mb-16 max-w-5xl"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] mb-3 text-center leading-tight px-2" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Services &amp; Core Engagements</h2></div><style>.accordion-card { transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); } @media (min-width: 1024px) { .services-accordion:hover .default-expanded { flex: 1 !important; } .services-accordion:hover .default-expanded .expanded-content { display: none !important; } .services-accordion:hover .default-expanded .collapsed-content { display: flex !important; } .services-accordion .accordion-card:hover { flex: 3.5 !important; } .services-accordion .accordion-card:hover .expanded-content { display: flex !important; } .services-accordion .accordion-card:hover .collapsed-content { display: none !important; } } @media (max-width: 1023px) { .services-accordion .accordion-card { min-height: 240px; } .services-accordion .accordion-card .collapsed-content { display: none !important; } .services-accordion .accordion-card .expanded-content { display: flex !important; } }</style><div class="services-accordion flex flex-col lg:flex-row gap-4 h-auto lg:h-[540px] w-full select-none"><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="AI &amp; Automation Audit preview" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/images/img-201f6e4e4c.webp" width="512" height="409" decoding="async" loading="lazy"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">AI &amp; Automation Audit</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Deep workflow diagnosis to pinpoint high-friction bottlenecks.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">AI &amp; Automation Audit</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Deep workflow audit to isolate high-friction handoffs, manual data leaks, and spreadsheet bottlenecks before writing code.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Audit</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="Business Process Automation preview" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/images/img-eaf6601428.webp" width="512" height="409" decoding="async" loading="lazy"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">Business Process Automation</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Eliminate redundant human re-entry and fragile operational tasks.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">Business Process Automation</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Eliminate redundant human data re-entry and fragile operational tasks with verified, deterministic background pipelines.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Automation</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card default-expanded flex-[2.5] group relative rounded-2xl overflow-hidden cursor-pointer border border-primary/60 hover:border-primary shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#072d1f] to-[#02100b] min-h-[220px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="AI Customer &amp; Revenue Systems preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="/assets/images/img-82ce65c455.webp" style="opacity: 1;" width="512" height="409" decoding="async" loading="lazy"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.25)_0%,_transparent_65%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content hidden flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">AI Customer And Revenue Systems</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Intelligent inbound pipelines and qualification systems.</p></div><div class="expanded-content flex flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight drop-shadow-md duration-300">AI Customer and Revenue Systems</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-xl">Intelligent pipelines that capture qualified inbound intent, automate prospect qualification, and prevent pipeline leakage across sales operations.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl border-2 border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all shadow-xl" href="#contact"><span class="">Explore Revenue Systems</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="Custom Business Software preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="/assets/images/img-dee6f8bc5c.webp" width="512" height="409" decoding="async" loading="lazy"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">Custom Business Software</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Purpose-built operational portals and bespoke dashboards.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">Custom Business Software</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Purpose-built operational portals, bespoke internal dashboards, and high-concurrency tooling tailored to eliminate friction.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Custom Software</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div><div class="accordion-card flex-1 group relative rounded-2xl overflow-hidden cursor-pointer border border-[#143d2c]/60 hover:border-primary/70 shadow-2xl transition-all duration-500 ease-in-out bg-gradient-to-b from-[#062419] to-[#02100b] min-h-[140px] lg:min-h-0" style="transition: 900ms cubic-bezier(0.16, 1, 0.3, 1);"><div class="absolute inset-0 pointer-events-none overflow-hidden -z-0"><img alt="Managed AI &amp; Systems preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" src="/assets/images/img-6143dc219a.webp" width="512" height="409" decoding="async" loading="lazy"><div class="absolute inset-0" style="background: linear-gradient(to top, rgba(10, 14, 22, 0.92) 0%, rgba(10, 14, 22, 0.6) 35%, transparent 70%);"></div></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(114,192,18,0.18)_0%,_transparent_70%)] pointer-events-none"></div><div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-10 transition-all duration-500"><div class="collapsed-content flex flex-col justify-end w-full my-2"><h3 class="font-headline-md text-lg lg:text-xl font-bold text-on-surface tracking-tight leading-snug duration-300">Managed AI &amp; Systems</h3><p class="font-body-sm text-xs text-on-surface-variant mt-1 line-clamp-2">Continuous telemetry, monitoring, and model drift defense.</p></div><div class="expanded-content hidden flex-col justify-end space-y-4 pt-6 w-full"><h3 class="font-headline-xl text-2xl md:text-3xl font-bold text-on-surface tracking-tight duration-300">Managed AI &amp; Systems</h3><p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-lg">Continuous operational monitoring, real-time telemetry, model drift protection, and ongoing engineering support.</p><div class="pt-2"><a class="inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-primary bg-black/60 text-primary font-headline-sm text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-primary/20 hover:text-on-surface transition-all" href="#contact"><span class="">Explore Managed Systems</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a></div></div></div></div></div></div></section>
+<!-- ==========================================================
+     SECTION 3: FEATURED PROJECTS (Dark Obsidian Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-container-lowest border-b border-outline-variant/30 relative" id="projects" style="background-color: rgb(10, 14, 22);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Real Business Impact</h2></div><div class="grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto gap-8 sm:gap-10"><!-- Card 1: Ava Angela Consulting --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="Ava Angela Consulting Thumbnail" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="/assets/images/img-fcc9f69eac.webp" width="512" height="279" decoding="async" loading="lazy"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">VitalSpark — AI Fitness SaaS</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">United States</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">Fitness onboarding into personalized AI-generated plans and guided workout sessions.</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div><!-- Card 2: myPOS --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="Ava Angela Consulting Thumbnail" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="/assets/images/img-cc4ea19618.webp" width="512" height="279" decoding="async" loading="lazy"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">Ava Angela Consulting</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">United States</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">Unified CRM, LMS, payments, affiliate tracking, and email automation into one business platform.</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div><!-- Card 3: Ava Angela Consulting (Duplicated) --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="myBoardingHauz System Mockup" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="/assets/images/img-501f524cba.webp" width="512" height="279" decoding="async" loading="lazy"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">myBoardingHouse</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">Philippines</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">Property management platform for landlords and tenants</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div><!-- Card 4: myPOS (Duplicated) --><div class="flex flex-col justify-between space-y-6 sm:space-y-8"><div class="rounded-3xl overflow-hidden flex items-center justify-center min-h-[220px] sm:min-h-[280px] md:min-h-[320px] shadow-lg w-full"><img alt="myPOS System Mockup" class="w-full h-full object-cover rounded-3xl transition-transform duration-500 hover:scale-[1.02]" src="/assets/images/img-e2e97a29ea.webp" width="512" height="279" decoding="async" loading="lazy"></div><div class="space-y-4"><div class="flex items-center space-x-2 text-base sm:text-lg md:text-xl"><span class="font-bold text-white tracking-wide">myPOS</span><span class="text-[#8A99AD]">·</span><span class="text-[#8A99AD] font-medium">United States</span></div><h3 class="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug" style="background: linear-gradient(to right, rgb(140, 221, 53), rgb(111, 246, 255)) text; -webkit-text-fill-color: transparent;">All-in-one POS, inventory, payroll, and reporting system for MSMEs.</h3></div><div><a class="inline-flex items-center justify-center rounded-full border px-6 py-2.5 font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-200 border-white text-white text-sm sm:text-base" href="#contact">Read the case study</a></div></div></div></div></section>
+<!-- ==========================================================
+     SECTION 4: OUTCOMES & IMPACT METRICS (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 border-b border-outline-variant/20 relative" id="outcomes" style="background-color: rgb(255, 255, 255);">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-4xl mx-auto mb-12 sm:mb-16 space-y-3 text-center flex flex-col items-center"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] mb-3 text-center" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Why Choose Us</h2><p class="font-body-lg text-base sm:text-lg md:text-xl text-surface-variant text-center mx-auto max-w-3xl leading-relaxed">Precision-engineered systems built to eliminate operational bottlenecks, reduce wasted capacity, and deliver proven reliability without AI hype.</p></div>
+<!-- 6 Outcome Priority Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Card 1 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-lime-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="22" x2="18" y1="12" y2="12"></line><line x1="6" x2="2" y1="12" y2="12"></line><line x1="12" x2="12" y1="6" y2="2"></line><line x1="12" x2="12" y1="22" y2="18"></line></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Diagnosis Before Build</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">We locate the exact bottleneck in your operations before writing a single line of code, ensuring every build solves a high-ROI problem.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-cyan-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Proof, Not Promises</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">We build with explicit acceptance criteria agreed upon up front, avoiding unverified metrics, fake timeline promises, or hype.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-emerald-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5-10-5z"></path><path d="m2 17 10 5 10-5"></path><path d="m2 12 10 5 10-5"></path></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Designed to Stick</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">We prioritize simple, maintainable architecture and clear internal ownership so your systems remain operational and scale with your team.</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-lime-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><rect height="16" rx="2" width="16" x="4" y="4"></rect><rect height="6" width="6" x="9" y="9"></rect><line x1="9" x2="9" y1="1" y2="4"></line><line x1="15" x2="15" y1="1" y2="4"></line><line x1="9" x2="9" y1="20" y2="23"></line><line x1="15" x2="15" y1="20" y2="23"></line><line x1="20" x2="23" y1="9" y2="9"></line><line x1="20" x2="23" y1="14" y2="14"></line><line x1="1" x2="4" y1="9" y2="9"></line><line x1="1" x2="4" y1="14" y2="14"></line></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Built for Real Operations</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">Our custom software and automated workflows integrate directly into how your team works, replacing messy spreadsheet handoffs with structured processes.</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-cyan-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">End-to-End Reliability</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">From lead intake and customer qualification to back-office workflows, we eliminate pipeline leaks and human error across daily operations.</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group relative rounded-2xl p-6 sm:p-8 border border-slate-200 hover:border-emerald-500 bg-[#f8fafc] hover:bg-[#181c24] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between cursor-pointer">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:!bg-white group-hover:!text-black group-hover:border-white" style="background-color: rgb(0, 0, 0); color: rgb(140, 221, 53); border-color: rgba(140, 221, 53, 0.3);"><svg class="w-6 h-6 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+<h3 class="font-headline-lg text-xl md:text-2xl font-bold text-slate-900 group-hover:text-white tracking-tight transition-colors duration-300">Long-Term Systems</h3>
+<p class="font-body-md text-sm md:text-base text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">Once your system is deployed and proven, we offer ongoing management, maintenance, and reusable playbooks so your workflows evolve as you grow.</p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 5: WHO IT'S FOR (Dark Obsidian Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 bg-surface-container-lowest border-b border-outline-variant/30 relative" id="who-its-for">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mx-auto space-y-3 max-w-5xl mb-12 sm:mb-16">
+<h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-on-surface mb-3 text-center" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Who It’s For and Who It’s Not</h2>
+<p class="font-body-lg text-slate-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-center">
+        We only take projects where we can deliver concrete economic ROI and verified operational relief.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"><div class="animated-border-card"><div class="glass-panel p-6 sm:p-8 lg:p-10 rounded-2xl relative overflow-hidden flex flex-col justify-between shadow-lg h-full bg-[#0f131c]"><div class="space-y-5"><div class="flex items-center space-x-3"><h3 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">Who it’s for</h3></div><p class="font-body-lg text-base sm:text-lg text-slate-200 leading-relaxed">Owners and operators stuck in spreadsheets, messy handoffs, and “we’ll automate later” who will pay for diagnosis plus a system that ships.</p><ul class="space-y-3.5 pt-2 text-sm sm:text-base text-slate-200"><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#8cdd35] text-black mt-0.5"><span class="material-symbols-outlined text-xs font-bold">check</span></div><span>Businesses with recurring manual process waste</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#8cdd35] text-black mt-0.5"><span class="material-symbols-outlined text-xs font-bold">check</span></div><span>Leaders who prioritize working code over slide decks</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-[#8cdd35] text-black mt-0.5"><span class="material-symbols-outlined text-xs font-bold">check</span></div><span>Teams ready to own documentation and playbooks</span></li></ul></div><div class="pt-6 mt-6 border-t border-outline-variant/30 flex items-center space-x-2 text-xs sm:text-sm font-mono text-primary font-semibold"><span>High accountability, measurable operational leverage</span></div></div></div><div class="rounded-2xl border border-outline-variant/30 bg-[#0f131c] p-6 sm:p-8 lg:p-10 relative overflow-hidden flex flex-col justify-between shadow-lg h-full"><div class="space-y-5"><div class="flex items-center space-x-3"><h3 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">Who it’s not</h3></div><p class="font-body-lg text-base sm:text-lg text-slate-200 leading-relaxed">Cheap chatbot shoppers, “AI magic” with no process change, or inventing results / skipping proof.</p><ul class="space-y-3.5 pt-2 text-sm sm:text-base text-slate-200"><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-rose-300 text-[#0E1521] mt-0.5"><span class="material-symbols-outlined text-xs font-bold">close</span></div><span>Wanting quick ChatGPT wrappers without system</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-rose-300 text-[#0E1521] mt-0.5"><span class="material-symbols-outlined text-xs font-bold">close</span></div><span>Speculative vanity projects with zero measurability</span></li><li class="flex items-start space-x-3"><div class="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-rose-300 text-[#0E1521] mt-0.5"><span class="material-symbols-outlined text-xs font-bold">close</span></div><span>Organizations unwilling to share workflow transparency</span></li></ul></div><div class="pt-6 mt-6 border-t border-outline-variant/30 flex items-center text-xs sm:text-sm font-mono text-error font-semibold"><span>No vanity tools or ungrounded hype</span></div></div></div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 6: METHOD (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 border-b border-outline-variant/20 relative" id="how-we-work" style="background-color: rgb(255, 255, 255);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-5xl mx-auto mb-12 sm:mb-16 space-y-3"><h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#0f131c] mb-3 leading-tight" style="font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.15;"><span class="block">How We Work</span><span class="block text-primary">The 4-Step Method</span></h2><p class="font-body-lg text-base sm:text-lg md:text-xl text-surface-variant mb-8 max-w-3xl mx-auto leading-relaxed" style="font-size: clamp(1rem, 2vw, 1.35rem); line-height: 1.5;">A rigorous engineering sequence to dismantle bottlenecks and deliver permanent systems.</p></div><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"><style class="" id="method-accordion-desc-styles">.method-step-btn:not(.text-primary) .method-step-desc { display: none !important; } .method-step-btn.text-primary .method-step-desc { display: block !important; }</style><div class="lg:col-span-5 flex flex-col" id="method-steps-container"><style class="" id="method-step-custom-styles">#method-steps-container .method-step-btn .method-step-name { font-size: clamp(1.5rem, 3.5vw, 2.5rem) !important; font-weight: 800 !important; } #method-steps-container .method-step-btn { padding-left: 1.25rem !important; padding-right: 1.25rem !important; border-radius: 1rem !important; margin-bottom: 0.75rem !important; transition: all 0.3s ease !important; box-shadow: none !important; } #method-steps-container .method-step-btn.text-primary, #method-steps-container .method-step-btn.active, #method-steps-container .method-step-btn[aria-selected="true"] { background-color: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: none !important; } #method-steps-container .method-step-btn.text-primary .method-step-name, #method-steps-container .method-step-btn.active .method-step-name { color: #8CDD35 !important; } #method-steps-container .method-step-btn.text-primary .method-step-desc, #method-steps-container .method-step-btn.active .method-step-desc { color: #000000 !important; } #method-steps-container .method-step-btn.text-primary .method-step-badge, #method-steps-container .method-step-btn.active .method-step-badge { background-color: #8cdd35 !important; color: #000000 !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) { background-color: #F8FAFC !important; border-color: #e2e8f0 !important; box-shadow: none !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) .method-step-name { color: #333333 !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) .method-step-desc { color: #A2A2A2 !important; } #method-steps-container .method-step-btn:not(.text-primary):not(.active) .method-step-badge { background-color: #e2e8f0 !important; color: #A2A2A2 !important; }</style><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-primary" data-step="0" onclick="switchMethodStep(0)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Diagnose</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-primary/10 text-primary">Step 01</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-[#4B5563] mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: block;">Operational bottleneck audit. Process mapping, data hand-offs, manual friction isolation, and quantifiable baseline definition.</p></button><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-[#222222] hover:text-[#666666]" data-step="1" onclick="switchMethodStep(1)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Design</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-slate-100 text-slate-500">Step 02</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-slate-500 mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: none;">Simplest viable architecture that eliminates the bottleneck without bloat or brittleness.</p></button><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-[#222222] hover:text-[#666666]" data-step="2" onclick="switchMethodStep(2)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Prove</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-slate-100 text-slate-500">Step 03</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-slate-500 mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: none;">Production working prototype shipped in days. Validated with real data before broad rollout.</p></button><button class="method-step-btn group text-left py-4 sm:py-5 border border-slate-200 transition-all duration-300 flex flex-col w-full focus:outline-none cursor-pointer text-[#222222] hover:text-[#666666]" data-step="3" onclick="switchMethodStep(3)" type="button"><div class="flex items-center justify-between w-full"><span class="method-step-name text-2xl lg:text-3xl font-semibold transition-colors duration-300">Reuse</span><span class="method-step-badge font-mono text-xs font-bold px-2.5 py-1 rounded uppercase bg-slate-100 text-slate-500">Step 04</span></div><p class="method-step-desc font-body-sm text-sm sm:text-base text-slate-500 mt-2.5 leading-relaxed" style="font-size: clamp(0.95rem, 1.8vw, 1.15rem); line-height: 1.4; display: none;">System support, telemetry, and complete documentation so your internal team retains full ownership.</p></button></div><div class="lg:col-span-7 flex flex-col space-y-6"><div class="relative rounded-3xl overflow-hidden border border-slate-200 bg-[#0f131c] shadow-2xl p-2 sm:p-4"><div class="relative w-full h-[280px] sm:h-[380px] md:h-[460px] lg:h-[500px] rounded-2xl overflow-hidden bg-slate-900 group"><img alt="Bottleneck Diagnosis Laptop Dashboard" class="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" src="/assets/images/img-8b603ce21c.webp" width="512" height="409" decoding="async" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div><div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 pointer-events-none"><span class="inline-block px-3 py-1 rounded bg-[#8adc34] text-black font-mono text-xs font-bold uppercase mb-2" id="method-step-tag">Phase 01 · Diagnostic</span><h4 class="text-white font-headline-md text-lg sm:text-xl md:text-2xl font-bold" id="method-step-heading">Diagnose Bottlenecks</h4></div></div></div></div></div></div><script class="" id="method-controller-script">const methodDescriptions = ["Operational bottleneck audit. Process mapping, data hand-offs, manual friction isolation, and quantifiable baseline definition.", "Simplest viable architecture that eliminates the bottleneck without bloat or brittle dependencies.", "Build a demonstrable, production working prototype as tangible evidence before full team rollout.", "Operational playbooks, telemetry, and complete documentation so your internal team retains full ownership."]; const methodPhases = ["Phase 01 · Diagnostic", "Phase 02 · Engineering", "Phase 03 · Validation", "Phase 04 · Runbook"]; const methodHeadings = ["Diagnose Bottlenecks", "Design Architecture", "Prove & Validate", "Reuse & Hand-off"]; function switchMethodStep(index) { const buttons = document.querySelectorAll('#method-steps-container .method-step-btn'); const desc = document.getElementById('method-step-description'); const tag = document.getElementById('method-step-tag'); const heading = document.getElementById('method-step-heading'); buttons.forEach((btn, idx) => { const badge = btn.querySelector('.method-step-badge'); if (idx === index) { btn.classList.remove('text-[#222222]', 'hover:text-[#666666]'); btn.classList.add('text-primary'); if (badge) { badge.classList.remove('bg-slate-100', 'text-slate-500'); badge.classList.add('bg-primary/10', 'text-primary'); } } else { btn.classList.remove('text-primary'); btn.classList.add('text-[#222222]', 'hover:text-[#666666]'); if (badge) { badge.classList.remove('bg-primary/10', 'text-primary'); badge.classList.add('bg-slate-100', 'text-slate-500'); } } }); if (desc) { desc.style.opacity = '0'; setTimeout(() => { desc.textContent = methodDescriptions[index]; desc.style.opacity = '1'; }, 150); } if (tag) tag.textContent = methodPhases[index]; if (heading) heading.textContent = methodHeadings[index]; }</script></section>
+<!-- ==========================================================
+     SECTION 7: SOCIAL PROOF / AS SEEN ON (Dark Obsidian Background)
+     ========================================================== -->
+<section class="pt-16 sm:pt-20 md:pt-24 pb-0 border-b border-outline-variant/30 relative overflow-hidden" id="recognition" style="background-color: rgb(203, 219, 228);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-4xl mx-auto pt-4 sm:pt-6 mb-4 sm:mb-6 flex flex-col items-center"><h2 class="font-headline-xl text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 leading-tight text-black">The Tale of Our Achievement Story</h2><p class="font-body-lg text-slate-700 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">We engineer lean, high-leverage platforms and AI automation systems built to cut wasted operational hours and deliver concrete revenue growth across modern enterprises.</p></div><div class="relative flex flex-col md:flex-row items-center justify-center gap-6 md:-space-x-8 pt-2 sm:pt-3 max-w-5xl mx-auto z-30 -mb-16 sm:-mb-20 md:-mb-24 lg:-mb-28"><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:-rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-7 h-7 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path><path d="M10.5 7.5A2 2 0 0 1 12 7a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2h-1"></path><path d="M9 11.5V10a1.5 1.5 0 0 1 3 0v4.5"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white"><span class="counter-animate" data-target="13" data-suffix="+" data-duration="1800" style="font-variant-numeric: tabular-nums;">0+</span> Years</h3><p class="text-sm md:text-base leading-snug text-slate-300">Influencing Digital Landscapes Together</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:-rotate-1 hover:rotate-0 hover:scale-105 hover:z-40 z-20 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-7 h-7 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M7 4v16l-3-3"></path><path d="M7 4l3 3"></path><path d="M17 20V4l3 3"></path><path d="M17 20l-3-3"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white"><span class="counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-variant-numeric: tabular-nums;">0+</span> Projects</h3><p class="text-sm md:text-base leading-snug text-slate-300">Excellence Achieved Through Success.</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-8 h-8 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 2 2Z"></path><path d="M8 21h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-6.9a2 2 0 0 1-1.69-.9L10.6 7.9A2 2 0 0 0 8.93 7H6"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white">Giving Back</h3><p class="text-sm md:text-base leading-snug text-slate-300">Mirrors our Focus on Client Satisfaction.</p></div></div></div></section>
+<!-- ==========================================================
+     SECTION 8: TESTIMONIALS (Crisp White Background)
+     ========================================================== -->
+<section class="py-16 sm:py-20 md:py-24 lg:py-28 border-b border-outline-variant/20 relative" id="testimonials" style="background-color: rgb(255, 255, 255); position: relative; z-index: 10;">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mx-auto mb-12 sm:mb-16 space-y-3 max-w-5xl">
+<h2 class="font-headline-xl text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827] mb-3 text-center" style="font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.15;">Operator &amp; Technical Feedback</h2>
+<p class="font-body-lg text-base sm:text-lg md:text-xl text-surface-variant max-w-3xl mx-auto text-center leading-relaxed">
+        Authentic feedback from operators, technical founders, and operations leaders praising the zero-fluff, pragmatic engineering approach.
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+<!-- Testimonial 1 -->
+<div class="p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm relative" style="background-color: #f8fafc;">
+<div class="space-y-4">
+<div class="flex text-amber-500 text-sm">
+            ★★★★★
+          </div>
+<p class="font-body-md text-sm sm:text-base text-slate-700 leading-relaxed italic">
+            “Mobile Lab cut through months of AI noise. They diagnosed our exact dispatch bottleneck in 48 hours and shipped a rock-solid system that runs daily without breaking.”
+          </p>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-200">
+<div class="font-headline-sm text-sm font-bold text-slate-900">Operations Director</div>
+<div class="font-mono text-xs text-slate-500">Logistics &amp; Delivery Network</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm relative" style="background-color: #f8fafc;">
+<div class="space-y-4">
+<div class="flex text-amber-500 text-sm">
+            ★★★★★
+          </div>
+<p class="font-body-md text-sm sm:text-base text-slate-700 leading-relaxed italic">
+            “Most AI agencies sell slideware and chat wrappers. Working with Mobile Lab gave us production code, clear API pipelines, and zero vanity metrics. Our team actually uses it.”
+          </p>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-200">
+<div class="font-headline-sm text-sm font-bold text-slate-900">Technical Founder</div>
+<div class="font-mono text-xs text-slate-500">SaaS Platform</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-6 sm:p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm relative" style="background-color: #f8fafc;">
+<div class="space-y-4">
+<div class="flex text-amber-500 text-sm">
+            ★★★★★
+          </div>
+<p class="font-body-md text-sm sm:text-base text-slate-700 leading-relaxed italic">
+            “The simplest system that actually works. They refused to over-engineer our CRM handoffs and gave us back 15 hours a week of manual spreadsheet coordination.”
+          </p>
+</div>
+<div class="mt-8 pt-4 border-t border-slate-200">
+<div class="font-headline-sm text-sm font-bold text-slate-900">Managing Partner</div>
+<div class="font-mono text-xs text-slate-500">Professional Services Group</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================================
+     SECTION 9: FINAL CTA & INTAKE FORM (Dark Obsidian Background)
+     ========================================================== -->
+<!-- Footer & Contact CTA -->
+<section class="w-full border-t border-[#E2E8F0] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12" id="contact" style="background-color: #fbfbfd;">
+<div class="max-w-3xl mx-auto flex flex-col items-center">
+  <div class="text-center mb-10 sm:mb-12 space-y-3 px-2">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B132B] tracking-tight leading-tight">
+      Talk to us about your bottleneck
+    </h2>
+    <p class="text-base sm:text-lg md:text-xl text-[#4A5568] max-w-2xl mx-auto font-normal leading-relaxed">
+      Tell us where work gets stuck — we’ll diagnose before we build.
+    </p>
+  </div>
+
+  <div class="w-full bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-6 sm:p-10 md:p-12 relative transition-all">
+    <form class="space-y-6" id="ai-inquiry-form" onsubmit="event.preventDefault(); submitContactForm(this);">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+        <!-- 1. Name -->
+        <div class="flex flex-col space-y-2 text-left">
+          <div class="flex items-center justify-between">
+            <label for="diagnostic-name" class="text-sm font-semibold text-[#1A202C]">1. Name</label>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
+          </div>
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-name" name="name" placeholder="Your name" required="" type="text">
+        </div>
+        <!-- 2. Work email -->
+        <div class="flex flex-col space-y-2 text-left">
+          <div class="flex items-center justify-between">
+            <label for="diagnostic-email" class="text-sm font-semibold text-[#1A202C]">2. Work email</label>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
+          </div>
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-email" name="email" placeholder="name@company.com" required="" type="email">
+        </div>
+      </div>
+
+      <!-- 3. What you're trying to fix -->
+      <div class="flex flex-col space-y-2 text-left">
+        <div class="flex items-center justify-between">
+          <label for="diagnostic-fix" class="text-sm font-semibold text-[#1A202C]">3. What you’re trying to fix</label>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
+        </div>
+        <textarea class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm resize-y min-h-[140px]" id="diagnostic-fix" name="fix" placeholder="Describe where work gets stuck, manual handoffs, or spreadsheet bottlenecks..." required="" rows="5"></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-2">
+        <button class="w-full bg-[#8cdd35] hover:bg-[#9de448] text-[#0f172a] font-bold text-base sm:text-lg py-4 px-8 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer" type="submit">
+          <span>Talk to us about your bottleneck</span>
+          <span class="material-symbols-outlined text-xl font-bold">arrow_forward</span>
+        </button>
+      </div>
+
+      <div class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all" id="form-feedback" role="status" aria-live="polite">
+        <div class="flex items-center justify-center gap-2 mb-1">
+          <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+          <span class="font-bold">Thank you for submitting!</span>
+        </div>
+        We have received your bottleneck description and will be in touch within 24 hours to schedule your diagnosis.
+      </div>
+    </form>
+  </div>
+  <p class="text-[12px] text-[#94A3B8] mt-6 text-center">
+    Mobile Lab is a trade name under Aura Vera Agency. We do not sell data or spam. Review our <a class="underline hover:text-[#475569]" href="#">Privacy Policy</a>.
+  </p>
+</div>
+</section><footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-outline-variant/20">
+<!-- Brand / Info -->
+<div class="space-y-3">
+<div class="flex items-center space-x-2.5">
+<div class="h-7 w-7 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-sm">M</div>
+<span class="font-headline-md text-lg font-bold text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+</div>
+<p class="font-body-sm text-xs text-on-surface-variant max-w-md leading-relaxed">
+          Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
+        </p>
+</div>
+<!-- Links -->
+<div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-label-lg"><a class="text-on-surface-variant hover:text-primary transition-colors" href="/services">Services</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="/how-we-work">How We Work</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="/about">About</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contact">Contact</a><a class="inline-flex items-center gap-1.5 text-primary hover:text-white transition-colors border border-primary/40 hover:border-primary px-3 py-1 rounded-lg text-xs font-mono font-medium" download="mobilelab-github.zip" href="/download"><span class="material-symbols-outlined text-sm">download</span>Download for GitHub (.zip)</a></div>
+</div>
+<!-- Bottom Row -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-on-surface-variant gap-4 text-center sm:text-left">
+<div class="">
+        © 2025 Mobile Lab · Aura Vera Agency. All rights reserved. Zero vanity proof policy.
+      </div>
+<div class="flex items-center space-x-4"><a aria-label="Facebook" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a><a aria-label="X" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a><a aria-label="Instagram" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a><a aria-label="YouTube" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a></div>
+</div>
+</div>
+</footer>
+<!-- Interactive Scripts: Header Cursor Glow & Form & Mobile Menu -->
+<script>
+  // Subtle interactive cursor radial glow on header
+  const header = document.getElementById('site-header');
+  const glow = document.getElementById('header-glow');
+  if (header && glow) {
+    header.addEventListener('mousemove', (e) => {
+      glow.style.opacity = '1';
+      glow.style.left = `${e.clientX}px`;
+      glow.style.top = `${e.clientY}px`;
+    });
+    header.addEventListener('mouseleave', () => {
+      glow.style.opacity = '0';
+    });
+  }
+
+  // Mobile navigation drawer toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+  if (mobileMenuBtn && mobileNav && mobileMenuIcon) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileNav.classList.contains('hidden');
+      if (isHidden) {
+        mobileNav.classList.remove('hidden');
+        mobileMenuIcon.textContent = 'close';
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        mobileNav.classList.add('hidden');
+        mobileMenuIcon.textContent = 'menu';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+        mobileMenuIcon.textContent = 'menu';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+<script class="">
+  (function() {
+    const track = document.getElementById('testimonial-track');
+    const prevBtn = document.getElementById('carousel-prev-btn');
+    const nextBtn = document.getElementById('carousel-next-btn');
+
+    if (track && prevBtn && nextBtn) {
+      const updateBtnVisibility = () => {
+        if (track.scrollLeft > 20) {
+          prevBtn.classList.remove('hidden');
+          prevBtn.classList.add('flex');
+        } else {
+          prevBtn.classList.add('hidden');
+          prevBtn.classList.remove('flex');
+        }
+
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 20) {
+          nextBtn.classList.add('hidden');
+        } else {
+          nextBtn.classList.remove('hidden');
+          nextBtn.classList.add('flex');
+        }
+      };
+
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+
+      track.addEventListener('scroll', updateBtnVisibility);
+      window.addEventListener('resize', updateBtnVisibility);
+      updateBtnVisibility();
+    }
+  })();
+</script>
+
+<script id="counter-animation-script">
+  (function() {
+    function animateCounter(el) {
+      if (el.dataset.hasAnimated === 'true') return;
+      el.dataset.hasAnimated = 'true';
+
+      const target = parseInt(el.getAttribute('data-target') || '0', 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const prefix = el.getAttribute('data-prefix') || '';
+      const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic: starts quickly and smoothly settles on the final number
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(ease * target);
+
+        el.textContent = prefix + current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = prefix + target + suffix;
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    function initMetricCounters() {
+      const counters = document.querySelectorAll('.counter-animate');
+      if (!counters.length) return;
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          rootMargin: '0px 0px -20px 0px',
+          threshold: 0.1
+        });
+
+        counters.forEach(counter => {
+          const rect = counter.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            animateCounter(counter);
+          } else {
+            observer.observe(counter);
+          }
+        });
+      } else {
+        counters.forEach(animateCounter);
+      }
+    }
+
+    async function submitContactForm(form) {
+      const feedback = document.getElementById('form-feedback');
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (!feedback) return;
+      feedback.classList.remove('hidden');
+      feedback.classList.remove('form-feedback-error');
+      feedback.setAttribute('role', 'status');
+      feedback.tabIndex = -1;
+      if (submitButton) submitButton.disabled = true;
+      feedback.textContent = 'Submitting...';
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || 'Submission could not be delivered.');
+        feedback.textContent = 'Thank you for submitting!';
+        form.reset();
+      } catch (error) {
+        feedback.classList.add('form-feedback-error');
+        feedback.setAttribute('role', 'alert');
+        feedback.textContent = error.message;
+        feedback.focus();
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMetricCounters);
+    } else {
+      initMetricCounters();
+    }
+  })();
+</script>
+
+<script>
+  document.querySelectorAll('#method-steps-container .method-step-btn').forEach((button, index) => {
+    button.setAttribute('aria-controls', 'method-step-heading');
+    button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+    button.addEventListener('click', () => {
+      document.querySelectorAll('#method-steps-container .method-step-btn').forEach((step, stepIndex) => {
+        step.setAttribute('aria-selected', stepIndex === index ? 'true' : 'false');
+      });
+    });
+  });
+</script>
+</body></html>

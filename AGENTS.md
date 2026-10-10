@@ -8,7 +8,7 @@ MobileLab is a small static marketing site for AI systems and automation service
 
 - Runtime: Node.js 24-compatible JavaScript, ES modules (`"type": "module"`).
 - Package manager: npm. Keep `package-lock.json` committed and use `npm ci` for clean installs.
-- Runtime dependencies: Express 4.x and compression. `sharp` is a development dependency used by the existing asset tooling. Do not add frontend frameworks or build tools unless the architecture is intentionally migrated.
+- Runtime dependencies: Express 4.x, compression, and `archiver` for Node-native ZIP streaming. `sharp`, Playwright, and `unzipper` are development dependencies. Do not add frontend frameworks or build tools unless the architecture is intentionally migrated.
 - Local development: `npm run dev`, then open `http://localhost:3000`.
 - Production-style start: `npm start`; `PORT` may be supplied through the environment.
 - Build: `npm run build` is currently a validation placeholder because the site is served directly from source files.
@@ -28,7 +28,8 @@ MobileLab is a small static marketing site for AI systems and automation service
 - Preserve or improve reduced-motion behavior, contrast, focus visibility, and touch-target sizing.
 - Do not expose secrets in HTML, client-side JavaScript, metadata, or committed environment files.
 - Server code must not trust request paths, archive member names, or environment values without validation. Keep public routes allowlisted; do not reintroduce repository-root static serving.
-- Keep generated artifacts such as `mobilelab-github.zip` out of version control unless explicitly requested.
+- Keep generated artifacts such as `mobilelab-github.zip` and browser screenshots under ignored paths out of version control unless explicitly requested.
+- Vercel serves deployment-facing HTML and assets from `public/`; repository source, tests, package metadata, and agent configuration remain outside that directory.
 
 ## UI/UX design standards
 
@@ -44,7 +45,7 @@ MobileLab is a small static marketing site for AI systems and automation service
 - Only `PORT` is currently documented. Add new variables to `.env.example` with safe placeholder values and document whether they are server-only.
 - Do not log credentials, tokens, personal data, or full request headers.
 - Review any third-party installer, hook, or script before execution. Do not trust agent lifecycle hooks automatically.
-- The optional download route invokes verified Python 3.10+; on Windows it checks `PYTHON_EXECUTABLE`, the `py` launcher, valid PATH interpreters, and common per-user/system installation directories while rejecting Microsoft Store aliases.
+- The download routes use Node's `archiver` stream with a fixed member allowlist. They do not invoke Python or read arbitrary request paths. Archive output must remain below Vercel Function response limits.
 
 ## Testing and validation
 
@@ -58,7 +59,7 @@ npm run build
 npm start
 ```
 
-The automated tests use Node's built-in test runner and cover page routes, the fallback route, sensitive static paths, security headers, Python resolution, valid ZIP generation, download failure and concurrent cleanup behavior, contact validation, and request-size handling. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
+The automated tests use Node's built-in test runner and cover page routes, the fallback route, sensitive static paths, security headers, extracted ZIP entries and content, missing resources, concurrent streams, client disconnect cleanup, contact validation, and request-size handling. `npm run test:e2e` starts a dedicated local server and uses Playwright for responsive pages and interactions. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
 
 ## Dependency management
 
@@ -66,7 +67,7 @@ The automated tests use Node's built-in test runner and cover page routes, the f
 - Keep agent skills and developer tools out of application dependencies unless the product runtime actually requires them.
 - Review transitive changes and run `npm ls --depth=0` after dependency work.
 - The repository currently has project-scoped Codex skills from Caveman, Ponytail, and UI/UX Pro Max under `.agents/skills/`; update them through their official installers rather than hand-editing vendor files.
-- Graphify is installed separately from the application runtime as `graphifyy`/`graphify` 0.9.84 through `uv` 0.13.0, with Python 3.12.10 available on Windows. The project Codex skill is under `.codex/skills/graphify/`; refresh it with the official `graphify install --project --platform codex` command. Do not add Graphify to `package.json`.
+- Graphify is installed separately from the application runtime as `graphifyy`/`graphify` 0.9.84 through `uv` 0.13.0, with Python 3.12.10 available on Windows for local tooling only. The project Codex skill is under `.codex/skills/graphify/`; refresh it with the official `graphify install --project --platform codex` command. Do not add Graphify or Python to `package.json`.
 
 ## Git and commit conventions
 

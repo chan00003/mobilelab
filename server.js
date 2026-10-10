@@ -1,16 +1,29 @@
 import express from 'express';
 import compression from 'compression';
+import * as archiverModule from 'archiver';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import os from 'os';
-import { execFileSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
+const PUBLIC_DIR = path.join(__dirname, 'public');
+const ARCHIVE_FILES = [
+  ['index.html', 'index.html'],
+  ['about.html', 'about.html'],
+  ['services.html', 'services.html'],
+  ['how-we-work.html', 'how-we-work.html'],
+  ['contact.html', 'contact.html'],
+  ['mobilelab-ogimage.png', 'mobilelab-ogimage.png'],
+  ['server.js', 'server.js'],
+  ['package.json', 'package.json'],
+  ['.env.example', '.env.example'],
+  ['.gitignore', '.gitignore'],
+  ['README.md', 'README.md'],
+];
 
 const contentSecurityPolicy = [
   "default-src 'self'", "base-uri 'self'", "frame-ancestors 'none'", "object-src 'none'", "form-action 'self'",
@@ -60,96 +73,52 @@ function createRateLimiter({ windowMs, max }) {
 const downloadRateLimit = createRateLimiter({ windowMs: 60_000, max: 10 });
 const contactRateLimit = createRateLimiter({ windowMs: 15 * 60_000, max: 5 });
 
-function pythonVersion(command, args = []) {
-  try {
-    const output = execFileSync(command, [...args, '--version'], { stdio: ['ignore', 'pipe', 'pipe'], encoding: 'utf8' });
-    const match = output.match(/Python\s+(\d+)\.(\d+)/i);
-    if (!match) return null;
-    const major = Number(match[1]);
-    const minor = Number(match[2]);
-    return major === 3 && minor >= 10 ? `${major}.${minor}` : null;
-  } catch {
-    return null;
-  }
-}
-
-function windowsPythonCandidates() {
-  const candidates = [
-    { command: 'py', args: ['-3'] },
-    { command: 'python.exe', args: [] },
-    { command: 'python3.exe', args: [] },
-  ];
-  const bases = [
-    process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Programs', 'Python'),
-    process.env.ProgramFiles && path.join(process.env.ProgramFiles, 'Python'),
-    process.env['ProgramFiles(x86)'] && path.join(process.env['ProgramFiles(x86)'], 'Python'),
-  ].filter(Boolean);
-  for (const base of bases) {
-    try {
-      for (const entry of fs.readdirSync(base, { withFileTypes: true })) {
-        if (entry.isDirectory()) candidates.push({ command: path.join(base, entry.name, 'python.exe'), args: [] });
-      }
-    } catch {
-      // Optional installation directory may not exist.
-    }
-  }
-  return candidates;
-}
-
-function resolvePythonExecutable() {
-  const explicit = process.env.PYTHON_EXECUTABLE?.trim();
-  const candidates = explicit
-    ? [{ command: explicit, args: explicit.toLowerCase().endsWith('py.exe') ? ['-3'] : [] }]
-    : process.platform === 'win32'
-      ? windowsPythonCandidates()
-      : [{ command: 'python3', args: [] }, { command: 'python', args: [] }];
-  for (const candidate of candidates) {
-    const version = pythonVersion(candidate.command, candidate.args);
-    if (version) return { ...candidate, version };
-  }
-  throw new Error('Python 3.10+ was not found. Set PYTHON_EXECUTABLE to a verified interpreter.');
-}
-
 function createZipArchive() {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mobilelab-'));
-  const zipPath = path.join(tempDir, 'mobilelab-github.zip');
-  try {
-    const python = resolvePythonExecutable();
-    const script = [
-      'import os, sys, zipfile', 'root, output = sys.argv[1], sys.argv[2]',
-      "files = ['index.html', 'about.html', 'services.html', 'how-we-work.html', 'contact.html', 'mobilelab-ogimage.png', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md']",
-      'with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as archive:',
-      '    for name in files:', '        source = os.path.join(root, name)',
-      '        if os.path.isfile(source): archive.write(source, name)',
-      '    assets = os.path.join(root, "assets")', '    if os.path.isdir(assets):',
-      '        for folder, _, names in os.walk(assets):', '            for name in names:',
-      '                source = os.path.join(folder, name)', '                archive.write(source, os.path.relpath(source, root))',
-    ].join('\n');
-    execFileSync(python.command, [...python.args, '-c', script, __dirname, zipPath], { cwd: __dirname, stdio: 'pipe' });
-    return { path: zipPath, dir: tempDir, python };
-  } catch (err) {
-    fs.rmSync(tempDir, { recursive: true, force: true });
-    console.error('Error generating zip:', err);
+  if (!ARCHIVE_FILES.every(([source]) => fs.existsSync(path.join(PUBLIC_DIR, source)) || fs.existsSync(path.join(__dirname, source)))) {
     return null;
   }
+  const archive = new archiverModule.ZipArchive({ zlib: { level: 9 } });
+  for (const [source, name] of ARCHIVE_FILES) {
+    const sourcePath = fs.existsSync(path.join(PUBLIC_DIR, source))
+      ? path.join(PUBLIC_DIR, source)
+      : path.join(__dirname, source);
+    archive.file(sourcePath, { name });
+  }
+  const assetsPath = path.join(PUBLIC_DIR, 'assets');
+  if (fs.existsSync(assetsPath)) archive.directory(assetsPath, 'assets');
+  return archive;
 }
 
 function cleanupZipArchive(archive) {
-  if (archive?.dir) fs.rmSync(archive.dir, { recursive: true, force: true });
+  archive?.abort?.();
 }
 
 app.locals.createZipArchive = createZipArchive;
 app.locals.cleanupZipArchive = cleanupZipArchive;
 app.get(['/download', '/download-zip', '/api/download'], downloadRateLimit, (req, res, next) => {
   const archive = app.locals.createZipArchive();
-  if (!archive || !fs.existsSync(archive.path)) {
-    if (archive) app.locals.cleanupZipArchive(archive);
+  if (!archive) {
     return res.status(500).send('Could not generate zip archive');
   }
-  return res.download(archive.path, 'mobilelab-github.zip', (err) => {
-    app.locals.cleanupZipArchive(archive);
-    if (err && !res.headersSent) next(err);
+  let finished = false;
+  const abortArchive = () => {
+    if (!finished) app.locals.cleanupZipArchive(archive);
+  };
+  const handleArchiveError = (err) => {
+    abortArchive();
+    if (!res.headersSent) return next(err);
+    return res.destroy(err);
+  };
+  archive.on('error', handleArchiveError);
+  req.on('aborted', abortArchive);
+  res.on('close', abortArchive);
+  res.on('finish', () => {
+    finished = true;
   });
+  res.attachment('mobilelab-github.zip');
+  archive.pipe(res);
+  archive.finalize().catch(handleArchiveError);
+  return undefined;
 });
 
 function validateContactPayload(body = {}) {
@@ -173,25 +142,22 @@ const sendCachedHtml = (res, filePath) => {
   res.sendFile(filePath);
 };
 
-app.get('/', (req, res) => sendCachedHtml(res, path.join(__dirname, 'index.html')));
-app.get('/index.html', (req, res) => sendCachedHtml(res, path.join(__dirname, 'index.html')));
-app.get('/services', (req, res) => sendCachedHtml(res, path.join(__dirname, 'services.html')));
-app.get('/how-we-work', (req, res) => sendCachedHtml(res, path.join(__dirname, 'how-we-work.html')));
-app.get('/about', (req, res) => sendCachedHtml(res, path.join(__dirname, 'about.html')));
-app.get('/contact', (req, res) => sendCachedHtml(res, path.join(__dirname, 'contact.html')));
-app.get('/contact.html', (req, res) => sendCachedHtml(res, path.join(__dirname, 'contact.html')));
+app.get('/', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'index.html')));
+app.get('/index.html', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'index.html')));
+app.get('/services', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'services.html')));
+app.get('/how-we-work', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'how-we-work.html')));
+app.get('/about', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'about.html')));
+app.get('/contact', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'contact.html')));
+app.get('/contact.html', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'contact.html')));
 app.get('/mobilelab-ogimage.png', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  res.type('image/png').sendFile(path.join(__dirname, 'mobilelab-ogimage.png'));
+  res.type('image/png').sendFile(path.join(PUBLIC_DIR, 'mobilelab-ogimage.png'));
 });
-app.use('/assets', express.static(path.join(__dirname, 'assets'), { maxAge: '1y', immutable: true, etag: true, lastModified: true }));
-if (fs.existsSync(path.join(__dirname, 'public'))) {
-  app.use('/public', express.static(path.join(__dirname, 'public'), { maxAge: '1y', immutable: true, etag: true, lastModified: true }));
-}
+app.use('/assets', express.static(path.join(PUBLIC_DIR, 'assets'), { maxAge: '1y', immutable: true, etag: true, lastModified: true }));
 app.get('*', (req, res) => {
   const segments = req.path.split('/').filter(Boolean);
   if (path.extname(req.path) || segments.some((segment) => segment.startsWith('.'))) return res.status(404).send('Not found');
-  return sendCachedHtml(res, path.join(__dirname, 'index.html'));
+  return sendCachedHtml(res, path.join(PUBLIC_DIR, 'index.html'));
 });
 app.use((err, req, res, next) => {
   if (err.type === 'entity.too.large') return res.status(413).json({ error: 'Request too large.' });
@@ -201,7 +167,8 @@ app.use((err, req, res, next) => {
   return res.status(500).send('Internal server error');
 });
 
-export { app, cleanupZipArchive, createZipArchive, resolvePythonExecutable };
+export { app, cleanupZipArchive, createZipArchive };
+export default app;
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
   app.listen(PORT, HOST, () => console.log(`Server running on http://${HOST}:${PORT}`));

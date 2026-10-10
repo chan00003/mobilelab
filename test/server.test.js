@@ -1,9 +1,8 @@
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
+import http from 'node:http';
 import { after, before, describe, it } from 'node:test';
-import os from 'node:os';
-import path from 'node:path';
-import { app, cleanupZipArchive, createZipArchive, resolvePythonExecutable } from '../server.js';
+import unzipper from 'unzipper';
+import { app, cleanupZipArchive, createZipArchive } from '../server.js';
 
 let server;
 let baseUrl;
@@ -64,23 +63,26 @@ describe('server routes', () => {
     }
   });
 
-  it('resolves a verified Python 3.10+ interpreter', () => {
-    const python = resolvePythonExecutable();
-    assert.match(python.version, /^3\.(1[0-9]|[2-9][0-9])$/);
-  });
-
   it('serves a valid generated ZIP archive', async () => {
     app.locals.createZipArchive = createZipArchive;
     app.locals.cleanupZipArchive = cleanupZipArchive;
     const response = await request('/download');
-    const bytes = new Uint8Array(await response.arrayBuffer());
+    const bytes = Buffer.from(await response.arrayBuffer());
+    const directory = await unzipper.Open.buffer(bytes);
+    const names = directory.files.map((file) => file.path);
+    const index = await directory.files.find((file) => file.path === 'index.html').buffer();
 
     assert.equal(response.status, 200);
     assert.match(response.headers.get('content-type'), /application\/zip/);
-    assert.deepEqual(Array.from(bytes.slice(0, 2)), [80, 75]);
+    assert.deepEqual(bytes.subarray(0, 2), Buffer.from('PK'));
+    assert.ok(bytes.length < 4.5 * 1024 * 1024, 'archive exceeds Vercel response limit');
+    assert.ok(names.includes('index.html'));
+    assert.ok(names.includes('server.js'));
+    assert.ok(names.some((name) => name.startsWith('assets/')));
+    assert.match(index.toString('utf8'), /Mobile Lab/i);
   });
 
-  it('returns a server error when the download archive cannot be generated', async () => {
+  it('returns a server error when required archive resources are unavailable', async () => {
     app.locals.createZipArchive = () => null;
 
     for (const route of ['/download', '/download-zip', '/api/download']) {
@@ -92,27 +94,51 @@ describe('server routes', () => {
     }
   });
 
-  it('handles concurrent downloads with isolated archives and cleans them up', async () => {
-    const created = [];
-    let sequence = 0;
-    app.locals.createZipArchive = () => {
-      const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'mobilelab-test-'));
-      const archive = { dir, path: path.join(dir, 'mobilelab-github.zip') };
-      fs.writeFileSync(archive.path, `test-archive-${sequence += 1}`);
-      created.push(archive);
-      return archive;
-    };
+  it('handles concurrent downloads with isolated archive streams', async () => {
+    app.locals.createZipArchive = createZipArchive;
     app.locals.cleanupZipArchive = cleanupZipArchive;
 
     const responses = await Promise.all(
       Array.from({ length: 5 }, () => request('/download')),
     );
-    const bodies = await Promise.all(responses.map((response) => response.text()));
+    const archives = await Promise.all(responses.map(async (response) => unzipper.Open.buffer(Buffer.from(await response.arrayBuffer()))));
 
     assert.deepEqual(responses.map((response) => response.status), [200, 200, 200, 200, 200]);
-    assert.ok(bodies.every((body) => body.startsWith('test-archive-')));
-    assert.equal(new Set(created.map((archive) => archive.dir)).size, 5);
-    assert.ok(created.every((archive) => !fs.existsSync(archive.dir)));
+    assert.ok(archives.every((archive) => archive.files.some((file) => file.path === 'index.html')));
+  });
+
+  it('aborts archive generation when the client disconnects', async () => {
+    let aborted = false;
+    const archive = {
+      response: null,
+      on() { return this; },
+      pipe(response) {
+        this.response = response;
+        response.writeHead(200, { 'content-type': 'application/zip' });
+        response.write(Buffer.alloc(1_000_000));
+        return response;
+      },
+      finalize() { return new Promise(() => {}); },
+      abort() {
+        aborted = true;
+        this.response?.destroy();
+      },
+    };
+    app.locals.createZipArchive = () => archive;
+
+    await new Promise((resolve, reject) => {
+      const client = http.get(`${baseUrl}/download`, (response) => {
+        response.destroy();
+        setTimeout(resolve, 50);
+      });
+      client.on('error', (error) => {
+        if (error.code !== 'ECONNRESET') reject(error);
+      });
+    });
+
+    assert.equal(aborted, true);
+    app.locals.createZipArchive = createZipArchive;
+    app.locals.cleanupZipArchive = cleanupZipArchive;
   });
 
   it('validates contact submissions and does not claim delivery is configured', async () => {
