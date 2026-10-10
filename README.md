@@ -39,7 +39,7 @@ Run the built-in Node test suite:
 npm test
 ```
 
-Tests use only Node's built-in test runner and cover the home page, contact page, fallback route, download aliases, and a failed archive-generation scenario.
+Tests use only Node's built-in test runner and cover the home page, contact page, fallback route, sensitive static paths, security headers, download failure and concurrent cleanup behavior, contact validation, and request-size handling. Contact submissions are validated server-side but return a clear `503` until an approved delivery provider is configured; no credentials or provider have been added.
 
 GitHub Actions runs the same `npm ci`, lint, test, and build checks for pull requests and pushes to `main`. See [docs/PROJECT_AUDIT.md](docs/PROJECT_AUDIT.md) for the current application audit and prioritized follow-up work.
 

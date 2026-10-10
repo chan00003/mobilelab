@@ -231,7 +231,7 @@
           </div>
 
           <!-- Success Alert -->
-          <div id="contact-success-msg" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all">
+          <div id="contact-success-msg" role="status" aria-live="polite" class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all">
             <div class="flex items-center justify-center gap-2 mb-1">
               <span class="material-symbols-outlined text-emerald-600">check_circle</span>
               <span class="font-bold">Thank you for submitting!</span>
@@ -310,19 +310,27 @@
     }
 
     // Form submission feedback
-    function handleFormSubmit() {
+    async function handleFormSubmit() {
       const form = document.getElementById('contact-bottleneck-form');
       const msg = document.getElementById('contact-success-msg');
       const submitBtn = document.getElementById('submit-btn');
       
       if (form && msg) {
         msg.classList.remove('hidden');
-        form.reset();
-        if (submitBtn) {
-          submitBtn.innerHTML = `<span>Submitted Successfully</span><span class="material-symbols-outlined text-xl">done</span>`;
-          setTimeout(() => {
-            submitBtn.innerHTML = `<span>Talk to us about your bottleneck</span><span class="material-symbols-outlined text-xl font-bold">arrow_forward</span>`;
-          }, 3000);
+        msg.textContent = 'Submitting...';
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || 'Submission could not be delivered.');
+          msg.textContent = 'Thank you for submitting!';
+          form.reset();
+          if (submitBtn) submitBtn.innerHTML = '<span>Submitted Successfully</span><span class="material-symbols-outlined text-xl">done</span>';
+        } catch (error) {
+          msg.textContent = error.message;
         }
       }
     }

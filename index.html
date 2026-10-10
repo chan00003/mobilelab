@@ -456,7 +456,7 @@
   </div>
 
   <div class="w-full bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-6 sm:p-10 md:p-12 relative transition-all">
-    <form class="space-y-6" id="ai-inquiry-form" onsubmit="event.preventDefault(); const fb = document.getElementById('form-feedback'); if(fb) fb.classList.remove('hidden'); this.reset();">
+    <form class="space-y-6" id="ai-inquiry-form" onsubmit="event.preventDefault(); submitContactForm(this);">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
         <!-- 1. Name -->
         <div class="flex flex-col space-y-2 text-left">
@@ -464,7 +464,7 @@
             <label for="diagnostic-name" class="text-sm font-semibold text-[#1A202C]">1. Name</label>
             <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
           </div>
-          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-name" placeholder="Your name" required="" type="text">
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-name" name="name" placeholder="Your name" required="" type="text">
         </div>
         <!-- 2. Work email -->
         <div class="flex flex-col space-y-2 text-left">
@@ -472,7 +472,7 @@
             <label for="diagnostic-email" class="text-sm font-semibold text-[#1A202C]">2. Work email</label>
             <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
           </div>
-          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-email" placeholder="name@company.com" required="" type="email">
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-email" name="email" placeholder="name@company.com" required="" type="email">
         </div>
       </div>
 
@@ -482,7 +482,7 @@
           <label for="diagnostic-fix" class="text-sm font-semibold text-[#1A202C]">3. What you’re trying to fix</label>
           <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
         </div>
-        <textarea class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm resize-y min-h-[140px]" id="diagnostic-fix" placeholder="Describe where work gets stuck, manual handoffs, or spreadsheet bottlenecks..." required="" rows="5"></textarea>
+        <textarea class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm resize-y min-h-[140px]" id="diagnostic-fix" name="fix" placeholder="Describe where work gets stuck, manual handoffs, or spreadsheet bottlenecks..." required="" rows="5"></textarea>
       </div>
 
       <!-- Submit Button -->
@@ -493,7 +493,7 @@
         </button>
       </div>
 
-      <div class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all" id="form-feedback">
+      <div class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all" id="form-feedback" role="status" aria-live="polite">
         <div class="flex items-center justify-center gap-2 mb-1">
           <span class="material-symbols-outlined text-emerald-600">check_circle</span>
           <span class="font-bold">Thank you for submitting!</span>
@@ -668,6 +668,26 @@
         });
       } else {
         counters.forEach(animateCounter);
+      }
+    }
+
+    async function submitContactForm(form) {
+      const feedback = document.getElementById('form-feedback');
+      if (!feedback) return;
+      feedback.classList.remove('hidden');
+      feedback.textContent = 'Submitting...';
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || 'Submission could not be delivered.');
+        feedback.textContent = 'Thank you for submitting!';
+        form.reset();
+      } catch (error) {
+        feedback.textContent = error.message;
       }
     }
 

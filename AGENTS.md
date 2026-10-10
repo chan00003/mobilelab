@@ -27,7 +27,7 @@ MobileLab is a small static marketing site for AI systems and automation service
 - Frontend changes must work across mobile, tablet, desktop, and ultra-wide layouts.
 - Preserve or improve reduced-motion behavior, contrast, focus visibility, and touch-target sizing.
 - Do not expose secrets in HTML, client-side JavaScript, metadata, or committed environment files.
-- Server code must not trust request paths, archive member names, or environment values without validation.
+- Server code must not trust request paths, archive member names, or environment values without validation. Keep public routes allowlisted; do not reintroduce repository-root static serving.
 - Keep generated artifacts such as `mobilelab-github.zip` out of version control unless explicitly requested.
 
 ## UI/UX design standards
@@ -58,7 +58,7 @@ npm run build
 npm start
 ```
 
-The automated tests use Node's built-in test runner and cover `/`, `/contact`, the fallback route, all download aliases, and the missing-archive failure path. There is currently no typecheck script. For manual server changes, smoke-test the same routes, then stop the local server.
+The automated tests use Node's built-in test runner and cover `/`, `/contact`, the fallback route, sensitive static paths, security headers, download failure and concurrent cleanup behavior, contact validation, and request-size handling. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
 
 ## Dependency management
 
