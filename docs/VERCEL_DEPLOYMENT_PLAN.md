@@ -8,7 +8,7 @@ MobileLab now uses Vercel's Node.js Express deployment shape and a Node-native s
 
 The existing Express routes, security middleware, contact behavior, and browser pages are preserved. Deployment-facing pages and assets are copied into `public/`, while source, tests, package metadata, and agent configuration remain outside that directory.
 
-`public/` is the deployment source of truth for served pages and assets. The root page copies are retained temporarily for archive compatibility and rollback safety; until the project adopts a real build/synchronization step, page edits must be mirrored in both locations and verified with a parity check. `vercel.json` explicitly includes the safe archive inputs in the Express Function bundle because Vercel's static `public/` deployment and Node Function filesystem are separate packaging surfaces.
+`public/` is the deployment source of truth for served pages and assets. The root page copies are retained temporarily for archive compatibility and rollback safety; until the project adopts a real build/synchronization step, page edits must be mirrored in both locations and verified with a parity check. `vercel.json` explicitly includes the safe archive inputs in the Express Function bundle using one brace-expanded glob because Vercel's static `public/` deployment and Node Function filesystem are separate packaging surfaces.
 
 The ZIP routes use `archiver` to stream fixed allowlisted entries directly to the response. No Python runtime is required by the application. A separately hosted backend remains an alternative only if Python fidelity or long-lived backend behavior becomes a product requirement.
 
@@ -43,7 +43,7 @@ Official references:
 3. Make the app export unambiguous for Vercel with a reviewed default export, while retaining direct `npm start` behavior locally.
 4. The five HTML pages, `mobilelab-ogimage.png`, and `/assets` content are copied into `public/`; existing route URLs are unchanged.
 5. Retain security headers, bounded body parsing, rate limits, allowlisted routes, and the intentional `503` contact response.
-6. `vercel.json` includes `public/**`, `package.json`, `.env.example`, `.gitignore`, and `README.md` for the `server.js` Function. It excludes secrets, tests, screenshots, Graphify output, and unrelated repository files.
+6. `vercel.json` includes exactly `public/**`, `package.json`, `.env.example`, `.gitignore`, and `README.md` for the `server.js` Function through a single brace-expanded `includeFiles` glob. It excludes secrets, tests, screenshots, Graphify output, and unrelated repository files.
 
 ### Phase 2: Node-native ZIP generation — implemented
 
