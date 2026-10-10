@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "test": "node --test",
+    "test": "node --test test/server.test.js",
+    "test:e2e": "node --test test/e2e.test.js",
     "build": "echo 'Build complete'",
     "lint": "echo 'No lint errors'"
   },
@@ -15,6 +16,7 @@
     "express": "^4.21.2"
   },
   "devDependencies": {
+    "playwright": "^1.64.0",
     "sharp": "^0.35.5"
   }
 }

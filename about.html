@@ -125,6 +125,18 @@
     }
   </style>
 </head>
+<style id="accessibility-refinements">
+  :focus-visible { outline: 3px solid #8cdd35; outline-offset: 3px; }
+  #mobile-menu-btn { min-width: 44px; min-height: 44px; }
+  .mobile-nav-link { min-height: 44px; }
+  section { scroll-margin-top: 5rem; }
+  h1, h2 { text-wrap: balance; }
+  button:disabled { cursor: wait; opacity: 0.65; transform: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+    #header-glow { display: none !important; }
+  }
+</style>
 <body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
   <!-- Interactive Header Radial Glow Tracker -->
@@ -159,7 +171,7 @@
 
       <!-- Mobile Nav Toggle -->
       <div class="flex items-center md:hidden">
-        <button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+        <button aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
           <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
         </button>
       </div>
@@ -677,9 +689,11 @@
         if (isHidden) {
           mobileNav.classList.remove('hidden');
           mobileMenuIcon.textContent = 'close';
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
         } else {
           mobileNav.classList.add('hidden');
           mobileMenuIcon.textContent = 'menu';
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
       });
     }

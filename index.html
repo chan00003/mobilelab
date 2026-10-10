@@ -172,6 +172,19 @@
     }
   </style>
 <style class="" id="montserrat-global-font">body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, label, div:not(.material-symbols-outlined), span:not(.material-symbols-outlined) { font-family: 'Montserrat', sans-serif !important; }</style><style class="" id="animated-card-border-styles">@property --card-border-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; } @keyframes rotateCardBorder { 0% { --card-border-angle: 0deg; } 100% { --card-border-angle: 360deg; } } .animated-border-card { position: relative; border-radius: 1rem; padding: 1.5px; overflow: hidden; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, #8cdd35 0deg, #6ff6ff 60deg, transparent 130deg, rgba(65, 74, 55, 0.4) 220deg, transparent 300deg, #8cdd35 360deg); animation: rotateCardBorder 5s linear infinite; filter: drop-shadow(0 0 14px rgba(140, 221, 53, 0.18)); } .animated-border-card::before { content: ''; position: absolute; inset: -2px; z-index: -1; border-radius: inherit; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, rgba(140, 221, 53, 0.4) 0deg, rgba(111, 246, 255, 0.4) 60deg, transparent 140deg, transparent 300deg, rgba(140, 221, 53, 0.4) 360deg); filter: blur(4px); opacity: 0.6; animation: rotateCardBorder 5s linear infinite; }</style></head>
+<style id="accessibility-refinements">
+  :focus-visible { outline: 3px solid #8cdd35; outline-offset: 3px; }
+  #mobile-menu-btn { min-width: 44px; min-height: 44px; }
+  .mobile-nav-link { min-height: 44px; }
+  section { scroll-margin-top: 5rem; }
+  h1, h2 { text-wrap: balance; }
+  button:disabled { cursor: wait; opacity: 0.65; transform: none !important; }
+  .form-feedback-error { background: #fef2f2 !important; border-color: #fecaca !important; color: #991b1b !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+    #header-glow { display: none !important; }
+  }
+</style>
 <body class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary min-h-screen relative overflow-x-hidden w-full max-w-full">
 <!-- Interactive Header Radial Glow Tracker -->
 <div class="fixed pointer-events-none rounded-full blur-[100px] bg-primary/20 w-80 h-80 -translate-x-1/2 -translate-y-1/2 z-40 transition-opacity duration-300 opacity-0" id="header-glow" style="opacity: 0; left: 25px; top: 42px;"></div>
@@ -196,7 +209,7 @@
 <a class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-on-primary font-headline-sm text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-md" href="/contact"><span class="">Talk to Us</span></a></nav>
 <!-- Mobile Navigation Toggle -->
 <div class="flex items-center md:hidden">
-<button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+<button aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
 <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
 </button>
 </div>
@@ -557,9 +570,11 @@
       if (isHidden) {
         mobileNav.classList.remove('hidden');
         mobileMenuIcon.textContent = 'close';
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
       } else {
         mobileNav.classList.add('hidden');
         mobileMenuIcon.textContent = 'menu';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       }
     });
 
@@ -567,6 +582,7 @@
       link.addEventListener('click', () => {
         mobileNav.classList.add('hidden');
         mobileMenuIcon.textContent = 'menu';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -673,8 +689,13 @@
 
     async function submitContactForm(form) {
       const feedback = document.getElementById('form-feedback');
+      const submitButton = form.querySelector('button[type="submit"]');
       if (!feedback) return;
       feedback.classList.remove('hidden');
+      feedback.classList.remove('form-feedback-error');
+      feedback.setAttribute('role', 'status');
+      feedback.tabIndex = -1;
+      if (submitButton) submitButton.disabled = true;
       feedback.textContent = 'Submitting...';
       try {
         const response = await fetch('/api/contact', {
@@ -687,7 +708,12 @@
         feedback.textContent = 'Thank you for submitting!';
         form.reset();
       } catch (error) {
+        feedback.classList.add('form-feedback-error');
+        feedback.setAttribute('role', 'alert');
         feedback.textContent = error.message;
+        feedback.focus();
+      } finally {
+        if (submitButton) submitButton.disabled = false;
       }
     }
 
@@ -699,4 +725,15 @@
   })();
 </script>
 
+<script>
+  document.querySelectorAll('#method-steps-container .method-step-btn').forEach((button, index) => {
+    button.setAttribute('aria-controls', 'method-step-heading');
+    button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+    button.addEventListener('click', () => {
+      document.querySelectorAll('#method-steps-container .method-step-btn').forEach((step, stepIndex) => {
+        step.setAttribute('aria-selected', stepIndex === index ? 'true' : 'false');
+      });
+    });
+  });
+</script>
 </body></html>

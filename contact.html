@@ -77,6 +77,19 @@
     }
   </style>
 </head>
+<style id="accessibility-refinements">
+  :focus-visible { outline: 3px solid #8cdd35; outline-offset: 3px; }
+  #mobile-menu-btn { min-width: 44px; min-height: 44px; }
+  .mobile-nav-link { min-height: 44px; }
+  section { scroll-margin-top: 5rem; }
+  h1, h2 { text-wrap: balance; }
+  button:disabled { cursor: wait; opacity: 0.65; transform: none !important; }
+  .form-feedback-error { background: #fef2f2 !important; border-color: #fecaca !important; color: #991b1b !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+    #header-glow { display: none !important; }
+  }
+</style>
 <body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden flex flex-col justify-between selection:bg-primary-container selection:text-on-primary">
 
   <!-- Ambient Radial Light Bleeds -->
@@ -108,7 +121,7 @@
 
       <!-- Mobile Nav Toggle -->
       <div class="flex items-center md:hidden">
-        <button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+        <button aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
           <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
         </button>
       </div>
@@ -296,15 +309,18 @@
         if (isHidden) {
           mobileNav.classList.remove('hidden');
           mobileMenuIcon.textContent = 'close';
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
         } else {
           mobileNav.classList.add('hidden');
           mobileMenuIcon.textContent = 'menu';
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
       });
       document.querySelectorAll('.mobile-nav-link').forEach(link => {
         link.addEventListener('click', () => {
           mobileNav.classList.add('hidden');
           mobileMenuIcon.textContent = 'menu';
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
         });
       });
     }
@@ -317,6 +333,10 @@
       
       if (form && msg) {
         msg.classList.remove('hidden');
+        msg.classList.remove('form-feedback-error');
+        msg.setAttribute('role', 'status');
+        msg.tabIndex = -1;
+        if (submitBtn) submitBtn.disabled = true;
         msg.textContent = 'Submitting...';
         try {
           const response = await fetch('/api/contact', {
@@ -330,7 +350,12 @@
           form.reset();
           if (submitBtn) submitBtn.innerHTML = '<span>Submitted Successfully</span><span class="material-symbols-outlined text-xl">done</span>';
         } catch (error) {
+          msg.classList.add('form-feedback-error');
+          msg.setAttribute('role', 'alert');
           msg.textContent = error.message;
+          msg.focus();
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
         }
       }
     }
