@@ -12,3 +12,6 @@ __pycache__/
 .venv/
 venv/
 artifacts/
+playwright-report/
+test-results/
+.playwright/

@@ -30,6 +30,7 @@ MobileLab is a small static marketing site for AI systems and automation service
 - Server code must not trust request paths, archive member names, or environment values without validation. Keep public routes allowlisted; do not reintroduce repository-root static serving.
 - Keep generated artifacts such as `mobilelab-github.zip` and browser screenshots under ignored paths out of version control unless explicitly requested.
 - Vercel serves deployment-facing HTML and assets from `public/`; repository source, tests, package metadata, and agent configuration remain outside that directory.
+- `vercel.json` explicitly includes only the safe ZIP inputs needed by the `server.js` Function (`public/**`, package metadata, `.env.example`, `.gitignore`, and `README.md`); never add `.env`, credentials, tests, screenshots, or Graphify output.
 
 ## UI/UX design standards
 
@@ -59,7 +60,17 @@ npm run build
 npm start
 ```
 
-The automated tests use Node's built-in test runner and cover page routes, the fallback route, sensitive static paths, security headers, extracted ZIP entries and content, missing resources, concurrent streams, client disconnect cleanup, contact validation, and request-size handling. `npm run test:e2e` starts a dedicated local server and uses Playwright for responsive pages and interactions. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
+The automated tests use Node's built-in test runner and cover page routes, the fallback route, sensitive static paths, security headers, extracted ZIP entries and content, missing resources, concurrent streams, client disconnect cleanup, contact validation, and request-size handling. `npm run test:e2e` runs the preserved Node browser suite and the official `@playwright/test` Chromium projects against a dedicated local server. `npm run test:remote` is opt-in and requires `VERCEL_AUTOMATION_BYPASS_SECRET`; the remote config sends it only as `x-vercel-protection-bypass` and fails before requests if it is missing. Never print or persist that secret. Playwright writes reports under ignored `playwright-report/` and `test-results/`. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
+
+Codex/VS Code browser workflow:
+
+```powershell
+npm run test:e2e
+$env:VERCEL_AUTOMATION_BYPASS_SECRET = "<local secret>"
+npm run test:remote
+```
+
+The official Playwright repository also documents Playwright CLI and MCP options. This project uses the official test runner directly through the terminal; no MCP server or credential-bearing MCP configuration is installed because direct Playwright execution covers the required QA without adding an untrusted runtime hook. See [Microsoft Playwright](https://github.com/microsoft/playwright).
 
 ## Dependency management
 
