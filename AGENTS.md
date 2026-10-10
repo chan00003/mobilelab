@@ -2,13 +2,13 @@
 
 ## Project overview
 
-MobileLab is a small static marketing site for AI systems and automation services. It is served by a Node.js ES-module application using Express. The browser-facing application is primarily `index.html` and `contact.html`, with page styling and interaction code kept in those documents. `server.js` serves the site, exposes `/contact`, provides a fallback to `index.html`, and generates the optional downloadable archive at `/download`, `/download-zip`, and `/api/download`.
+MobileLab is a small static marketing site for AI systems and automation services. It is served by a Node.js ES-module application using Express. The browser-facing pages include `index.html`, `about.html`, `services.html`, `how-we-work.html`, and `contact.html`; styling and interaction code remain in those documents. `server.js` serves allowlisted pages/assets, exposes `/api/contact`, provides an extensionless fallback to `index.html`, and generates the optional downloadable archive at `/download`, `/download-zip`, and `/api/download`.
 
 ## Architecture and development requirements
 
 - Runtime: Node.js 24-compatible JavaScript, ES modules (`"type": "module"`).
 - Package manager: npm. Keep `package-lock.json` committed and use `npm ci` for clean installs.
-- Runtime dependency: Express 4.x. Do not add frontend frameworks or build tools unless the architecture is intentionally migrated.
+- Runtime dependencies: Express 4.x and compression. `sharp` is a development dependency used by the existing asset tooling. Do not add frontend frameworks or build tools unless the architecture is intentionally migrated.
 - Local development: `npm run dev`, then open `http://localhost:3000`.
 - Production-style start: `npm start`; `PORT` may be supplied through the environment.
 - Build: `npm run build` is currently a validation placeholder because the site is served directly from source files.
@@ -44,7 +44,7 @@ MobileLab is a small static marketing site for AI systems and automation service
 - Only `PORT` is currently documented. Add new variables to `.env.example` with safe placeholder values and document whether they are server-only.
 - Do not log credentials, tokens, personal data, or full request headers.
 - Review any third-party installer, hook, or script before execution. Do not trust agent lifecycle hooks automatically.
-- The optional download route invokes Python; treat it as an operational dependency and verify it before relying on that route.
+- The optional download route invokes verified Python 3.10+; on Windows it checks `PYTHON_EXECUTABLE`, the `py` launcher, valid PATH interpreters, and common per-user/system installation directories while rejecting Microsoft Store aliases.
 
 ## Testing and validation
 
@@ -58,7 +58,7 @@ npm run build
 npm start
 ```
 
-The automated tests use Node's built-in test runner and cover `/`, `/contact`, the fallback route, sensitive static paths, security headers, download failure and concurrent cleanup behavior, contact validation, and request-size handling. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
+The automated tests use Node's built-in test runner and cover page routes, the fallback route, sensitive static paths, security headers, Python resolution, valid ZIP generation, download failure and concurrent cleanup behavior, contact validation, and request-size handling. There is currently no typecheck script. Contact delivery intentionally returns `503` until an approved provider is configured. For manual server changes, smoke-test the same routes, then stop the local server.
 
 ## Dependency management
 

@@ -8,6 +8,8 @@ Mobile Lab designs and builds lean, high-leverage AI platforms and business auto
 - **Animated Metrics**: Dynamic count-up animations for business impact metrics (Years in Business, Clients Served, Projects) utilizing ease-out cubic animation and tabular numbers.
 - **Interactive Workflows**: Diagnostic 4-step method switcher and multi-device service accordion.
 - **Mobile Navigation**: Collapsible slide-down navigation drawer with active state indicators.
+- **Dedicated Pages**: About, services, how-we-work, and contact routes with optimized asset delivery.
+- **Safe Project Download**: Per-request ZIP generation with Windows Python detection and cleanup.
 - **Node.js Express Server**: Ready for local development or deployment to Cloud platforms (Google Cloud Run, Vercel, Railway, Render, Heroku).
 
 ---
@@ -39,7 +41,9 @@ Run the built-in Node test suite:
 npm test
 ```
 
-Tests use only Node's built-in test runner and cover the home page, contact page, fallback route, sensitive static paths, security headers, download failure and concurrent cleanup behavior, contact validation, and request-size handling. Contact submissions are validated server-side but return a clear `503` until an approved delivery provider is configured; no credentials or provider have been added.
+Tests use only Node's built-in test runner and cover page routes, sensitive static paths, security headers, verified Python resolution, valid ZIP generation, download failure and concurrent cleanup behavior, contact validation, and request-size handling. Contact submissions are validated server-side but return a clear `503` until an approved delivery provider is configured; no credentials or provider have been added.
+
+The download route requires Python 3.10 or newer. On Windows, the server checks `PYTHON_EXECUTABLE`, the `py` launcher, valid PATH interpreters, and common installed `python.exe` locations. Set `PYTHON_EXECUTABLE` to an absolute verified interpreter path when Python is not discoverable automatically.
 
 GitHub Actions runs the same `npm ci`, lint, test, and build checks for pull requests and pushes to `main`. See [docs/PROJECT_AUDIT.md](docs/PROJECT_AUDIT.md) for the current application audit and prioritized follow-up work.
 
@@ -66,8 +70,12 @@ Create a focused branch and pull request. CI runs automatically; do not force-pu
 
 ```
 ├── index.html        # Main landing page markup, Tailwind styling, and interactive scripts
+├── about.html        # About page
+├── services.html     # Services page
+├── how-we-work.html  # Process page
 ├── contact.html      # Dedicated contact page matching bottleneck diagnostic form
-├── server.js         # Express static file server (port 3000)
+├── assets/           # Optimized static image assets
+├── server.js         # Express server (port 3000)
 ├── package.json      # Dependencies and npm scripts
 ├── test/              # Node built-in route tests
 ├── docs/              # Project audit and engineering documentation

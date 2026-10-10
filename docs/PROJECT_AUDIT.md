@@ -6,8 +6,8 @@ Scope: the repository application, Express routes, HTML/CSS/inline JavaScript, d
 
 ## What the application does
 
-- Serves a single-page marketing site at `/` with service sections, metrics, method steps, testimonials, navigation, contact CTA, and project ZIP download links.
-- Serves a dedicated contact page at `/contact` with a client-side bottleneck form.
+- Serves marketing pages at `/`, `/about`, `/services`, `/how-we-work`, and `/contact` with service sections, metrics, method steps, testimonials, navigation, contact CTA, and project ZIP download links.
+- Serves optimized assets under `/assets` and the Open Graph image at `/mobilelab-ogimage.png`.
 - Serves the two intended HTML pages through explicit routes and falls back to `index.html` only for extensionless paths; repository files are not exposed as static content.
 - Generates an isolated temporary ZIP per request and downloads it through `/download`, `/download-zip`, and `/api/download`, cleaning the temporary directory after completion or failure.
 - Provides mobile navigation, animated counters, a method-step switcher, a horizontal carousel, hover/cursor effects, and client-side success messages.
@@ -15,7 +15,7 @@ Scope: the repository application, Express routes, HTML/CSS/inline JavaScript, d
 
 ## Architecture
 
-`server.js` creates the Express app, applies baseline security headers and bounded body parsing, exposes explicit page and contact API routes, registers the download aliases, and falls back to `index.html` only for extensionless paths. `index.html` and `contact.html` contain their own markup, styles, and scripts; there is no frontend build step. `test/server.test.js` uses Node's built-in test runner and starts the exported app on an ephemeral localhost port.
+`server.js` creates the Express app, applies compression, baseline security headers, and bounded body parsing, exposes explicit page/asset and contact API routes, registers the download aliases, and falls back to `index.html` only for extensionless paths. `index.html`, the dedicated pages, and `contact.html` contain their own markup, styles, and scripts; there is no frontend build step. `test/server.test.js` uses Node's built-in test runner and starts the exported app on an ephemeral localhost port.
 
 Graphify confirmed the main dependency path: `package.json` -> Express -> `server.js` -> static pages/download generation, with tests connected to the exported app and native Node test modules. Graphify output is generated local tooling data and is ignored by Git.
 

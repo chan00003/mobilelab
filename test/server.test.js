@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { after, before, describe, it } from 'node:test';
 import os from 'node:os';
 import path from 'node:path';
-import { app, cleanupZipArchive, createZipArchive } from '../server.js';
+import { app, cleanupZipArchive, createZipArchive, resolvePythonExecutable } from '../server.js';
 
 let server;
 let baseUrl;
@@ -62,6 +62,22 @@ describe('server routes', () => {
       const sensitiveResponse = await request(sensitivePath);
       assert.equal(sensitiveResponse.status, 404, sensitivePath);
     }
+  });
+
+  it('resolves a verified Python 3.10+ interpreter', () => {
+    const python = resolvePythonExecutable();
+    assert.match(python.version, /^3\.(1[0-9]|[2-9][0-9])$/);
+  });
+
+  it('serves a valid generated ZIP archive', async () => {
+    app.locals.createZipArchive = createZipArchive;
+    app.locals.cleanupZipArchive = cleanupZipArchive;
+    const response = await request('/download');
+    const bytes = new Uint8Array(await response.arrayBuffer());
+
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get('content-type'), /application\/zip/);
+    assert.deepEqual(Array.from(bytes.slice(0, 2)), [80, 75]);
   });
 
   it('returns a server error when the download archive cannot be generated', async () => {
