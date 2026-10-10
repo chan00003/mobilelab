@@ -16,7 +16,7 @@ Mobile Lab designs and builds lean, high-leverage AI platforms and business auto
 
 ### 1. Install Dependencies
 ```bash
-npm install
+npm ci
 ```
 
 ### 2. Run the Development Server
@@ -31,20 +31,34 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser.
 npm start
 ```
 
----
+### Testing
 
-## 📦 Pushing to GitHub
-
-If you are updating your GitHub repository (`chan00003/mobilelab2.0`):
+Run the built-in Node test suite:
 
 ```bash
-git init
-git add .
-git commit -m "feat: responsive design, animated metrics, and server setup"
-git branch -M main
-git remote add origin https://github.com/chan00003/mobilelab2.0.git
-git push -u origin main --force
+npm test
 ```
+
+Tests use only Node's built-in test runner and cover the home page, contact page, fallback route, download aliases, and a failed archive-generation scenario.
+
+GitHub Actions runs the same `npm ci`, lint, test, and build checks for pull requests and pushes to `main`. See [docs/PROJECT_AUDIT.md](docs/PROJECT_AUDIT.md) for the current application audit and prioritized follow-up work.
+
+### Agent tooling
+
+Agent skills are project-scoped under `.agents/skills/`. Caveman, Ponytail, and UI/UX Pro Max are installed for Codex without being application dependencies. Graphify is installed separately with Python 3.12 and uv:
+
+```powershell
+uv tool install graphifyy
+graphify install --project --platform codex
+```
+
+Verified on Windows with Python 3.12.10, uv 0.13.0, and graphify 0.9.84. After setup, use `graphify update .` after code changes to refresh the local knowledge graph. Lifecycle hooks must be reviewed and explicitly trusted before use.
+
+---
+
+## 📦 Git workflow
+
+Create a focused branch and pull request. CI runs automatically; do not force-push or deploy without explicit approval.
 
 ---
 
@@ -55,6 +69,9 @@ git push -u origin main --force
 ├── contact.html      # Dedicated contact page matching bottleneck diagnostic form
 ├── server.js         # Express static file server (port 3000)
 ├── package.json      # Dependencies and npm scripts
+├── test/              # Node built-in route tests
+├── docs/              # Project audit and engineering documentation
+├── .github/workflows/ # Pull request and main-branch CI
 ├── .env.example      # Environment variables template
 ├── .gitignore        # Git ignore rules
 └── README.md         # Project documentation
