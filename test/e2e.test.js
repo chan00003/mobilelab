@@ -99,6 +99,27 @@ test('supports mobile navigation, keyboard focus, reduced motion, and method ste
   await context.close();
 });
 
+test('keeps the how-we-work collaboration heading within a mobile viewport', async () => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 900 } });
+  const page = await context.newPage();
+  await page.goto(`${baseUrl}/how-we-work`, { waitUntil: 'networkidle' });
+
+  const layout = await page.evaluate(() => {
+    const heading = [...document.querySelectorAll('h2')]
+      .find((element) => element.textContent.includes('How We Collaborate Day-to-Day'));
+    const rect = heading?.getBoundingClientRect();
+    return {
+      documentWidth: document.documentElement.scrollWidth,
+      viewportWidth: window.innerWidth,
+      headingRight: rect?.right ?? 0,
+    };
+  });
+
+  assert.ok(layout.documentWidth <= layout.viewportWidth, 'how-we-work overflows horizontally on mobile');
+  assert.ok(layout.headingRight <= layout.viewportWidth, 'collaboration heading exceeds the mobile viewport');
+  await context.close();
+});
+
 test('contact form validates and reports unconfigured delivery without false success', async () => {
   const context = await browser.newContext({ viewport: { width: 390, height: 900 } });
   const page = await context.newPage();

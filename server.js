@@ -1,16 +1,62 @@
 import express from 'express';
 import compression from 'compression';
+import * as archiverModule from 'archiver';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import os from 'os';
-import { execFileSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
+const PUBLIC_DIR = path.join(__dirname, 'public');
+const ARCHIVE_FILES = [
+  ['index.html', 'index.html'],
+  ['about.html', 'about.html'],
+  ['services.html', 'services.html'],
+  ['how-we-work.html', 'how-we-work.html'],
+  ['contact.html', 'contact.html'],
+  ['mobilelab-ogimage.png', 'mobilelab-ogimage.png'],
+  ['server.js', 'server.js'],
+  ['package.json', 'package.json'],
+  ['.env.example', '.env.example'],
+  ['.gitignore', '.gitignore'],
+  ['README.md', 'README.md'],
+];
+const ARCHIVE_ASSET_FILES = [
+  'assets/favicon.ico', 'assets/favicon.svg', 'assets/images/image-map.json',
+  'assets/images/img-058d42093f.webp', 'assets/images/img-05df0a0a45.webp', 'assets/images/img-05ffa92e4c.webp',
+  'assets/images/img-11340ab1b3.webp', 'assets/images/img-1501d47931.webp', 'assets/images/img-1924ba6c49.webp',
+  'assets/images/img-1bd7fb7ce5.webp', 'assets/images/img-201f6e4e4c.webp', 'assets/images/img-2241a8f015.webp',
+  'assets/images/img-2ff7330dfa.webp', 'assets/images/img-30bd8d0c1a.webp', 'assets/images/img-3311de6663.webp',
+  'assets/images/img-35113cdc5f.webp', 'assets/images/img-3df07336cc.webp', 'assets/images/img-464e9668f1.webp',
+  'assets/images/img-48a7b42d3e.webp', 'assets/images/img-4af4439387.webp', 'assets/images/img-4c87ffd860.webp',
+  'assets/images/img-501f524cba.webp', 'assets/images/img-6035240480.webp', 'assets/images/img-60a0fb8b74.webp',
+  'assets/images/img-60df726d53.webp', 'assets/images/img-6143dc219a.webp', 'assets/images/img-6342992ee4.webp',
+  'assets/images/img-65530cf809.webp', 'assets/images/img-769fd0d30b.webp', 'assets/images/img-79101e9c13.webp',
+  'assets/images/img-7ac5247604.webp', 'assets/images/img-7b4b8699a8.webp', 'assets/images/img-7c5ea8939b.webp',
+  'assets/images/img-8049566dda.webp', 'assets/images/img-82ce65c455.webp', 'assets/images/img-85019b70e3.webp',
+  'assets/images/img-8b603ce21c.webp', 'assets/images/img-8c49655875.webp', 'assets/images/img-9336e41e7f.webp',
+  'assets/images/img-a62a271d54.webp', 'assets/images/img-a797373c93.webp', 'assets/images/img-ab8c572c61.webp',
+  'assets/images/img-ad90c3a9da.webp', 'assets/images/img-b1fc591c78.webp', 'assets/images/img-b6e99ae66b.webp',
+  'assets/images/img-bb96c671a7.webp', 'assets/images/img-bf765c255f.webp', 'assets/images/img-bfe570da4c.webp',
+  'assets/images/img-bfe71351eb.webp', 'assets/images/img-c1c8f6512a.webp', 'assets/images/img-c4de067aee.webp',
+  'assets/images/img-c6319bdae7.webp', 'assets/images/img-cc4ea19618.webp', 'assets/images/img-cce1e0fde3.webp',
+  'assets/images/img-d00d3b7df0.webp', 'assets/images/img-dbee276213.webp', 'assets/images/img-dee6f8bc5c.webp',
+  'assets/images/img-e02454e2d3.webp', 'assets/images/img-e0a24faf70.webp', 'assets/images/img-e2e97a29ea.webp',
+  'assets/images/img-e525e91aca.webp', 'assets/images/img-e60fcb6ee9.webp', 'assets/images/img-eaf6601428.webp',
+  'assets/images/img-f008aafa70.webp', 'assets/images/img-f8552506c7.webp', 'assets/images/img-fcc9f69eac.webp',
+  'assets/images/method-diagnose.jpg', 'assets/images/method-diagnose.webp', 'assets/images/mobilelab-ogimage.webp',
+  'assets/images/team-ava.jpg', 'assets/images/team-ava.webp', 'assets/images/team-christian.jpg', 'assets/images/team-christian.webp',
+  'assets/images/team-dave.jpg', 'assets/images/team-dave.webp', 'assets/images/team-david.jpg', 'assets/images/team-david.webp',
+  'assets/images/team-elena.jpg', 'assets/images/team-elena.webp', 'assets/images/team-matt.jpg', 'assets/images/team-matt.webp',
+  'assets/mobilelab-logo.svg',
+];
+const ARCHIVE_MEMBER_SOURCES = [
+  ...ARCHIVE_FILES,
+  ...ARCHIVE_ASSET_FILES.map((name) => [name, name]),
+];
 
 const contentSecurityPolicy = [
   "default-src 'self'", "base-uri 'self'", "frame-ancestors 'none'", "object-src 'none'", "form-action 'self'",
@@ -60,96 +106,74 @@ function createRateLimiter({ windowMs, max }) {
 const downloadRateLimit = createRateLimiter({ windowMs: 60_000, max: 10 });
 const contactRateLimit = createRateLimiter({ windowMs: 15 * 60_000, max: 5 });
 
-function pythonVersion(command, args = []) {
-  try {
-    const output = execFileSync(command, [...args, '--version'], { stdio: ['ignore', 'pipe', 'pipe'], encoding: 'utf8' });
-    const match = output.match(/Python\s+(\d+)\.(\d+)/i);
-    if (!match) return null;
-    const major = Number(match[1]);
-    const minor = Number(match[2]);
-    return major === 3 && minor >= 10 ? `${major}.${minor}` : null;
-  } catch {
-    return null;
-  }
+function resolveArchiveSource(source) {
+  const publicPath = path.join(PUBLIC_DIR, source);
+  const rootPath = path.join(__dirname, source);
+  return fs.existsSync(publicPath) ? publicPath : fs.existsSync(rootPath) ? rootPath : null;
 }
 
-function windowsPythonCandidates() {
-  const candidates = [
-    { command: 'py', args: ['-3'] },
-    { command: 'python.exe', args: [] },
-    { command: 'python3.exe', args: [] },
-  ];
-  const bases = [
-    process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Programs', 'Python'),
-    process.env.ProgramFiles && path.join(process.env.ProgramFiles, 'Python'),
-    process.env['ProgramFiles(x86)'] && path.join(process.env['ProgramFiles(x86)'], 'Python'),
-  ].filter(Boolean);
-  for (const base of bases) {
-    try {
-      for (const entry of fs.readdirSync(base, { withFileTypes: true })) {
-        if (entry.isDirectory()) candidates.push({ command: path.join(base, entry.name, 'python.exe'), args: [] });
-      }
-    } catch {
-      // Optional installation directory may not exist.
-    }
-  }
-  return candidates;
+function isSafeArchiveMemberName(name) {
+  return typeof name === 'string'
+    && name.length > 0
+    && !path.isAbsolute(name)
+    && name.split('/').every((segment) => segment && segment !== '.' && segment !== '..');
 }
 
-function resolvePythonExecutable() {
-  const explicit = process.env.PYTHON_EXECUTABLE?.trim();
-  const candidates = explicit
-    ? [{ command: explicit, args: explicit.toLowerCase().endsWith('py.exe') ? ['-3'] : [] }]
-    : process.platform === 'win32'
-      ? windowsPythonCandidates()
-      : [{ command: 'python3', args: [] }, { command: 'python', args: [] }];
-  for (const candidate of candidates) {
-    const version = pythonVersion(candidate.command, candidate.args);
-    if (version) return { ...candidate, version };
+function getArchiveEntries(resolveSource = resolveArchiveSource, memberSources = ARCHIVE_MEMBER_SOURCES) {
+  const names = new Set();
+  const entries = [];
+  for (const [source, name] of memberSources) {
+    if (!isSafeArchiveMemberName(source) || !isSafeArchiveMemberName(name) || names.has(name)) return null;
+    const sourcePath = resolveSource(source);
+    if (!sourcePath) return null;
+    names.add(name);
+    entries.push([sourcePath, name]);
   }
-  throw new Error('Python 3.10+ was not found. Set PYTHON_EXECUTABLE to a verified interpreter.');
+  return entries;
 }
 
 function createZipArchive() {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'mobilelab-'));
-  const zipPath = path.join(tempDir, 'mobilelab-github.zip');
-  try {
-    const python = resolvePythonExecutable();
-    const script = [
-      'import os, sys, zipfile', 'root, output = sys.argv[1], sys.argv[2]',
-      "files = ['index.html', 'about.html', 'services.html', 'how-we-work.html', 'contact.html', 'mobilelab-ogimage.png', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md']",
-      'with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as archive:',
-      '    for name in files:', '        source = os.path.join(root, name)',
-      '        if os.path.isfile(source): archive.write(source, name)',
-      '    assets = os.path.join(root, "assets")', '    if os.path.isdir(assets):',
-      '        for folder, _, names in os.walk(assets):', '            for name in names:',
-      '                source = os.path.join(folder, name)', '                archive.write(source, os.path.relpath(source, root))',
-    ].join('\n');
-    execFileSync(python.command, [...python.args, '-c', script, __dirname, zipPath], { cwd: __dirname, stdio: 'pipe' });
-    return { path: zipPath, dir: tempDir, python };
-  } catch (err) {
-    fs.rmSync(tempDir, { recursive: true, force: true });
-    console.error('Error generating zip:', err);
-    return null;
+  const resolveSource = app.locals.resolveArchiveSource || resolveArchiveSource;
+  const archiveSources = getArchiveEntries(resolveSource);
+  if (!archiveSources) return null;
+  const archive = new archiverModule.ZipArchive({ zlib: { level: 9 } });
+  for (const [sourcePath, name] of archiveSources) {
+    archive.file(sourcePath, { name });
   }
+  return archive;
 }
 
 function cleanupZipArchive(archive) {
-  if (archive?.dir) fs.rmSync(archive.dir, { recursive: true, force: true });
+  archive?.abort?.();
 }
 
 app.locals.createZipArchive = createZipArchive;
 app.locals.cleanupZipArchive = cleanupZipArchive;
+app.locals.resolveArchiveSource = resolveArchiveSource;
 app.get(['/download', '/download-zip', '/api/download'], downloadRateLimit, (req, res, next) => {
   const archive = app.locals.createZipArchive();
-  if (!archive || !fs.existsSync(archive.path)) {
-    if (archive) app.locals.cleanupZipArchive(archive);
+  if (!archive) {
     return res.status(500).send('Could not generate zip archive');
   }
-  return res.download(archive.path, 'mobilelab-github.zip', (err) => {
-    app.locals.cleanupZipArchive(archive);
-    if (err && !res.headersSent) next(err);
+  let finished = false;
+  const abortArchive = () => {
+    if (!finished) app.locals.cleanupZipArchive(archive);
+  };
+  const handleArchiveError = (err) => {
+    abortArchive();
+    if (!res.headersSent) return next(err);
+    return res.destroy(err);
+  };
+  archive.on('error', handleArchiveError);
+  req.on('aborted', abortArchive);
+  res.on('close', abortArchive);
+  res.on('finish', () => {
+    finished = true;
   });
+  res.attachment('mobilelab-github.zip');
+  archive.pipe(res);
+  archive.finalize().catch(handleArchiveError);
+  return undefined;
 });
 
 function validateContactPayload(body = {}) {
@@ -173,25 +197,22 @@ const sendCachedHtml = (res, filePath) => {
   res.sendFile(filePath);
 };
 
-app.get('/', (req, res) => sendCachedHtml(res, path.join(__dirname, 'index.html')));
-app.get('/index.html', (req, res) => sendCachedHtml(res, path.join(__dirname, 'index.html')));
-app.get('/services', (req, res) => sendCachedHtml(res, path.join(__dirname, 'services.html')));
-app.get('/how-we-work', (req, res) => sendCachedHtml(res, path.join(__dirname, 'how-we-work.html')));
-app.get('/about', (req, res) => sendCachedHtml(res, path.join(__dirname, 'about.html')));
-app.get('/contact', (req, res) => sendCachedHtml(res, path.join(__dirname, 'contact.html')));
-app.get('/contact.html', (req, res) => sendCachedHtml(res, path.join(__dirname, 'contact.html')));
+app.get('/', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'index.html')));
+app.get('/index.html', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'index.html')));
+app.get('/services', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'services.html')));
+app.get('/how-we-work', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'how-we-work.html')));
+app.get('/about', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'about.html')));
+app.get('/contact', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'contact.html')));
+app.get('/contact.html', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'contact.html')));
 app.get('/mobilelab-ogimage.png', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  res.type('image/png').sendFile(path.join(__dirname, 'mobilelab-ogimage.png'));
+  res.type('image/png').sendFile(path.join(PUBLIC_DIR, 'mobilelab-ogimage.png'));
 });
-app.use('/assets', express.static(path.join(__dirname, 'assets'), { maxAge: '1y', immutable: true, etag: true, lastModified: true }));
-if (fs.existsSync(path.join(__dirname, 'public'))) {
-  app.use('/public', express.static(path.join(__dirname, 'public'), { maxAge: '1y', immutable: true, etag: true, lastModified: true }));
-}
+app.use('/assets', express.static(path.join(PUBLIC_DIR, 'assets'), { maxAge: '1y', immutable: true, etag: true, lastModified: true }));
 app.get('*', (req, res) => {
   const segments = req.path.split('/').filter(Boolean);
   if (path.extname(req.path) || segments.some((segment) => segment.startsWith('.'))) return res.status(404).send('Not found');
-  return sendCachedHtml(res, path.join(__dirname, 'index.html'));
+  return sendCachedHtml(res, path.join(PUBLIC_DIR, 'index.html'));
 });
 app.use((err, req, res, next) => {
   if (err.type === 'entity.too.large') return res.status(413).json({ error: 'Request too large.' });
@@ -201,7 +222,8 @@ app.use((err, req, res, next) => {
   return res.status(500).send('Internal server error');
 });
 
-export { app, cleanupZipArchive, createZipArchive, resolvePythonExecutable };
+export { app, cleanupZipArchive, createZipArchive, getArchiveEntries, isSafeArchiveMemberName, resolveArchiveSource };
+export default app;
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
   app.listen(PORT, HOST, () => console.log(`Server running on http://${HOST}:${PORT}`));
