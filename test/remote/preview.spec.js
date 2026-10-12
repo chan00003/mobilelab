@@ -7,6 +7,9 @@ import { expect, test } from '@playwright/test';
 
 const pages = ['/', '/about', '/services', '/how-we-work', '/contact'];
 const downloads = ['/download', '/download-zip', '/api/download'];
+const defaultBaseURL = 'https://mobilelab-git-feature-vercel-node-runtime-mlbs.vercel.app';
+const remoteBaseURL = (process.env.REMOTE_BASE_URL ?? defaultBaseURL).trim();
+const remoteOrigin = new URL(remoteBaseURL).origin;
 const fixedMembers = [
   'index.html', 'about.html', 'services.html', 'how-we-work.html', 'contact.html',
   'mobilelab-ogimage.png', 'server.js', 'package.json', '.env.example', '.gitignore', 'README.md',
@@ -30,6 +33,8 @@ test('serves actual MobileLab pages and assets at all required widths', async ({
       await page.setViewportSize({ width, height: 900 });
       const response = await page.goto(route, { waitUntil: 'networkidle' });
       expect(response?.status(), route).toBe(200);
+      expect(new URL(page.url()).origin, route).toBe(remoteOrigin);
+      expect(page.url(), route).toBe(new URL(route, remoteBaseURL).toString());
       await expect(page.locator('body')).toContainText(/Mobile Lab/i);
       await expect(page).not.toHaveURL(/vercel\.com\/sso|\/login/);
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width + 1);

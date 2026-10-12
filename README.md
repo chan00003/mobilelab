@@ -51,7 +51,15 @@ npm run test:e2e
 
 The Playwright suite starts a dedicated local server, checks all five pages at 390px, 768px, and 1440px, captures ignored screenshots and reports, verifies responsive layout and accessibility interactions, checks the unconfigured contact error, and validates download/privacy responses. The ZIP route uses the Node.js `archiver` package and does not require Python at runtime.
 
-For authorized Vercel preview QA, configure `VERCEL_AUTOMATION_BYPASS_SECRET` in the same terminal process and run `npm run test:remote`. The value is sent only as the `x-vercel-protection-bypass` header; the remote runner fails before making requests when the variable is missing and never logs or stores it.
+For authorized Vercel preview QA, configure `VERCEL_AUTOMATION_BYPASS_SECRET` in the same terminal process and run `npm run test:remote`. The value is sent only as the `x-vercel-protection-bypass` header; the remote runner fails before making requests when the variable is missing and never logs or stores it. To make a run deployment-specific, also set `REMOTE_BASE_URL`, `REMOTE_EXPECTED_DEPLOYMENT_ID`, and `REMOTE_EXPECTED_COMMIT_SHA`. The sanitized report is written to `playwright-report/remote/qa-summary.json`; expected deployment metadata is labeled as user-supplied and is not treated as independently verified.
+
+```powershell
+$env:REMOTE_BASE_URL = "https://mobilelab-ootw8bwyo-mlbs.vercel.app"
+$env:REMOTE_EXPECTED_DEPLOYMENT_ID = "7014404418"
+$env:REMOTE_EXPECTED_COMMIT_SHA = "e3eaa3e67c1eacd0cb444e946f8301581412b838"
+$env:VERCEL_AUTOMATION_BYPASS_SECRET = "<runtime-only secret>"
+npm run test:remote
+```
 
 For clean dependency validation without enabling lifecycle scripts, use `npm ci --ignore-scripts`.
 
