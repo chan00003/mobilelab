@@ -1,8 +1,16 @@
 import assert from 'node:assert/strict';
+import path from 'node:path';
 import http from 'node:http';
 import { after, before, describe, it } from 'node:test';
 import unzipper from 'unzipper';
-import { app, cleanupZipArchive, createZipArchive, resolveArchiveSource } from '../server.js';
+import {
+  app,
+  cleanupZipArchive,
+  createZipArchive,
+  getArchiveEntries,
+  isSafeArchiveMemberName,
+  resolveArchiveSource,
+} from '../server.js';
 
 let server;
 let baseUrl;
@@ -24,6 +32,13 @@ after(() => {
 
 async function request(route, options) {
   return fetch(`${baseUrl}${route}`, options);
+}
+
+async function archiveBuffer(archive) {
+  const chunks = [];
+  archive.on('data', (chunk) => chunks.push(chunk));
+  await archive.finalize();
+  return Buffer.concat(chunks);
 }
 
 describe('server routes', () => {
@@ -78,10 +93,50 @@ describe('server routes', () => {
     assert.match(response.headers.get('content-type'), /application\/zip/);
     assert.deepEqual(bytes.subarray(0, 2), Buffer.from('PK'));
     assert.ok(bytes.length < 4.5 * 1024 * 1024, 'archive exceeds Vercel response limit');
+    assert.equal(new Set(names).size, names.length, 'archive contains duplicate members');
+    assert.ok(names.every((name) => isSafeArchiveMemberName(name)), 'archive contains an unsafe member name');
+    assert.ok(names.every((name) => !name.endsWith('/')), 'archive contains directory metadata entries');
     assert.ok(names.includes('index.html'));
     assert.ok(names.includes('server.js'));
-    assert.ok(names.some((name) => name.startsWith('assets/')));
+    assert.ok(names.includes('assets/favicon.ico'));
+    assert.ok(names.includes('assets/favicon.svg'));
+    assert.ok(names.includes('assets/mobilelab-logo.svg'));
     assert.match(index.toString('utf8'), /Mobile Lab/i);
+  });
+
+  it('keeps the local and serverless archive manifests identical', () => {
+    const localEntries = getArchiveEntries(resolveArchiveSource);
+    const bundledEntries = getArchiveEntries((source) => path.join(process.cwd(), 'public', source));
+
+    assert.ok(localEntries);
+    assert.ok(bundledEntries);
+    assert.deepEqual(
+      localEntries.map(([, name]) => name),
+      bundledEntries.map(([, name]) => name),
+    );
+  });
+
+  it('fails closed when a required archive source is missing', () => {
+    for (const missing of ['assets/favicon.ico', 'assets/favicon.svg', 'assets/mobilelab-logo.svg']) {
+      app.locals.resolveArchiveSource = (source) => source === missing ? null : resolveArchiveSource(source);
+      assert.equal(createZipArchive(), null, missing);
+    }
+    app.locals.resolveArchiveSource = resolveArchiveSource;
+  });
+
+  it('rejects duplicate and path-traversal archive members', () => {
+    assert.equal(getArchiveEntries(resolveArchiveSource, [
+      ['index.html', 'index.html'],
+      ['about.html', 'index.html'],
+    ]), null);
+    assert.equal(isSafeArchiveMemberName('../server.js'), false);
+    assert.equal(isSafeArchiveMemberName('/etc/passwd'), false);
+    assert.equal(isSafeArchiveMemberName('assets/../server.js'), false);
+  });
+
+  it('detects a corrupt archive instead of treating it as valid', async () => {
+    const bytes = await archiveBuffer(createZipArchive());
+    await assert.rejects(unzipper.Open.buffer(bytes.subarray(0, bytes.length - 32)));
   });
 
   it('returns a server error when the function bundle omits an archive source', async () => {
@@ -133,7 +188,7 @@ describe('server routes', () => {
     await new Promise((resolve, reject) => {
       const client = http.get(`${baseUrl}/download`, (response) => {
         response.destroy();
-        setTimeout(resolve, 50);
+        setTimeout(resolve, 250);
       });
       client.on('error', (error) => {
         if (error.code !== 'ECONNRESET') reject(error);

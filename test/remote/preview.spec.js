@@ -22,6 +22,7 @@ function assetMembers(directory, prefix = 'assets') {
 }
 
 const expectedMembers = [...fixedMembers, ...assetMembers(path.join(projectRoot, 'public', 'assets'))].sort();
+assert.equal(expectedMembers.length, 93, 'repository archive specification must contain 93 members');
 
 test('serves actual MobileLab pages and assets at all required widths', async ({ page }) => {
   for (const route of pages) {
@@ -56,13 +57,18 @@ test('supports protected-preview interactions and contact responses', async ({ p
 });
 
 test('returns protected archives with exactly the allowlisted members', async ({ request }) => {
+  let baselineNames;
   for (const route of downloads) {
     const response = await request.get(route);
     expect(response.status(), route).toBe(200);
     expect(response.headers()['content-type']).toMatch(/application\/zip/);
     const archive = await unzipper.Open.buffer(await response.body());
     const names = archive.files.map((file) => file.path).sort();
+    assert.equal(new Set(names).size, names.length, `${route} archive contains duplicate members`);
+    assert.ok(names.every((name) => !name.endsWith('/')), `${route} archive contains directory metadata`);
     assert.deepEqual(names, expectedMembers, `${route} archive members differ`);
+    if (!baselineNames) baselineNames = names;
+    else assert.deepEqual(names, baselineNames, `${route} differs from the first download endpoint`);
     assert.ok(names.every((name) => !name.startsWith('/') && !name.includes('..')));
     await Promise.all(archive.files.map((file) => file.buffer()));
     const index = await archive.files.find((file) => file.path === 'index.html').buffer();

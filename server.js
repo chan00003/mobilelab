@@ -24,6 +24,39 @@ const ARCHIVE_FILES = [
   ['.gitignore', '.gitignore'],
   ['README.md', 'README.md'],
 ];
+const ARCHIVE_ASSET_FILES = [
+  'assets/favicon.ico', 'assets/favicon.svg', 'assets/images/image-map.json',
+  'assets/images/img-058d42093f.webp', 'assets/images/img-05df0a0a45.webp', 'assets/images/img-05ffa92e4c.webp',
+  'assets/images/img-11340ab1b3.webp', 'assets/images/img-1501d47931.webp', 'assets/images/img-1924ba6c49.webp',
+  'assets/images/img-1bd7fb7ce5.webp', 'assets/images/img-201f6e4e4c.webp', 'assets/images/img-2241a8f015.webp',
+  'assets/images/img-2ff7330dfa.webp', 'assets/images/img-30bd8d0c1a.webp', 'assets/images/img-3311de6663.webp',
+  'assets/images/img-35113cdc5f.webp', 'assets/images/img-3df07336cc.webp', 'assets/images/img-464e9668f1.webp',
+  'assets/images/img-48a7b42d3e.webp', 'assets/images/img-4af4439387.webp', 'assets/images/img-4c87ffd860.webp',
+  'assets/images/img-501f524cba.webp', 'assets/images/img-6035240480.webp', 'assets/images/img-60a0fb8b74.webp',
+  'assets/images/img-60df726d53.webp', 'assets/images/img-6143dc219a.webp', 'assets/images/img-6342992ee4.webp',
+  'assets/images/img-65530cf809.webp', 'assets/images/img-769fd0d30b.webp', 'assets/images/img-79101e9c13.webp',
+  'assets/images/img-7ac5247604.webp', 'assets/images/img-7b4b8699a8.webp', 'assets/images/img-7c5ea8939b.webp',
+  'assets/images/img-8049566dda.webp', 'assets/images/img-82ce65c455.webp', 'assets/images/img-85019b70e3.webp',
+  'assets/images/img-8b603ce21c.webp', 'assets/images/img-8c49655875.webp', 'assets/images/img-9336e41e7f.webp',
+  'assets/images/img-a62a271d54.webp', 'assets/images/img-a797373c93.webp', 'assets/images/img-ab8c572c61.webp',
+  'assets/images/img-ad90c3a9da.webp', 'assets/images/img-b1fc591c78.webp', 'assets/images/img-b6e99ae66b.webp',
+  'assets/images/img-bb96c671a7.webp', 'assets/images/img-bf765c255f.webp', 'assets/images/img-bfe570da4c.webp',
+  'assets/images/img-bfe71351eb.webp', 'assets/images/img-c1c8f6512a.webp', 'assets/images/img-c4de067aee.webp',
+  'assets/images/img-c6319bdae7.webp', 'assets/images/img-cc4ea19618.webp', 'assets/images/img-cce1e0fde3.webp',
+  'assets/images/img-d00d3b7df0.webp', 'assets/images/img-dbee276213.webp', 'assets/images/img-dee6f8bc5c.webp',
+  'assets/images/img-e02454e2d3.webp', 'assets/images/img-e0a24faf70.webp', 'assets/images/img-e2e97a29ea.webp',
+  'assets/images/img-e525e91aca.webp', 'assets/images/img-e60fcb6ee9.webp', 'assets/images/img-eaf6601428.webp',
+  'assets/images/img-f008aafa70.webp', 'assets/images/img-f8552506c7.webp', 'assets/images/img-fcc9f69eac.webp',
+  'assets/images/method-diagnose.jpg', 'assets/images/method-diagnose.webp', 'assets/images/mobilelab-ogimage.webp',
+  'assets/images/team-ava.jpg', 'assets/images/team-ava.webp', 'assets/images/team-christian.jpg', 'assets/images/team-christian.webp',
+  'assets/images/team-dave.jpg', 'assets/images/team-dave.webp', 'assets/images/team-david.jpg', 'assets/images/team-david.webp',
+  'assets/images/team-elena.jpg', 'assets/images/team-elena.webp', 'assets/images/team-matt.jpg', 'assets/images/team-matt.webp',
+  'assets/mobilelab-logo.svg',
+];
+const ARCHIVE_MEMBER_SOURCES = [
+  ...ARCHIVE_FILES,
+  ...ARCHIVE_ASSET_FILES.map((name) => [name, name]),
+];
 
 const contentSecurityPolicy = [
   "default-src 'self'", "base-uri 'self'", "frame-ancestors 'none'", "object-src 'none'", "form-action 'self'",
@@ -79,16 +112,34 @@ function resolveArchiveSource(source) {
   return fs.existsSync(publicPath) ? publicPath : fs.existsSync(rootPath) ? rootPath : null;
 }
 
+function isSafeArchiveMemberName(name) {
+  return typeof name === 'string'
+    && name.length > 0
+    && !path.isAbsolute(name)
+    && name.split('/').every((segment) => segment && segment !== '.' && segment !== '..');
+}
+
+function getArchiveEntries(resolveSource = resolveArchiveSource, memberSources = ARCHIVE_MEMBER_SOURCES) {
+  const names = new Set();
+  const entries = [];
+  for (const [source, name] of memberSources) {
+    if (!isSafeArchiveMemberName(source) || !isSafeArchiveMemberName(name) || names.has(name)) return null;
+    const sourcePath = resolveSource(source);
+    if (!sourcePath) return null;
+    names.add(name);
+    entries.push([sourcePath, name]);
+  }
+  return entries;
+}
+
 function createZipArchive() {
   const resolveSource = app.locals.resolveArchiveSource || resolveArchiveSource;
-  const archiveSources = ARCHIVE_FILES.map(([source, name]) => [resolveSource(source), name]);
-  if (archiveSources.some(([sourcePath]) => !sourcePath)) return null;
+  const archiveSources = getArchiveEntries(resolveSource);
+  if (!archiveSources) return null;
   const archive = new archiverModule.ZipArchive({ zlib: { level: 9 } });
   for (const [sourcePath, name] of archiveSources) {
     archive.file(sourcePath, { name });
   }
-  const assetsPath = path.join(PUBLIC_DIR, 'assets');
-  if (fs.existsSync(assetsPath)) archive.directory(assetsPath, 'assets');
   return archive;
 }
 
@@ -171,7 +222,7 @@ app.use((err, req, res, next) => {
   return res.status(500).send('Internal server error');
 });
 
-export { app, cleanupZipArchive, createZipArchive, resolveArchiveSource };
+export { app, cleanupZipArchive, createZipArchive, getArchiveEntries, isSafeArchiveMemberName, resolveArchiveSource };
 export default app;
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
