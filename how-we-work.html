@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/assets/favicon.ico" type="image/x-icon">
   <title>How We Work | The 4-Step Engineering Method — Mobile Lab</title>
   <meta name="description" content="Discover Mobile Lab's rigorous 4-step method: Diagnose, Design, Prove, and Reuse. We eliminate the risk of software projects by diagnosing bottlenecks first and shipping working code in days.">
   <meta property="og:type" content="website">
@@ -24,7 +26,7 @@
 
   <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, Montserrat -->
   <!-- Material Symbols Outlined -->
-  
+
   <!-- Resource Hints & Preconnect for Fast Asset Delivery -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +51,7 @@
             "surface-container-high": "#262a33",
             "surface-container-lowest": "#0a0e16",
             "on-surface": "#dfe2ee",
-            "on-surface-variant": "#c1cab1",
+            "on-surface-variant": "#fff",
             "outline-variant": "#414a37"
           },
           fontFamily: {
@@ -129,6 +131,18 @@
     }
   </style>
 </head>
+<style id="accessibility-refinements">
+  :focus-visible { outline: 3px solid #8cdd35; outline-offset: 3px; }
+  #mobile-menu-btn { min-width: 44px; min-height: 44px; }
+  .mobile-nav-link { min-height: 44px; }
+  section { scroll-margin-top: 5rem; }
+  h1, h2 { text-wrap: balance; }
+  button:disabled { cursor: wait; opacity: 0.65; transform: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+    #header-glow { display: none !important; }
+  }
+</style>
 <body class="bg-surface-container-lowest text-on-surface font-body-md antialiased min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
   <!-- Interactive Header Radial Glow Tracker -->
@@ -142,8 +156,7 @@
   <header class="top-0 sticky z-50 bg-surface/85 backdrop-blur-md shadow-sm border-b border-outline-variant/40 w-full" id="site-header">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between w-full">
       <a class="flex items-center space-x-3 group" href="/">
-        <div class="h-9 w-9 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-lg shadow-sm">M</div>
-        <span class="font-headline-md text-xl font-bold tracking-tight text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+        <img class="w-36 sm:w-44 h-auto" src="/assets/mobilelab-logo.svg" alt="Mobile Lab">
       </a>
 
       <!-- Desktop Nav -->
@@ -163,7 +176,7 @@
 
       <!-- Mobile Nav Toggle -->
       <div class="flex items-center md:hidden">
-        <button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+        <button aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
           <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
         </button>
       </div>
@@ -196,19 +209,15 @@
          ========================================== -->
     <section class="relative pt-20 pb-24 md:pt-28 md:pb-32 cyber-grid-bg border-b border-outline-variant/30 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono font-semibold uppercase tracking-wider mb-6">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span>The 4-Step Engineering Sequence · Proof Over Promises</span>
-        </div>
-
         <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.12]">
           <span class="block">How We Work</span>
           <span class="block running-gradient-ai mt-1">From Bottleneck Audit to Shipped System</span>
         </h1>
 
-        <p class="mt-6 text-base sm:text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-          Most tech projects fail because teams write code before understanding the real human bottleneck. We eliminate that risk with a structured, high-accountability sequence: diagnose first, architect lean, prove in days, and guarantee internal ownership.
+        <p class="mt-6 text-xl text-on-surface-variant max-w-6xl mx-auto leading-relaxed">
+          <span class="block sm:whitespace-nowrap">Most tech projects fail because teams write code before understanding the real</span>
+          <span class="block sm:whitespace-nowrap">human bottleneck. We eliminate that risk with a structured, high-accountability</span>
+          <span class="block sm:whitespace-nowrap">sequence: diagnose first, architect lean, prove in days, and guarantee internal ownership.</span>
         </p>
 
         <!-- CTA Row -->
@@ -248,16 +257,15 @@
     <!-- ==========================================
          INTERACTIVE 4-PHASE DETAILED WALKTHROUGH
          ========================================== -->
-    <section class="py-20 md:py-28 bg-surface-container-lowest border-b border-outline-variant/20 scroll-mt-24" id="four-phases">
+    <section class="py-20 md:py-28 bg-white border-b border-outline-variant/20 scroll-mt-24" id="four-phases">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">The Engineering Sequence</div>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black leading-tight">
             The 4-Step Method
           </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
-            Click through each phase below to see exact workflows, required client time, and technical deliverables produced.
+          <p class="text-xl text-black leading-relaxed">
+            Click through each phase below to see exact workflows,<br>required client time, and technical deliverables produced.
           </p>
         </div>
 
@@ -291,7 +299,7 @@
         <!-- Dynamic Phase Display Card -->
         <div class="animated-border-card max-w-5xl mx-auto">
           <div class="p-6 sm:p-10 rounded-2xl bg-[#0f131c] space-y-8" id="phase-content-card">
-            
+
             <!-- Phase Header -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant/30 pb-6">
               <div>
@@ -310,7 +318,7 @@
 
             <!-- Phase Body Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              
+
               <!-- Left Explanation -->
               <div class="lg:col-span-7 space-y-4">
                 <h4 class="text-white font-semibold text-lg">What happens in this phase:</h4>
@@ -346,7 +354,7 @@
                   <span>Tangible Deliverables</span>
                   <span class="material-symbols-outlined text-sm">inventory_2</span>
                 </div>
-                
+
                 <ul class="space-y-3 text-xs sm:text-sm text-slate-300" id="phase-deliverables-list">
                   <li class="flex items-center gap-2">
                     <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
@@ -400,26 +408,22 @@
          ========================================== -->
     <section class="py-20 md:py-28 bg-[#f9f8f6] border-b border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="text-emerald-700 font-mono text-xs uppercase font-bold tracking-wider">Our Standards</div>
           <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111827]">
             Disciplined Engineering vs. Agency Theater
           </h2>
-          <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
-            We hold ourselves to strict architectural principles so your software survives real-world operation.
+          <p class="text-xl text-black leading-relaxed">
+            We hold ourselves to strict architectural principles<br>so your software survives real-world operation.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          
+
           <!-- What We Do -->
           <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-6">
             <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
-              <div class="w-8 h-8 rounded-full bg-lime-100 text-lime-800 flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">check</span>
-              </div>
-              <h3 class="text-xl font-bold text-slate-900">What We Build &amp; Practice</h3>
+              <h3 class="text-2xl font-bold text-slate-900">What We Build &amp; Practice</h3>
             </div>
 
             <ul class="space-y-4 text-sm text-slate-700">
@@ -457,10 +461,7 @@
           <!-- What We Reject -->
           <div class="p-8 rounded-2xl bg-white border border-rose-100 shadow-sm space-y-6">
             <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
-              <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">close</span>
-              </div>
-              <h3 class="text-xl font-bold text-slate-900">What We Strictly Reject</h3>
+              <h3 class="text-2xl font-bold text-slate-900">What We Strictly Reject</h3>
             </div>
 
             <ul class="space-y-4 text-sm text-slate-700">
@@ -503,26 +504,25 @@
          ========================================== -->
     <section class="py-20 md:py-28 bg-surface-container border-b border-outline-variant/20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">Communication &amp; Cadence</div>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white lg:whitespace-nowrap">
             How We Collaborate Day-to-Day
           </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
-            Direct access to senior software engineers. No non-technical account managers playing telephone.
+          <p class="text-xl text-on-surface-variant leading-relaxed">
+            Direct access to senior software engineers.<br>No non-technical account managers playing telephone.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          
+
           <!-- Card 1 -->
           <div class="p-6 rounded-2xl bg-surface-container-high border border-outline-variant/40 space-y-4">
             <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
               <span class="material-symbols-outlined">forum</span>
             </div>
             <h3 class="text-lg font-bold text-white">Shared Private Slack Channel</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               Real-time async communication directly with our core engineering team. Ask questions, share screenshots, and receive fast updates.
             </p>
             <div class="text-xs font-mono text-primary pt-2">Zero intermediate layers</div>
@@ -534,7 +534,7 @@
               <span class="material-symbols-outlined">videocam</span>
             </div>
             <h3 class="text-lg font-bold text-white">Weekly Live Demos &amp; Looms</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               Every Friday, we ship a live demonstration of working features or record concise 3-minute video walkthroughs of everything added.
             </p>
             <div class="text-xs font-mono text-primary pt-2">Verifiable progress weekly</div>
@@ -546,7 +546,7 @@
               <span class="material-symbols-outlined">code</span>
             </div>
             <h3 class="text-lg font-bold text-white">Transparent Git Repositories</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               Your technical leaders are added to the private GitHub repository from day one. Full commit logs, pull requests, and automated tests.
             </p>
             <div class="text-xs font-mono text-primary pt-2">Full repository transparency</div>
@@ -558,26 +558,25 @@
     <!-- ==========================================
          METHOD CASE STUDY WALKTHROUGH
          ========================================== -->
-    <section class="py-20 md:py-28 bg-surface-container-lowest border-b border-outline-variant/20">
+    <section class="py-20 md:py-28 bg-[#CBDBE4] border-b border-outline-variant/20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">Real Project Journey</div>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black">
             The Method in Action: VitalSpark SaaS
           </h2>
-          <p class="text-base sm:text-lg text-on-surface-variant leading-relaxed">
+          <p class="text-xl text-black leading-relaxed">
             How our 4-step sequence took a health company from manual spreadsheet coaching to automated AI personalization in 4 weeks.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto relative">
-          
+
           <!-- Step 1 in Action -->
           <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
             <div class="text-xs font-mono text-primary font-bold">WEEK 1 · DIAGNOSE</div>
-            <h4 class="text-white font-bold text-base">The Bottleneck</h4>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
+            <h4 class="text-white font-bold text-xl">The Bottleneck</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               VitalSpark trainers spent 4.5 hours per client manually writing custom workout splits across 7 different spreadsheets, limiting client intake to 15 members monthly.
             </p>
           </div>
@@ -585,8 +584,8 @@
           <!-- Step 2 in Action -->
           <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
             <div class="text-xs font-mono text-primary font-bold">WEEK 2 · DESIGN</div>
-            <h4 class="text-white font-bold text-base">The Architecture</h4>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
+            <h4 class="text-white font-bold text-xl">The Architecture</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               Designed a deterministic prompt routing engine tied to an exercise biomechanics database with strict injury-prevention validation rules.
             </p>
           </div>
@@ -594,8 +593,8 @@
           <!-- Step 3 in Action -->
           <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
             <div class="text-xs font-mono text-primary font-bold">WEEKS 3-4 · PROVE</div>
-            <h4 class="text-white font-bold text-base">The Prototype</h4>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
+            <h4 class="text-white font-bold text-xl">The Prototype</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               Shipped a working web app to 25 beta testers. Generated full 12-week workout and nutrition plans in 8 seconds, reviewed and approved by head coaches.
             </p>
           </div>
@@ -603,8 +602,8 @@
           <!-- Step 4 in Action -->
           <div class="p-6 rounded-xl bg-surface-container border border-outline-variant/40 space-y-3">
             <div class="text-xs font-mono text-primary font-bold">WEEK 4+ · REUSE</div>
-            <h4 class="text-white font-bold text-base">Full Handover</h4>
-            <p class="text-xs text-on-surface-variant leading-relaxed">
+            <h4 class="text-white font-bold text-xl">Full Handover</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
               VitalSpark onboarded 150+ paid subscribers in month one with zero trainer burnout. Internal team trained to manage database and prompt models independently.
             </p>
           </div>
@@ -617,11 +616,10 @@
          ========================================== -->
     <section class="py-20 md:py-28 bg-surface-container border-b border-outline-variant/20">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div class="text-center mb-16 space-y-3">
-          <div class="text-primary font-mono text-xs uppercase font-bold tracking-wider">Process Clarifications</div>
           <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Frequently Asked Questions</h2>
-          <p class="text-base text-on-surface-variant">Common questions regarding our timeline, process, and deliverables.</p>
+          <p class="text-xl text-on-surface-variant">Common questions regarding our timeline, process, and deliverables.</p>
         </div>
 
         <div class="space-y-4">
@@ -680,7 +678,7 @@
         <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
           Ready to Start with Phase 01: The Bottleneck Diagnosis?
         </h2>
-        <p class="text-base sm:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+        <p class="text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
           Book a free 30-minute discovery call with our technical leadership. We'll examine your process and outline the high-ROI fixes.
         </p>
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -702,16 +700,12 @@
   <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-outline-variant/20">
-        
+
         <!-- Brand / Info -->
         <div class="space-y-3">
           <div class="flex items-center space-x-2.5">
-            <div class="h-7 w-7 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-sm">M</div>
-            <span class="font-headline-md text-lg font-bold text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+            <img class="w-36 h-auto" src="/assets/mobilelab-logo.svg" alt="Mobile Lab">
           </div>
-          <p class="font-body-sm text-xs text-on-surface-variant max-w-md leading-relaxed">
-            Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
-          </p>
         </div>
 
         <!-- Links -->
@@ -731,6 +725,9 @@
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-on-surface-variant gap-4 text-center sm:text-left">
         <div>
           © 2025 Mobile Lab · Aura Vera Agency. All rights reserved. Zero vanity proof policy.
+        </div>
+        <div class="text-center sm:text-left">
+          Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
         </div>
         <div class="flex items-center space-x-4">
           <!-- Facebook -->
@@ -780,9 +777,11 @@
         if (isHidden) {
           mobileNav.classList.remove('hidden');
           mobileMenuIcon.textContent = 'close';
+          mobileMenuBtn.setAttribute('aria-expanded', 'true');
         } else {
           mobileNav.classList.add('hidden');
           mobileMenuIcon.textContent = 'menu';
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
       });
     }
@@ -947,6 +946,20 @@
       dotsContainer.innerHTML = [0, 1, 2, 3].map(i => `
         <span class="w-2 h-2 rounded-full ${i === index ? 'bg-primary' : 'bg-slate-600'}"></span>
       `).join('');
+
+      const nextButton = document.getElementById('phase-next-btn');
+      const nextLabel = nextButton.querySelector('span');
+      if (index === phasesData.length - 1) {
+        nextLabel.textContent = 'Talk to Us';
+        nextButton.onclick = () => { window.location.href = '/contact'; };
+        nextButton.classList.remove('text-primary', 'hover:text-white', 'text-xs', 'font-mono');
+        nextButton.classList.add('bg-primary', 'text-on-primary', 'px-4', 'py-2', 'rounded-lg', 'shadow-md');
+      } else {
+        nextLabel.textContent = 'Next Phase';
+        nextButton.onclick = nextPhase;
+        nextButton.classList.remove('bg-primary', 'text-on-primary', 'px-4', 'py-2', 'rounded-lg', 'shadow-md');
+        nextButton.classList.add('text-primary', 'hover:text-white', 'text-xs', 'font-mono');
+      }
     }
 
     function prevPhase() {
@@ -967,5 +980,5 @@
       });
     });
   </script>
-</body>
+<script>document.querySelectorAll('a[download="mobilelab-github.zip"]').forEach((link) => link.remove());</script></body>
 </html>

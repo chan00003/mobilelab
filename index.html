@@ -1,6 +1,8 @@
 <!DOCTYPE html><html class="dark scroll-smooth" lang="en" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico" type="image/x-icon">
 <title>Mobile Lab | AI Systems &amp; Automation</title>
 <meta name="description" content="Mobile Lab designs and builds AI systems, workflows, and automation that increase revenue and streamline operations.">
 <meta property="og:type" content="website">
@@ -74,7 +76,7 @@
             "on-primary-fixed": "#0e2000",
             "outline": "#8b947d",
             "background": "#0f131c",
-            "on-surface-variant": "#c1cab1",
+            "on-surface-variant": "#fff",
             "on-secondary-container": "#006a6f",
             "on-surface": "#dfe2ee",
             "surface-tint": "#8bdc34",
@@ -172,6 +174,19 @@
     }
   </style>
 <style class="" id="montserrat-global-font">body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, select, label, div:not(.material-symbols-outlined), span:not(.material-symbols-outlined) { font-family: 'Montserrat', sans-serif !important; }</style><style class="" id="animated-card-border-styles">@property --card-border-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; } @keyframes rotateCardBorder { 0% { --card-border-angle: 0deg; } 100% { --card-border-angle: 360deg; } } .animated-border-card { position: relative; border-radius: 1rem; padding: 1.5px; overflow: hidden; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, #8cdd35 0deg, #6ff6ff 60deg, transparent 130deg, rgba(65, 74, 55, 0.4) 220deg, transparent 300deg, #8cdd35 360deg); animation: rotateCardBorder 5s linear infinite; filter: drop-shadow(0 0 14px rgba(140, 221, 53, 0.18)); } .animated-border-card::before { content: ''; position: absolute; inset: -2px; z-index: -1; border-radius: inherit; background: conic-gradient(from var(--card-border-angle, 0deg) at 50% 50%, rgba(140, 221, 53, 0.4) 0deg, rgba(111, 246, 255, 0.4) 60deg, transparent 140deg, transparent 300deg, rgba(140, 221, 53, 0.4) 360deg); filter: blur(4px); opacity: 0.6; animation: rotateCardBorder 5s linear infinite; }</style></head>
+<style id="accessibility-refinements">
+  :focus-visible { outline: 3px solid #8cdd35; outline-offset: 3px; }
+  #mobile-menu-btn { min-width: 44px; min-height: 44px; }
+  .mobile-nav-link { min-height: 44px; }
+  section { scroll-margin-top: 5rem; }
+  h1, h2 { text-wrap: balance; }
+  button:disabled { cursor: wait; opacity: 0.65; transform: none !important; }
+  .form-feedback-error { background: #fef2f2 !important; border-color: #fecaca !important; color: #991b1b !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
+    #header-glow { display: none !important; }
+  }
+</style>
 <body class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary min-h-screen relative overflow-x-hidden w-full max-w-full">
 <!-- Interactive Header Radial Glow Tracker -->
 <div class="fixed pointer-events-none rounded-full blur-[100px] bg-primary/20 w-80 h-80 -translate-x-1/2 -translate-y-1/2 z-40 transition-opacity duration-300 opacity-0" id="header-glow" style="opacity: 0; left: 25px; top: 42px;"></div>
@@ -185,8 +200,7 @@
 <header class="docked top-0 sticky z-50 bg-surface/85 backdrop-blur-md shadow-sm border-b border-outline-variant/40 w-full" id="site-header">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between w-full">
 <a class="flex items-center space-x-3 group" href="#">
-<div class="h-9 w-9 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-lg shadow-sm">M</div>
-<span class="font-headline-md text-xl font-bold tracking-tight text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+<img class="w-36 sm:w-44 h-auto" src="/assets/mobilelab-logo.svg" alt="Mobile Lab">
 </a>
 <nav class="hidden md:flex items-center space-x-6 lg:space-x-8"><a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="/services">Services</a>
 <a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 text-label-lg font-label-lg" href="/how-we-work">How We Work</a>
@@ -196,7 +210,7 @@
 <a class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-on-primary font-headline-sm text-sm font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-md" href="/contact"><span class="">Talk to Us</span></a></nav>
 <!-- Mobile Navigation Toggle -->
 <div class="flex items-center md:hidden">
-<button aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
+<button aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav" class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container transition-colors focus:outline-none" id="mobile-menu-btn" type="button">
 <span class="material-symbols-outlined text-3xl" id="mobile-menu-icon">menu</span>
 </button>
 </div>
@@ -225,7 +239,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="flex flex-col items-center justify-center text-center mx-auto space-y-6 sm:space-y-8 max-w-7xl">
 <h1 class="font-display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[68px] leading-tight text-on-surface tracking-tight font-bold w-full max-w-7xl mx-auto flex flex-col items-center justify-center text-center gap-2 px-2"><style>@keyframes gradientRtl{0%{background-position:200% center}100%{background-position:-200% center}}.running-gradient-ai{background:linear-gradient(270deg,#72c012,#a3e635,#38bdf8,#72c012,#a3e635);background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;animation:gradientRtl 18s linear infinite;}</style><span class="block running-gradient-ai text-center">AI and Automation</span><span class="block text-center sm:whitespace-nowrap">Built to Increase Revenue,</span><span class="block text-center sm:whitespace-nowrap">Cut Wasted Work, and Stick.</span></h1>
-<p class="font-body-lg text-base sm:text-lg md:text-xl lg:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mx-auto px-4" style="color: rgb(255, 255, 255);">We diagnose your exact bottleneck, design the simplest fixing system, and prove it works with zero AI hype or fake proof.</p>
+<p class="font-body-lg text-base sm:text-lg md:text-xl lg:text-2xl text-on-surface-variant max-w-4xl leading-relaxed mx-auto px-4" style="color: rgb(255, 255, 255);">We diagnose your exact bottleneck, design the simplest fixing system,<br>and prove it works with zero AI hype or fake proof.</p>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-5 w-full sm:w-auto px-4"><a class="w-full sm:w-auto inline-flex items-center justify-center px-8 sm:px-9 py-3.5 sm:py-4.5 rounded-xl bg-primary text-on-primary font-headline-sm text-base sm:text-lg font-bold tracking-wide transition-all duration-200 hover:scale-105 glow-primary active:scale-95 shadow-lg" href="#projects"><span class="">See Latest Projects</span><span class="material-symbols-outlined ml-2 text-2xl">arrow_forward</span></a></div><div class="pt-6 sm:pt-8 mt-2 w-full max-w-3xl mx-auto px-2 sm:px-4">
 <div class="grid grid-cols-2 divide-x divide-outline-variant/30 py-3 sm:py-4 w-full max-w-3xl mx-auto" style="border-color: rgba(65, 74, 55, 0.8);"><div class="flex flex-col items-center justify-center px-2 sm:px-7 text-center"><span class="font-display-hero tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[76px] counter-animate" data-target="13" data-duration="1800" style="font-weight: 300; color: rgb(255, 255, 255); text-shadow: rgba(255, 255, 255, 0.38) 0px 0px 18px; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block;">0</span><span class="font-mono text-xs sm:text-base md:text-lg text-on-surface-variant uppercase tracking-wider mt-1.5 sm:mt-2.5 font-medium" style="color: rgb(255, 255, 255);">Years In Business</span></div><div class="flex flex-col items-center justify-center px-2 sm:px-7 text-center" style="border-color: rgba(65, 74, 55, 0.8);"><span class="font-display-hero tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-[76px] counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-weight: 300; color: rgb(255, 255, 255); text-shadow: rgba(255, 255, 255, 0.38) 0px 0px 18px; line-height: 1.1; font-variant-numeric: tabular-nums; display: inline-block;">0+</span><span class="font-mono text-xs sm:text-base md:text-lg text-on-surface-variant uppercase tracking-wider mt-1.5 sm:mt-2.5 font-medium" style="color: rgb(255, 255, 255);">Clients Served</span></div></div>
 </div><div class="w-full mx-auto mt-12 sm:mt-16 pt-6 border-t border-outline-variant/20 px-4 sm:px-8"><style>@keyframes brandMarquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } } .animate-marquee { display: flex; width: max-content; animation: brandMarquee 28s linear infinite; } .animate-marquee:hover { animation-play-state: paused; }</style><p class="text-xs uppercase tracking-widest text-slate-400 font-medium mb-6 text-center">Trusted By Brands</p><div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"><div class="animate-marquee flex items-center gap-12"><div class="flex items-center gap-16 shrink-0"><img alt="YourVcam" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-6342992ee4.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="We Love LED" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-1bd7fb7ce5.webp" width="102" height="80" decoding="async" loading="lazy"><img alt="Tampa Strength" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-3311de6663.webp" width="95" height="95" decoding="async" loading="lazy"><img alt="Intercity Perfumes" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-1924ba6c49.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="GoRunners" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-79101e9c13.webp" width="96" height="83" decoding="async" loading="lazy"><img alt="Broome Street" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-05ffa92e4c.webp" width="240" height="40" decoding="async" loading="lazy"><img alt="Avidian" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-c4de067aee.webp" width="165" height="41" decoding="async" loading="lazy"></div><div aria-hidden="true" class="flex items-center gap-16 shrink-0"><img alt="YourVcam" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-c1c8f6512a.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="We Love LED" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-60df726d53.webp" width="102" height="80" decoding="async" loading="lazy"><img alt="Tampa Strength" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-8049566dda.webp" width="95" height="95" decoding="async" loading="lazy"><img alt="Intercity Perfumes" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-464e9668f1.webp" width="180" height="65" decoding="async" loading="lazy"><img alt="GoRunners" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-ab8c572c61.webp" width="96" height="83" decoding="async" loading="lazy"><img alt="Broome Street" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-85019b70e3.webp" width="240" height="40" decoding="async" loading="lazy"><img alt="Avidian" class="h-12 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity filter grayscale contrast-125" src="/assets/images/img-e60fcb6ee9.webp" width="165" height="41" decoding="async" loading="lazy"></div></div></div></div>
@@ -379,7 +393,7 @@
 <!-- ==========================================================
      SECTION 7: SOCIAL PROOF / AS SEEN ON (Dark Obsidian Background)
      ========================================================== -->
-<section class="pt-16 sm:pt-20 md:pt-24 pb-0 border-b border-outline-variant/30 relative overflow-hidden" id="recognition" style="background-color: rgb(203, 219, 228);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-4xl mx-auto pt-4 sm:pt-6 mb-4 sm:mb-6 flex flex-col items-center"><h2 class="font-headline-xl text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 leading-tight text-black">The Tale of Our Achievement Story</h2><p class="font-body-lg text-slate-700 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">We engineer lean, high-leverage platforms and AI automation systems built to cut wasted operational hours and deliver concrete revenue growth across modern enterprises.</p></div><div class="relative flex flex-col md:flex-row items-center justify-center gap-6 md:-space-x-8 pt-2 sm:pt-3 max-w-5xl mx-auto z-30 -mb-16 sm:-mb-20 md:-mb-24 lg:-mb-28"><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:-rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-7 h-7 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path><path d="M10.5 7.5A2 2 0 0 1 12 7a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2h-1"></path><path d="M9 11.5V10a1.5 1.5 0 0 1 3 0v4.5"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white"><span class="counter-animate" data-target="13" data-suffix="+" data-duration="1800" style="font-variant-numeric: tabular-nums;">0+</span> Years</h3><p class="text-sm md:text-base leading-snug text-slate-300">Influencing Digital Landscapes Together</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:-rotate-1 hover:rotate-0 hover:scale-105 hover:z-40 z-20 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-7 h-7 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M7 4v16l-3-3"></path><path d="M7 4l3 3"></path><path d="M17 20V4l3 3"></path><path d="M17 20l-3-3"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white"><span class="counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-variant-numeric: tabular-nums;">0+</span> Projects</h3><p class="text-sm md:text-base leading-snug text-slate-300">Excellence Achieved Through Success.</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-8 h-8 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 2 2Z"></path><path d="M8 21h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-6.9a2 2 0 0 1-1.69-.9L10.6 7.9A2 2 0 0 0 8.93 7H6"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white">Giving Back</h3><p class="text-sm md:text-base leading-snug text-slate-300">Mirrors our Focus on Client Satisfaction.</p></div></div></div></section>
+<section class="pt-16 sm:pt-20 md:pt-24 pb-0 border-b border-outline-variant/30 relative overflow-hidden" id="recognition" style="background-color: rgb(203, 219, 228);"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center max-w-4xl mx-auto pt-4 sm:pt-6 mb-4 sm:mb-6 flex flex-col items-center"><h2 class="font-headline-xl text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 leading-tight text-black">The Tale of Our Achievement Story</h2><p class="font-body-lg text-slate-700 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">We engineer lean, high-leverage platforms and AI automation systems built to cut wasted operational hours and deliver concrete revenue growth across modern enterprises.</p></div><div class="relative flex flex-col md:flex-row items-center justify-center gap-6 md:-space-x-8 pt-2 sm:pt-3 max-w-5xl mx-auto z-30 -mb-16 sm:-mb-20 md:-mb-24 lg:-mb-28"><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:-rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-7 h-7 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path><path d="M10.5 7.5A2 2 0 0 1 12 7a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2h-1"></path><path d="M9 11.5V10a1.5 1.5 0 0 1 3 0v4.5"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white"><span class="counter-animate" data-target="15" data-suffix="+" data-duration="1800" style="font-variant-numeric: tabular-nums;">0+</span> Years</h3><p class="text-sm md:text-base leading-snug text-slate-300">Influencing Digital Landscapes Together</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:-rotate-1 hover:rotate-0 hover:scale-105 hover:z-40 z-20 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-7 h-7 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M7 4v16l-3-3"></path><path d="M7 4l3 3"></path><path d="M17 20V4l3 3"></path><path d="M17 20l-3-3"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white"><span class="counter-animate" data-target="220" data-suffix="+" data-duration="2200" style="font-variant-numeric: tabular-nums;">0+</span> Projects</h3><p class="text-sm md:text-base leading-snug text-slate-300">Excellence Achieved Through Success.</p></div><div class="w-full max-w-[340px] md:max-w-none md:w-[320px] min-h-[300px] md:h-[340px] bg-[#181c24] rounded-t-[20px] rounded-b-none p-6 sm:p-7 flex flex-col items-center justify-start pt-8 text-center transition-all duration-300 transform md:rotate-6 hover:rotate-0 hover:scale-105 hover:z-40 z-10 cursor-pointer border-t border-x border-b-0 border-outline-variant/40 shadow-2xl"><div class="w-14 h-14 rounded-full flex items-center justify-center mb-4 text-primary bg-primary/20"><svg class="w-8 h-8 stroke-current fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 2 2Z"></path><path d="M8 21h12a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-6.9a2 2 0 0 1-1.69-.9L10.6 7.9A2 2 0 0 0 8.93 7H6"></path></svg></div><h3 class="text-2xl sm:text-3xl font-bold mb-2 tracking-tight text-white">Giving Back</h3><p class="text-sm md:text-base leading-snug text-slate-300">Mirrors our Focus on Client Satisfaction.</p></div></div></div></section>
 <!-- ==========================================================
      SECTION 8: TESTIMONIALS (Crisp White Background)
      ========================================================== -->
@@ -444,19 +458,19 @@
      SECTION 9: FINAL CTA & INTAKE FORM (Dark Obsidian Background)
      ========================================================== -->
 <!-- Footer & Contact CTA -->
-<section class="w-full border-t border-[#E2E8F0] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12" id="contact" style="background-color: #fbfbfd;">
+<section class="w-full border-t border-[#374151] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12" id="contact" style="background-color: #1f2937;">
 <div class="max-w-3xl mx-auto flex flex-col items-center">
   <div class="text-center mb-10 sm:mb-12 space-y-3 px-2">
-    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B132B] tracking-tight leading-tight">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
       Talk to us about your bottleneck
     </h2>
-    <p class="text-base sm:text-lg md:text-xl text-[#4A5568] max-w-2xl mx-auto font-normal leading-relaxed">
+    <p class="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto font-normal leading-relaxed">
       Tell us where work gets stuck — we’ll diagnose before we build.
     </p>
   </div>
 
   <div class="w-full bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-6 sm:p-10 md:p-12 relative transition-all">
-    <form class="space-y-6" id="ai-inquiry-form" onsubmit="event.preventDefault(); const fb = document.getElementById('form-feedback'); if(fb) fb.classList.remove('hidden'); this.reset();">
+    <form class="space-y-6" id="ai-inquiry-form" onsubmit="event.preventDefault(); submitContactForm(this);">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
         <!-- 1. Name -->
         <div class="flex flex-col space-y-2 text-left">
@@ -464,7 +478,7 @@
             <label for="diagnostic-name" class="text-sm font-semibold text-[#1A202C]">1. Name</label>
             <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
           </div>
-          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-name" placeholder="Your name" required="" type="text">
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-name" name="name" placeholder="Your name" required="" type="text">
         </div>
         <!-- 2. Work email -->
         <div class="flex flex-col space-y-2 text-left">
@@ -472,7 +486,7 @@
             <label for="diagnostic-email" class="text-sm font-semibold text-[#1A202C]">2. Work email</label>
             <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
           </div>
-          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-email" placeholder="name@company.com" required="" type="email">
+          <input class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm" id="diagnostic-email" name="email" placeholder="name@company.com" required="" type="email">
         </div>
       </div>
 
@@ -482,7 +496,7 @@
           <label for="diagnostic-fix" class="text-sm font-semibold text-[#1A202C]">3. What you’re trying to fix</label>
           <span class="text-[11px] font-bold uppercase tracking-wider text-[#8cdd35] font-mono">REQUIRED</span>
         </div>
-        <textarea class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm resize-y min-h-[140px]" id="diagnostic-fix" placeholder="Describe where work gets stuck, manual handoffs, or spreadsheet bottlenecks..." required="" rows="5"></textarea>
+        <textarea class="w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC]/50 px-4 py-3.5 text-sm sm:text-base text-[#1A202C] placeholder-[#94A3B8] focus:bg-white focus:outline-none focus:border-[#8cdd35] focus:ring-2 focus:ring-[#8cdd35]/25 transition-all shadow-sm resize-y min-h-[140px]" id="diagnostic-fix" name="fix" placeholder="Describe where work gets stuck, manual handoffs, or spreadsheet bottlenecks..." required="" rows="5"></textarea>
       </div>
 
       <!-- Submit Button -->
@@ -493,7 +507,7 @@
         </button>
       </div>
 
-      <div class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all" id="form-feedback">
+      <div class="hidden rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-sm font-medium text-emerald-800 transition-all" id="form-feedback" role="status" aria-live="polite">
         <div class="flex items-center justify-center gap-2 mb-1">
           <span class="material-symbols-outlined text-emerald-600">check_circle</span>
           <span class="font-bold">Thank you for submitting!</span>
@@ -512,12 +526,8 @@
 <!-- Brand / Info -->
 <div class="space-y-3">
 <div class="flex items-center space-x-2.5">
-<div class="h-7 w-7 rounded-full bg-primary flex items-center justify-center font-headline-md font-bold text-on-primary text-sm">M</div>
-<span class="font-headline-md text-lg font-bold text-on-surface">Mobile <span class="text-primary">Lab</span></span>
+<img class="w-36 h-auto" src="/assets/mobilelab-logo.svg" alt="Mobile Lab">
 </div>
-<p class="font-body-sm text-xs text-on-surface-variant max-w-md leading-relaxed">
-          Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
-        </p>
 </div>
 <!-- Links -->
 <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-label-lg"><a class="text-on-surface-variant hover:text-primary transition-colors" href="/services">Services</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="/how-we-work">How We Work</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="/about">About</a><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contact">Contact</a><a class="inline-flex items-center gap-1.5 text-primary hover:text-white transition-colors border border-primary/40 hover:border-primary px-3 py-1 rounded-lg text-xs font-mono font-medium" download="mobilelab-github.zip" href="/download"><span class="material-symbols-outlined text-sm">download</span>Download for GitHub (.zip)</a></div>
@@ -526,6 +536,9 @@
 <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-on-surface-variant gap-4 text-center sm:text-left">
 <div class="">
         © 2025 Mobile Lab · Aura Vera Agency. All rights reserved. Zero vanity proof policy.
+      </div>
+<div class="text-center sm:text-left">
+        Mobile Lab · trade name under Aura Vera Agency · AI systems &amp; business automation
       </div>
 <div class="flex items-center space-x-4"><a aria-label="Facebook" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a><a aria-label="X" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a><a aria-label="Instagram" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a><a aria-label="YouTube" class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/60 hover:bg-surface-container-high transition-all duration-200" href="#"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a></div>
 </div>
@@ -557,9 +570,11 @@
       if (isHidden) {
         mobileNav.classList.remove('hidden');
         mobileMenuIcon.textContent = 'close';
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
       } else {
         mobileNav.classList.add('hidden');
         mobileMenuIcon.textContent = 'menu';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       }
     });
 
@@ -567,6 +582,7 @@
       link.addEventListener('click', () => {
         mobileNav.classList.add('hidden');
         mobileMenuIcon.textContent = 'menu';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -671,6 +687,36 @@
       }
     }
 
+    async function submitContactForm(form) {
+      const feedback = document.getElementById('form-feedback');
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (!feedback) return;
+      feedback.classList.remove('hidden');
+      feedback.classList.remove('form-feedback-error');
+      feedback.setAttribute('role', 'status');
+      feedback.tabIndex = -1;
+      if (submitButton) submitButton.disabled = true;
+      feedback.textContent = 'Submitting...';
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || 'Submission could not be delivered.');
+        feedback.textContent = 'Thank you for submitting!';
+        form.reset();
+      } catch (error) {
+        feedback.classList.add('form-feedback-error');
+        feedback.setAttribute('role', 'alert');
+        feedback.textContent = error.message;
+        feedback.focus();
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    }
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initMetricCounters);
     } else {
@@ -679,4 +725,15 @@
   })();
 </script>
 
-</body></html>
+<script>
+  document.querySelectorAll('#method-steps-container .method-step-btn').forEach((button, index) => {
+    button.setAttribute('aria-controls', 'method-step-heading');
+    button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+    button.addEventListener('click', () => {
+      document.querySelectorAll('#method-steps-container .method-step-btn').forEach((step, stepIndex) => {
+        step.setAttribute('aria-selected', stepIndex === index ? 'true' : 'false');
+      });
+    });
+  });
+</script>
+<style>#who-its-for h3 { color: #DFE2EE !important; }</style><script>document.querySelector('#recognition .counter-animate')?.setAttribute('data-target', '13');</script><script>const methodSubtitle = document.querySelector('#how-we-work > div > div:first-child p'); if (methodSubtitle) methodSubtitle.innerHTML = 'A rigorous engineering sequence to dismantle bottlenecks<br>and deliver permanent systems.';</script><script>document.querySelectorAll('a[download="mobilelab-github.zip"]').forEach((link) => link.remove());</script></body></html>

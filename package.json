@@ -6,14 +6,21 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
+    "test": "node --test test/server.test.js",
+    "test:e2e": "node --test test/e2e.test.js && playwright test",
+    "test:remote": "playwright test --config=playwright.remote.config.js",
     "build": "echo 'Build complete'",
     "lint": "echo 'No lint errors'"
   },
   "dependencies": {
+    "archiver": "^8.0.0",
     "compression": "^1.8.2",
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "sharp": "^0.35.5"
+    "playwright": "^1.64.0",
+    "@playwright/test": "^1.64.0",
+    "sharp": "^0.35.5",
+    "unzipper": "^0.12.5"
   }
 }

@@ -5,3 +5,13 @@ node_modules/
 .DS_Store
 dist/
 .cache/
+graphify-out/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+artifacts/
+playwright-report/
+test-results/
+.playwright/
