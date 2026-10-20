@@ -21,6 +21,7 @@ const ARCHIVE_FILES = [
   ['work.html', 'work.html'],
   ['content.html', 'content.html'],
   ['content.js', 'content.js'],
+  ['blog-content.js', 'blog-content.js'],
   ['content.css', 'content.css'],
   ['navigation.js', 'navigation.js'],
   ['mobilelab-ogimage.png', 'mobilelab-ogimage.png'],
@@ -216,6 +217,7 @@ app.get('/blog/:slug', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, '
 app.get('/work/:slug', (req, res) => sendCachedHtml(res, path.join(PUBLIC_DIR, 'content.html')));
 app.get('/content.css', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'content.css')));
 app.get('/content.js', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'content.js')));
+app.get('/blog-content.js', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'blog-content.js')));
 app.get('/navigation.js', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'navigation.js')));
 app.get('/mobilelab-ogimage.png', (req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

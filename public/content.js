@@ -1,3 +1,5 @@
+import { expandedArticles } from '/blog-content.js';
+
 const posts = [
   ['why-most-business-automation-fails', 'Why Most Business Automation Fails (And How to Fix It)', 'Automation strategy', 'Buying a new AI chatbot rarely solves operational confusion. Diagnose how work moves first, then design, prove, and reuse the smallest system that fixes the bottleneck.', [['Diagnose', 'Locate the exact operational bottleneck before choosing software or writing code.'], ['Design', 'Plan the simplest maintainable system with clear internal ownership.'], ['Prove', 'Verify execution against pre-agreed acceptance criteria.'], ['Reuse', 'Turn successful workflows into playbooks as the team scales.']], ['Buying a new AI chatbot or adding another SaaS subscription rarely solves operational confusion. If the underlying business process is disorganized, automation simply speeds up the disorganization.', 'Most AI projects become shelfware because teams attempt to automate surface symptoms rather than diagnosing structural process leaks. At Mobile Lab, we follow a strict four-step method to ensure systems stick.', 'Before investing in new software, fix how work moves.']],
   ['hidden-cost-spreadsheet-operations', 'The Hidden Cost of “Spreadsheet Operations”', 'Operations', 'When the same facts are retyped across spreadsheets, group chats, and email threads, profit margins leak quietly through errors, status friction, and disconnected data.', [['Human error', 'Repeated typing guarantees information drift and costly mistakes.'], ['Status friction', 'Teams ask for updates instead of viewing a single source of truth.'], ['Data disconnect', 'Reporting gets delayed while back-office records are reconciled manually.']], ['When the same facts are retyped across spreadsheets, group chats, and email threads, profit margins leak quietly.', 'Manual data re-entry creates operational drag in three distinct ways: typing order details or booking notes multiple times guarantees information drift; employees spend hours asking for status updates instead of viewing a source of truth; and reporting gets delayed while back-office records are reconciled manually from multiple sheets.', 'Moving away from spreadsheet chaos does not require replacing every tool at once. Start by identifying repeated jobs such as order intake, dispatch, or invoice processing, then put them into a structured workflow the team can reliably operate.']],
@@ -29,6 +31,58 @@ const footer = () => `<footer class="content-footer"><div class="footer-inner"><
 const esc = (value) => value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const card = (item, index, type) => `<article class="content-card"><span class="card-number">${String(index + 1).padStart(2, '0')} · ${type === 'blog' ? esc(item[2]) : 'FOUNDER-BUILT'}</span><h2>${esc(item[1])}</h2><p>${esc(type === 'blog' ? item[3] : item[4])}</p><a class="card-link" href="/${type === 'blog' ? 'blog' : 'work'}/${item[0]}">Read ${type === 'blog' ? 'the post' : 'the case study'} <span aria-hidden="true">→</span></a></article>`;
 
+const headingSlug = (value) => value.toLowerCase().normalize('NFKD').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
+const articleWordCount = (item, article) => {
+  const text = [item[3], ...article.sections.flatMap((section) => [section.heading, ...section.paragraphs, ...(section.subsections || []).flatMap((subsection) => [subsection.heading, ...subsection.paragraphs, ...(subsection.faq || []).flat()])])].join(' ');
+  return text.split(/\s+/).filter(Boolean).length;
+};
+
+function renderBlogSections(article) {
+  const headings = [];
+  const usedIds = new Set();
+  const uniqueId = (heading) => {
+    const base = headingSlug(heading) || 'section';
+    let id = base;
+    let suffix = 2;
+    while (usedIds.has(id)) id = `${base}-${suffix++}`;
+    usedIds.add(id);
+    return id;
+  };
+  const html = article.sections.map((section) => {
+    const sectionId = uniqueId(section.heading);
+    headings.push({ id: sectionId, label: section.heading, level: 2 });
+    const sectionBody = section.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('');
+    const subsections = (section.subsections || []).map((subsection) => {
+      const subsectionId = uniqueId(subsection.heading);
+      headings.push({ id: subsectionId, label: subsection.heading, level: 3 });
+      const faq = (subsection.faq || []).map(([question, answer]) => `<h4>${esc(question)}</h4><p>${esc(answer)}</p>`).join('');
+      return `<h3 id="${subsectionId}">${esc(subsection.heading)}</h3>${subsection.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('')}${faq}`;
+    }).join('');
+    return `<h2 id="${sectionId}">${esc(section.heading)}</h2>${sectionBody}${subsections}`;
+  }).join('');
+  return { html, headings };
+}
+
+function setupTableOfContents(headings) {
+  const tocHeadings = headings.filter(({ level }) => level === 2);
+  const links = [...document.querySelectorAll('.toc-link')];
+  const targets = tocHeadings.map(({ id }) => document.getElementById(id)).filter(Boolean);
+  const activate = (id) => links.forEach((link) => {
+    const active = link.getAttribute('href') === `#${id}`;
+    link.classList.toggle('is-active', active);
+    if (active) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  if (!targets.length) return;
+  activate(targets[0].id);
+  if (!('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    if (visible[0]) activate(visible[0].target.id);
+  }, { rootMargin: '-118px 0px -62% 0px', threshold: 0 });
+  targets.forEach((target) => observer.observe(target));
+}
+
 function renderIndex(type) {
   const list = type === 'blog' ? posts : systems;
   if (!list.length) {
@@ -38,7 +92,7 @@ function renderIndex(type) {
   const title = type === 'blog' ? 'Operational notes for better systems.' : 'Selected systems, honestly labeled.';
   const intro = type === 'blog' ? 'Practical thinking on automation, operational design, and the work it takes to make systems stick.' : 'Founder-built software and operational architecture. See how data flows, what changed, and how “done” was proven.';
   document.title = `${type === 'blog' ? 'Blog' : 'Selected Systems'} | Mobile Lab`;
-  document.querySelector('#app').innerHTML = `<div class="content-shell">${nav(type)}<main class="content-main"><section class="content-hero"><span class="eyebrow">Mobile Lab · ${type === 'blog' ? 'Field notes' : 'Project archive'}</span><h1>${title}</h1><p>${intro}</p></section><section class="content-grid" aria-label="${type === 'blog' ? 'Blog posts' : 'Case studies'}">${list.map((item, index) => card(item, index, type)).join('')}</section></main>${footer()}</div>`;
+  document.querySelector('#app').innerHTML = `<div class="content-shell${type === 'work' ? ' work-light-shell' : ''}">${nav(type)}<main class="content-main"><section class="content-hero"><span class="eyebrow">Mobile Lab · ${type === 'blog' ? 'Field notes' : 'Project archive'}</span><h1>${title}</h1><p>${intro}</p></section><section class="content-grid" aria-label="${type === 'blog' ? 'Blog posts' : 'Case studies'}">${list.map((item, index) => card(item, index, type)).join('')}</section></main>${footer()}</div>`;
 }
 
 function renderDetail(type, slug) {
@@ -51,7 +105,25 @@ function renderDetail(type, slug) {
   const body = isBlog
     ? `${item[5].map((paragraph) => `<p>${esc(paragraph)}</p>`).join('')}<h2>What to do next</h2><ol>${sections}</ol>`
     : `<p><strong>The challenge:</strong> ${esc(item[3])}</p><p><strong>The solution:</strong> ${esc(item[4])}</p><p><strong>How done was proven:</strong> ${esc(item[5])}</p>`;
-  document.querySelector('#app').innerHTML = `<div class="content-shell">${nav(type)}<main class="content-main article-wrap"><article class="article"><span class="eyebrow">${isBlog ? 'Operational field note' : 'Founder-built system'}</span><h1>${esc(title)}</h1><div class="article-meta"><span class="tag">${esc(isBlog ? item[2] : 'Founder-built')}</span><span class="tag">Mobile Lab</span></div><p class="article-intro">${esc(isBlog ? item[3] : item[4])}</p><div class="article-body"><h2>${isBlog ? 'The operating principle' : esc(item[2])}</h2>${body}</div><div class="article-cta"><strong>${isBlog ? 'Have a similar bottleneck?' : 'Have a similar operational challenge?'}</strong><br><span>Tell us where work gets stuck — we’ll diagnose before we build.</span><br><a href="/contact">Talk to us <span aria-hidden="true">→</span></a></div></article></main>${footer()}</div>`;
+  if (!isBlog) {
+    document.querySelector('#app').innerHTML = `<div class="content-shell work-light-shell">${nav(type)}<main class="content-main article-wrap"><article class="article"><span class="eyebrow">Founder-built system</span><h1>${esc(title)}</h1><div class="article-meta"><span class="tag">Founder-built</span><span class="tag">Mobile Lab</span></div><p class="article-intro">${esc(item[4])}</p><div class="article-body"><h2>${esc(item[2])}</h2>${body}</div><div class="article-cta"><strong>Have a similar operational challenge?</strong><br><span>Tell us where work gets stuck — we’ll diagnose before we build.</span><br><a href="/contact">Talk to us <span aria-hidden="true">→</span></a></div></article></main>${footer()}</div>`;
+    return;
+  }
+
+  const article = expandedArticles[slug];
+  if (!article) return renderIndex(type);
+  const rendered = renderBlogSections(article);
+  const wordCount = articleWordCount(item, article);
+  const readingTime = Math.max(1, Math.ceil(wordCount / 225));
+  const tocLinks = rendered.headings.filter(({ level }) => level === 2).map(({ id, label }) => `<a class="toc-link" href="#${id}">${esc(label)}</a>`).join('');
+  const related = posts.filter((post) => post[0] !== slug).slice(0, 2);
+  const relatedLinks = related.map((post) => `<a class="related-link" href="/blog/${post[0]}"><span>${esc(post[2])}</span><strong>${esc(post[1])}</strong></a>`).join('');
+
+  const articleHtml = `<article class="blog-article article"><h1>${esc(title)}</h1><div class="article-meta"><span class="tag">${esc(item[2])}</span><span class="tag">By Mobile Lab</span><span class="tag">${wordCount.toLocaleString()} words · ${readingTime} min read</span></div><p class="article-intro">${esc(item[3])}</p><figure class="article-featured"><img src="/assets/images/method-diagnose.webp" alt="Mobile Lab diagnostic workflow map" width="1600" height="900" fetchpriority="high"></figure><div class="article-body">${rendered.html}</div></article>`;
+  const resourcesHtml = `<aside class="blog-aside" aria-label="Article resources"><section class="lead-card" aria-labelledby="lead-heading"><h2 id="lead-heading">Stay close to the work.</h2><p>This form is not connected in this build. No email is collected or sent.</p><form class="lead-form" aria-describedby="lead-status"><label for="lead-email">Email address</label><input id="lead-email" type="email" autocomplete="email" placeholder="you@company.com"><button id="lead-magnet-submit" type="submit" disabled>Notify me when available</button></form><p class="form-note" id="lead-status" role="status">Lead magnet delivery still needs an approved integration.</p></section><section class="testimonial-card" aria-labelledby="testimonial-heading"><h2 id="testimonial-heading">Built for work that has to hold.</h2><blockquote>“Mobile Lab cut through months of AI noise. They diagnosed our exact dispatch bottleneck in 48 hours and shipped a rock-solid system that runs daily without breaking.”</blockquote><cite>Operations Director<br><span>Logistics &amp; Delivery Network</span></cite></section></aside>`;
+  document.querySelector('#app').innerHTML = `<div class="content-shell blog-detail-shell">${nav('blog')}<main class="content-main blog-detail-layout"><div class="blog-detail-grid"><aside class="blog-sidebar" aria-label="Table of contents"><h2>In this article</h2><nav class="blog-nav-list toc-list" aria-label="Article sections">${tocLinks}</nav></aside>${articleHtml}${resourcesHtml}</div><section class="related-content blog-full-row" aria-labelledby="related-heading"><h2 id="related-heading">Other blog posts that you might be interested with:</h2><div class="related-links">${relatedLinks}</div></section><section class="article-cta blog-full-row blog-detail-cta"><strong>Have a similar bottleneck?</strong><br><span>Tell us where work gets stuck — we’ll diagnose before we build.</span><br><a href="/contact">Talk to us <span aria-hidden="true">→</span></a></section></main>${footer()}</div>`;
+  setupTableOfContents(rendered.headings);
+  document.querySelector('.lead-form')?.addEventListener('submit', (event) => event.preventDefault());
 }
 
 const pathParts = window.location.pathname.split('/').filter(Boolean);
