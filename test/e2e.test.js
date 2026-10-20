@@ -13,7 +13,9 @@ const pages = [
   ['about', '/about'],
   ['services', '/services'],
   ['how-we-work', '/how-we-work'],
-  ['contact', '/contact']
+  ['contact', '/contact'],
+  ['blog', '/blog'],
+  ['work', '/work']
 ];
 const viewports = [390, 768, 1440];
 const artifactDir = fileURLToPath(new URL('../artifacts/browser-qa/', import.meta.url));
@@ -145,5 +147,36 @@ test('keeps downloads available and repository files private', async () => {
   for (const route of ['/server.js', '/package.json', '/.env', '/.git/config']) {
     const response = await fetch(`${baseUrl}${route}`);
     assert.equal(response.status, 404, `${route} should not be public`);
+  }
+});
+
+test('renders blog and projects through direct, refreshed, and internal navigation', async () => {
+  for (const [route, detailPrefix] of [['/blog', '/blog/'], ['/work', '/work/']]) {
+    for (const width of [390, 1440]) {
+      const context = await browser.newContext({ viewport: { width, height: 900 } });
+      const page = await context.newPage();
+      const consoleErrors = [];
+      const failedRequests = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') consoleErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => consoleErrors.push(error.message));
+      page.on('requestfailed', (request) => failedRequests.push(request.url()));
+
+      await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
+      assert.equal(await page.locator('.content-card').count(), 10, `${route} should render its cards`);
+      const detailHref = await page.locator('.content-card a').first().getAttribute('href');
+      assert.ok(detailHref?.startsWith(detailPrefix));
+      await page.locator('.content-card a').first().click();
+      await page.waitForLoadState('networkidle');
+      assert.equal(await page.locator('.article').count(), 1);
+      await page.reload({ waitUntil: 'networkidle' });
+      assert.equal(await page.locator('.article').count(), 1);
+      await page.goBack({ waitUntil: 'networkidle' });
+      assert.equal(await page.locator('.content-card').count(), 10);
+      assert.deepEqual(consoleErrors, [], `${route} emitted browser errors`);
+      assert.deepEqual(failedRequests, [], `${route} had failed requests`);
+      await context.close();
+    }
   }
 });
