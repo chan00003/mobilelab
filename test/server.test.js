@@ -59,6 +59,20 @@ describe('server routes', () => {
     assert.match(body, /contact/i);
   });
 
+  it('serves content indexes and their client assets', async () => {
+    for (const route of ['/blog', '/work']) {
+      const response = await request(route);
+      assert.equal(response.status, 200, route);
+      assert.match(await response.text(), /content\.js/);
+    }
+    const script = await request('/content.js');
+    const stylesheet = await request('/content.css');
+    assert.equal(script.status, 200);
+    assert.match(script.headers.get('content-type'), /javascript/);
+    assert.equal(stylesheet.status, 200);
+    assert.match(stylesheet.headers.get('content-type'), /css/);
+  });
+
   it('falls back to the home page for unknown routes', async () => {
     const response = await request('/not-a-real-route');
     const body = await response.text();

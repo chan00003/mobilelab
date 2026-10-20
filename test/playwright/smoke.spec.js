@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const pages = ['/', '/about', '/services', '/how-we-work', '/contact'];
+const pages = ['/', '/about', '/services', '/how-we-work', '/contact', '/blog', '/work'];
 
 test('serves the responsive MobileLab pages without broken assets', async ({ page }) => {
   for (const route of pages) {
